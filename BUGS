@@ -1,4 +1,5 @@
 
+ - the code to be benchmarked cannot contain a '#' at all
  - when doing a relative summary, and the first version is n/a, the rest of
    the results doesn't make sense.
  - tempfiles are not always deleted (why?)

@@ -92,9 +92,16 @@
    automaticaly do --terse when using --code
    some spellings
    renamed group 'bb' to 'code' for --code 
-2004-08-21 v0.10 Tels
+2004-08-21 v0.10 Tels (9 tests)
  * reorganized files to unclutter dir
  * empty options print out the help screen
  * print out time it took all in all in seconds
  * for --code, use a good default template (Perl)
+2004-10-18 v0.11 Tels
+ * fixed undef warning in line 215 with N/A results
+ * require BigInt v1.72
+ * added --version, --store and --reuse
+ * more tests
+ * use Pod::Usage instead of duplicating the help text
+ * rename inc/ to tpl/ (it contains templates, not includes)
 

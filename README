@@ -1,9 +1,12 @@
-BigBench - big benchmark suite to bench different versions of a module
+BigBench
 
-(C) ..--- ----- ----- .---- by - . .-.. ... .-.-.-  All rights reserved.
+(C) 2001-2004 by - . .-.. ... .-.-.-  All rights reserved.
+ 
+A benchmark suite to bench different versions of a module simultanously.
 
-This package contains needs versions of Math::BigInt and Math::BigFloat, you
-can get the at http://search.cpan.org/ or http://bloodgate.com/perl/.
+Note:
+  This package needs newer versions of Math::BigInt and Math::BigFloat, you
+  can get the at http://search.cpan.org/ or http://bloodgate.com/perl/.
 
 To test, unzip & untar package, then look at bb.pl for settings. Then run
 

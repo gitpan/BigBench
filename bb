@@ -3,13 +3,15 @@
 # BigBench - benchmark groups of opcodes under different versions/conditions
 
 $| = 1;
-$VERSION = '0.10';
-use Math::BigFloat v1.41;
+$VERSION = '0.11';
+use Math::BigFloat v1.42;
 use File::Find;
 use File::Spec;
 use Getopt::Long;
+use Pod::Usage;
 use strict;
 use vars qw/$VERSION/;
+use Digest::MD5;
 
 # default values:
 my $data = 'bigint.def';		# input of definitions
@@ -21,6 +23,7 @@ my $terse = 0;				# terse summary (only groups)?
 my $inc = 'inc/perl';			# from where to read includes
 my $help = 0;				# print help?
 my $summary = 1;			# print summary?
+my $nodetails = 0;			# print details?
 my $base = 0;				# relative summary?
 my $code = '';				# bench only this piece of code
 my $unlink = 1;				# unlink tmp files?
@@ -29,8 +32,13 @@ my $tight = 0;				# tight spacing or not?
 my $simulate = 0;			# simulate benchmark?
 my $take = 'lowest';			# take this run
 my $runs = 1;				# how many runs
+my $store = 'bb_out.dat';		# DB with result of benchmarks
+my $reuse = $store;			# re-use these results
+my $version = 0;			# print version?
 
 my $starttime = time;
+
+my $DB = {};				# our in-memory database
 
 ###############################################################################
 # parse commandline options
@@ -47,42 +55,12 @@ die 'Error parsing commandline, use --help for more information'
  'help' => \$help, 'code=s' => \$code, 'unlink!' => \$unlink,
  'simulate=i' => \$simulate, 'runs=i' => \$runs, 'take=s' => \$take,
  'accuracy=i' => \$digits, 'integer!' => \$integer,
+ 'store=s' => \$store, 'reuse=s' => \$reuse, version => \$version,
+  'nodetails!' => \$nodetails,
  );
 
-if ($help)
-  {
-  print <<HELP;
- Usage  : ./bb [options]
- Options: --help              print this screen and exit
-          --accuracy=digits   round results to so many digits
-          --base=number       print relative summary based on number
-          --code=sourcecode   bench code snippet and ignore definitions
-          --definitons=file   from where to read benchmark definitions
-          --duration=seconds  run each op for at least this time
-          --nosummary         don't print summary
-          --nointeger         don't round results to integer
-          --nounlink          don't unlink temporary files (for debug)
-          --path=libpath      path to libraries used by templates
-          --runs=number       run benchmark more than once (see --take)
-          --simulate=sr       simulate results by using srand(sr)
-          --skew=factor       scale reported numbers by factor
-          --take=run          take lowest|average|highest|last
-          --templates=path    path to templates to be used
-          --terse             terse summary (unless --nosummary)
-          --tight             more tight summary (smaller spacing)
- 
- Options may be abbreviated, their case does not matter.
-
- Examples: ./bb --def=math.def --terse --skew=2.1	# better printable?	
-           ./bb --def=str.def --inc=math --duration=5	# really fine-grained
-           ./bb --def=some.def --nosummary		# detailed
-           ./bb --def=some.def --terse --base=100	# simulate perlbench
-           ./bb --code='"ababba" =~ /a+/;'		# only this
-           ./bb --runs=2 --take=last			# cache, then bench
-HELP
-
-  exit;
-  }
+exit if $version;
+pod2usage() if $help;		# print help and exit
 
 ###############################################################################
 # post-process commandline options
@@ -178,33 +156,39 @@ my $benchmarks = $op_cnt * $tpl_cnt;
 print "Benchmark results are simulated with srand($simulate);\n"
       if $simulate != 0;
 
+# read in old results
+_read_db($reuse) if $reuse;
+
+print "Final results will be merged back into '$store'.\n" if $store;
+
 ###############################################################################
 # run benchmark
 
 my ($o,$name); my $failed = 0;
 foreach my $inc (sort keys %$tpl)
   {
-  print "\nRunning '$inc':\n";
+  print "\nRunning '$inc':\n" unless $nodetails;
   foreach my $group (sort { $a <=> $b} keys %$ops)
     {
-    print " Benchmarking group $group ('$ops->{$group}->{name}'):\n";
+    print " Benchmarking group $group ('$ops->{$group}->{name}'):\n" unless $nodetails;
     $ops->{$group}->{sum}->{$inc} = Math::BigFloat->bzero();
     my $count = scalar keys %{$ops->{$group}->{ops}};
     print "Warning, no ops in group $group ('$ops->{$group}->{name}'\n"
-     if $count == 0;
+     if $count == 0 && !$nodetails;
     my $group_na = 0;
     foreach my $id (sort { $a <=> $b} keys %{$ops->{$group}->{ops}})
       {
       $o = $ops->{$group}->{ops}->{$id};
       my $i = "  $id"; while (length($i) < 7) { $i = ' '.$i; }
       $name = $o->{name}; $name .= ' ' while (length($name) < $longest_name);
-      print "$i  $name";
+      print "$i  $name" unless $nodetails;
       my $empty = Math::BigFloat->bzero(0);		# no correct yet
       if ($o->{empty} ne '')
         {
-	$empty = run_bench($inc,$o->{setup},$o->{empty});
+	$empty = run_bench(-$group,$id,$inc,$o->{name}, $o->{setup},$o->{empty});
 	}
-      my $result = run_bench($inc,$o->{setup},$o->{bench});
+      my $result = run_bench($group,$id,$inc,$o->{name}, $o->{setup},$o->{bench});
+
       #	store result for every inc separately
       $o->{res}->{$inc} = {} if !defined $o->{res}->{$inc};
       $o = $o->{res}->{$inc};
@@ -212,15 +196,15 @@ foreach my $inc (sort keys %$tpl)
       $o->{both_result} = $result;
       $o->{empty_result} = $empty;
       # no result, or empty loop slower than full
-      if ($result < 0)
+      if ($result->is_negative() || $result->is_nan())
         {
         $o->{real_result} = 'n/a'; $failed++;
-        print "         n/a (got no result)\n"; next;
+        print "         n/a (got no result)\n" unless $nodetails; next;
         }
       if ($empty != 0 && $empty <= $result)
         {
         $o->{real_result} = ' -- '; $failed++;
-        print "         n/a (no accurate timing)\n"; next;
+        print "         n/a (no accurate timing)\n" unless $nodetails; next;
         }
       $group_na = 1;			# got some not n/a result
       $o->{real_result} = $o->{both_result};
@@ -233,11 +217,14 @@ foreach my $inc (sort keys %$tpl)
       $name->bfround(0) if $integer != 0;
       # 12300.000 => '12300    ', but 0.340 => 0.340
       # $name =~ s/\.(0+)$/' '. ' ' x length($1);/e;
-      print pad($name,' ',12,1), ' ops/s';
-      print "\n" and next if $empty == 0;
-      print " (empty: $o->{empty_result},";
-      print " both: $o->{both_result})";
-      print "\n";
+      if (!$nodetails)
+        {
+        print pad($name,' ',12,1), ' ops/s';
+        print "\n" and next if $empty == 0;
+        print " (empty: $o->{empty_result},";
+        print " both: $o->{both_result})";
+        print "\n";
+        }
       }
     if ($group_na == 0)
       {
@@ -250,9 +237,12 @@ foreach my $inc (sort keys %$tpl)
       $ops->{$group}->{sum}->{$inc} = $o;	# store rounded
       }
     $o = ' '.$o while (length($o) < 10);
-    print " Average:  ",' ' x $longest_name,"$o";
-    print " ops/s" if $group_na;
-    print "\n";
+    if (!$nodetails)
+      {
+      print " Average:  ",' ' x $longest_name,"$o";
+      print " ops/s" if $group_na;
+      print "\n";
+      }
     }
   }
 
@@ -419,7 +409,12 @@ foreach my $group (sort { $a <=> $b} keys %$ops)
 
 sub run_bench
   {
-  my ($inc,$setup,$bench) = @_;
+  my ($group,$op,$inc,$name,$setup,$bench) = @_;
+
+  # lookup the result in the DB
+  my $res = _lookup_db($group,$op,$inc, "$setup;$bench");
+  return $res if $res;
+
 
   my $temp = ${$tpl->{$inc}};
   $temp .= "$setup;\ntimethese ( -$duration, {\n bb => sub { $bench }\n } );";
@@ -475,11 +470,10 @@ sub run_bench
       }
     }
   $index++;
-  if (wantarray)
-    {
-    return ($rc,@results);
-    }
-  return $rc;
+
+  _store_db( $group,$op,$inc, $name, "$setup;$bench", $rc);
+
+  $rc;
   }
 
 sub load_definitions
@@ -578,13 +572,10 @@ sub read_file
 
   # read a template file
   open FILE, $data or die "Can't read $data: $!\n";
-  my $doc = '';
-  while (<FILE>)
-    {
-    $doc .= $_;
-    }
+  local $/ = undef;	# slurp mode
+  my $doc = <FILE>;
   close FILE;
-  return \$doc;
+  \$doc;
   }
 
 sub wanted
@@ -602,7 +593,76 @@ END
   unlink $tempfile if defined $tempfile && -e $tempfile && $unlink == 1;
   $endtime = time unless defined $endtime;
   my $seconds = $endtime - $starttime;
+  _close_db() if $store || $reuse;
   print "\n", scalar localtime(), " All done, took $seconds seconds. Enjoy!\n\n";
+  }
+
+sub _store_db
+  {
+  # store the group/op in the DB
+  my ($group,$op,$inc, $name, $code, $result) = @_;
+
+#  print STDERR "Store $group $op $inc $name $code $result\n";
+  my $ctx = Digest::MD5->new(); $ctx->add($inc . $code);
+
+  my $key = $ctx->hexdigest();
+  $DB->{$key} = [ $group, $op, $inc, $name, $result || 'N/A'];
+  }
+
+sub _close_db
+  {
+  # write out all merged results to the DB
+
+  return if keys %$DB == 0;
+ 
+  open FILE, ">$store" or die ("Cannot write '$store': $!");
+  print FILE "# BigBench database v0.01\n";
+  print FILE "# Format is:\n";
+  print FILE "# MD5($version . $code)=group#op#run_under_version#op_name#result\n";
+  foreach my $key (sort keys %$DB)
+    {
+    print FILE "$key=", join("#", @{$DB->{$key}}), "\n";
+    }
+  close FILE;
+  }
+
+sub _lookup_db
+  {
+  # lookup a group/op in the DB
+  my ($group,$op,$inc,$code) = @_;
+
+  # groups/ops must be correctly numbered for the DB feature to work
+  return if $group == 0 || $op == 0;
+
+  my $ctx = Digest::MD5->new(); $ctx->add($inc.$code);
+  my $key = $ctx->hexdigest();
+#  print STDERR "Lookup $group $op $inc $code ($key)\n";
+  if (exists $DB->{$key})
+    {
+    $DB->{$key}->[4];
+    }
+  }
+
+sub _read_db
+  {
+  return unless -f $reuse;
+
+  print "Reusing results from '$reuse'...";
+
+  open FILE, "$reuse" or die ("Cannot read '$reuse': $!");
+  my $line_nr = -1;
+  while (my $line = <FILE>)
+    {
+    $line_nr ++;
+    chomp($line);
+    next if $line =~ /^\s*(#|$)/;		# skip comments or empty lines
+    warn ("malformed line #$line_nr '$line' in $reuse") and next
+     unless $line =~ /^(\w+)=(.*)/;
+    my ($key,$data) = ($1,$2);
+    $DB->{$key} = [ split /#/, $data ];
+    }
+  close FILE;
+  print "done. Got ", scalar keys %$DB," cached results.\n";
   }
 
 __END__
@@ -616,24 +676,39 @@ BigBench - benchmark groups of opcodes under different versions/conditions
 =head1 SYNOPSIS
 
  Usage  : ./bb [options]
- Options: --help              print this screen and exit
-          --accuracy=digits   round results to so many digits
-          --base=number       print relative summary based on number
-          --code=sourcecode   bench code snippet and ignore definitons
-          --definitons=file   from where to read benchmark definitions
-          --duration=seconds  run each op for at least this time
-          --nosummary         don't print summary
-          --nounlink          don't unlink temporary files (for debug)
-          --path=libpath      path to libraries used by templates
-          --runs=number       run benchmark more than once (see --take)
-          --simulate=sr       simulate results by using srand(sr)
-          --skew=factor       scale reported numbers by factor
-          --take=run          take lowest|average|highest|last
-          --templates=path    path to templates to be used
-          --terse             terse summary (unless --nosummary)
-          --tight             more tight summary (smaller spacing)
+ Options: --help		print this screen and exit
+	  --accuracy=digits	round results to so many digits
+	  --base=number		print relative summary based on number
+	  --code=sourcecode	bench code snippet and ignore definitions
+	  --definitons=file	from where to read benchmark definitions
+	  --duration=seconds	run each op for at least this time
+	  --nodetails		don't print details while benchmarking
+	  --nosummary		don't print summary
+	  --nointeger		don't round results to integer
+	  --nounlink		don't unlink temporary files (for debug)
+	  --path=libpath	path to libraries used by templates
+	  --reuse=bb_out.dat	name of DB file from where to re-use results
+				Set to empty string to disable this.
+	  --runs=number		run benchmark more than once (see --take)
+	  --simulate=srand	simulate results by using srand(srand)
+	  --skew=factor		scale reported numbers by factor
+	  --store=bb_out.dat	name of DB file where to store results
+				Set to empty string to disable this.
+	  --take=run		take lowest|average|highest|last
+	  --templates=path	path to templates to be used
+	  --terse		terse summary (unless --nosummary)
+	  --tight		more tight summary (smaller spacing)
+	  --version		print version and exit
  
  Options may be abbreviated, their case does not matter.
+
+ Examples: ./bb --def=math.def --terse --skew=2.1	# better printable?	
+           ./bb --def=str.def --inc=math --duration=5	# really fine-grained
+           ./bb --def=some.def --nosummary		# detailed
+           ./bb --def=some.def --terse --base=100	# simulate perlbench
+           ./bb --code='"ababba" =~ /a+/;'		# only this
+           ./bb --runs=2 --take=last			# cache, then bench
+           ./bb --reuse=bb_out.dat --terse		# display reused results
 
 =head1 DESCRIPTION
 
@@ -688,6 +763,11 @@ The timings are quite accurate with only 2 or 3 seconds, so going higher will
 not give you much better results. If you want just a quick peek on what the
 output will look like, use C<--simulate=sr> (see there).
 
+=item --nodetails
+
+Don't print details while running the benchmarks. This is usefull when
+all the results come from the database.
+
 =item --nosummary
 
 Don't print summary. When given, C<--terse> and C<--tight> are ignored.
@@ -699,9 +779,14 @@ what bb creates.
 
 =item --path=libpath
 
-Specifie the path to the libraries used by templates. You can put unpacked
+Specify the path to the libraries used by templates. You can put unpacked
 modules or Perl versions there. This string will be interpolated into
 C<##path##> in the template files.
+
+=item --reuse=bb_out.dat
+
+Name of DB file from where to re-use results. Set to empty string to disable
+this. Default is C<bb_out.db>. See also L<--store>.
 
 =item --runs=number
 
@@ -716,6 +801,12 @@ will look like and also used by the testsuite.
 =item --skew=factor
 
 Scale all reported numbers by this factor. For more nicer output.
+
+=item --store=bb_out.dat
+
+Name of DB file where to store results. Set to empty string to disable storage
+entirely. The default is C<bb_out.dat>. The results from previous runs
+in the database will be merged in, unless you set L<--reuse> to ''.
 
 =item --take=run
 
@@ -752,6 +843,10 @@ suppress the actual op results.
 
 Create a more tight summary with smaller spacing.
 
+=item --version
+
+Print the version string and exit.
+
 =back
 
 =head1 Examples
@@ -766,6 +861,10 @@ Create a more tight summary with smaller spacing.
 
 This program is free software; you may redistribute it and/or modify it under
 the same terms as Perl itself.
+
+=head1 BUGS
+
+See the BUGS file.
 
 =head1 AUTHORS
 

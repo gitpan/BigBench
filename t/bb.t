@@ -1,13 +1,14 @@
 #!/usr/bin/perl -w
 
-use Test;
+use Test::More;
 use strict;
 use File::Spec;
 
 BEGIN
   {
   chdir 't' if -d 't';
-  plan tests => 4;
+  use lib 'lib';
+  plan tests => 9;
   }
 
 my ($options,$result);
@@ -18,9 +19,8 @@ while (<DATA>)
   chomp();
   next if /^#/;			# skip comments
   $options = $_;
-  print "Running ../bb $options\n";
   $result = `../bb $options 2>$zero`;
-  ok (1,1);
+  is (1,1,$options);
   }
 
 
@@ -31,3 +31,8 @@ __DATA__
 --def=no_op.def --templ=test
 --def=test.def --templ=test
 --help
+--version
+--code='"ababba" =~ /a+/;'
+--terse
+--tight
+--simulate=8

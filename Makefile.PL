@@ -5,7 +5,7 @@ WriteMakefile(
     'NAME'		=> 'BigBench',
     'VERSION_FROM'	=> 'bb', # finds $VERSION
     'PREREQ_PM'		=> {
-	Math::BigInt => 1.71,
+	Math::BigInt => 1.72,
 	}, # e.g., Module::Name => 1.1
     'LIBS'		=> [''], # e.g., '-lm'
     'DEFINE'		=> '', # e.g., '-DHAVE_SOMETHING'

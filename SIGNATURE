@@ -13,49 +13,48 @@ not run its Makefile.PL or Build.PL.
 
 -----BEGIN PGP SIGNED MESSAGE-----
 
-SHA1 f7d675ad1bad63bbc66c2d13878c8af3e21f2ada BUGS
-SHA1 39ed71899c11f31f48b288e950937962ab9f028a CHANGES
+SHA1 7fee0cfec2beb5a03df6d5f704665b1011453b46 BUGS
+SHA1 4d3c92ed0cce0977f8bca4b3d7379a983c13e7cb CHANGES
 SHA1 d6a6c30ee6d9ba6b9afab8bbf6a25e1b23c744e0 LICENSE
-SHA1 5c4da8af3198dc332ddff8ec41a7d22f45138c4b MANIFEST
-SHA1 2f3c8b0e3f17d8b7f166e4816ec07b2ebb5a64af META.yml
-SHA1 5f525da427480ff6d16d31d2750f71bfd6d0ea09 Makefile.PL
-SHA1 32e2f4fd995cb1c8f29a3c042dff167abcbc96ab README
+SHA1 2658565c4092efb22c3580ee4d0462095332d9b0 MANIFEST
+SHA1 8e25af90641c508d714ab0831be820516f108041 META.yml
+SHA1 54754c65a6a0372859e1654ea286ee010de9ea85 Makefile.PL
+SHA1 1a9f68d0d784b99fc88a1b9b4862a5881b203e69 README
 SHA1 644b8c11a5d732116da81fe0953a6a2aee73e330 TODO
-SHA1 b3c699ab612889eef58e9a05c659b0619857c567 bb
+SHA1 d53d2c4773887a31eb171ff601a8b027e80af7d2 bb
 SHA1 c91127f8cdf33d9dd3b759a06106d33f83151798 def/bigfloat.def
 SHA1 2c6bd8cc95494d6f621d26127e29cffc4ee3e386 def/bigint.def
 SHA1 f69c7bb86c5d8863e6e0ef8c4d4a713ad6d96f14 def/short.def
 SHA1 46589514548b62481540141f47dfc900de8b7f48 examples/BigFloat-0.06.txt
 SHA1 d41210c37a45a5170fcb1faa6c59cc36fc4a1e72 examples/BigInt-0.02.txt
 SHA1 252f12c363980cff43c75bf46e169e0def2f7674 examples/BigInt-0.04.txt
-SHA1 e8ce895802fdc69fa1c74a003aefc79974bd6fa4 inc/bigint/Perl.inc
-SHA1 c4fe58d6cacb24de73cc483bbc29dd762bae63aa inc/bigint/v0.01.inc
-SHA1 44d770e81e949489db5204bd8b0a364a59f29b17 inc/bigint/v1.33.inc
-SHA1 78f0bcc7278ee452fc850fccdaecd67cadaa8371 inc/bigint/v1.39.inc
-SHA1 c4d548256b623f9c36ecca4534445955079a8f1a inc/bigint/v1.40.inc
-SHA1 62691c54b49f1ac62d6d7a91d416b098e6a00d64 inc/bigint/v1.45.inc
-SHA1 656beee301236f37310d29dee56fc3caf603b124 inc/bigint/v1.47.inc
-SHA1 aaa5e79cc6fa9887a07fd9fc52ad4fb4a0c4c83d inc/bigint/v1.48.inc
-SHA1 fa79af5894cf5acaf00479946aa82ff7c192ee61 inc/bigint/v1.48_Pari_v1.05.inc
-SHA1 5df0e5c37f13ea510f4b03e71e98dc27aa02370e inc/bigint/v1.49.inc
-SHA1 fa156c5e26160ec763a1ec2d79ef5f9deb7aba9d inc/bigint/v1.50.inc
-SHA1 7572fc0f18b4e0e5b5f0394fba21c960fbaa53bc inc/bigint/v1.60.inc
-SHA1 cce884658f54fdd33d49f8eea28e0ced663a3926 inc/bigint/v1.70.inc
-SHA1 4ea7573e123e8b46e2a9dcc71995b725f7de4f4f inc/bigint/v1.71.inc
-SHA1 ad5cdb48d4d0c77f03491e2e16578b382d9ef712 inc/bigint/v1.72.inc
-SHA1 e8ce895802fdc69fa1c74a003aefc79974bd6fa4 inc/perl/Perl.inc
-SHA1 a2d5763bd3b026dcd96a0620f07c7c0ecd6c3678 t/bb.t
+SHA1 81ffd1f759f8b42e2e8893ae65325f2580a96944 t/bb.t
 SHA1 b431adbfa65c56dba9545d48a03cb75c20594b1f t/empty.def
 SHA1 f2ff4afb18cb7d5c21187f04c77f6ab227399c09 t/no_op.def
+SHA1 e8ce895802fdc69fa1c74a003aefc79974bd6fa4 tpl/bigint/Perl.inc
+SHA1 c4fe58d6cacb24de73cc483bbc29dd762bae63aa tpl/bigint/v0.01.inc
+SHA1 44d770e81e949489db5204bd8b0a364a59f29b17 tpl/bigint/v1.33.inc
+SHA1 78f0bcc7278ee452fc850fccdaecd67cadaa8371 tpl/bigint/v1.39.inc
+SHA1 c4d548256b623f9c36ecca4534445955079a8f1a tpl/bigint/v1.40.inc
+SHA1 62691c54b49f1ac62d6d7a91d416b098e6a00d64 tpl/bigint/v1.45.inc
+SHA1 656beee301236f37310d29dee56fc3caf603b124 tpl/bigint/v1.47.inc
+SHA1 aaa5e79cc6fa9887a07fd9fc52ad4fb4a0c4c83d tpl/bigint/v1.48.inc
+SHA1 fa79af5894cf5acaf00479946aa82ff7c192ee61 tpl/bigint/v1.48_Pari_v1.05.inc
+SHA1 5df0e5c37f13ea510f4b03e71e98dc27aa02370e tpl/bigint/v1.49.inc
+SHA1 fa156c5e26160ec763a1ec2d79ef5f9deb7aba9d tpl/bigint/v1.50.inc
+SHA1 7572fc0f18b4e0e5b5f0394fba21c960fbaa53bc tpl/bigint/v1.60.inc
+SHA1 cce884658f54fdd33d49f8eea28e0ced663a3926 tpl/bigint/v1.70.inc
+SHA1 4ea7573e123e8b46e2a9dcc71995b725f7de4f4f tpl/bigint/v1.71.inc
+SHA1 ad5cdb48d4d0c77f03491e2e16578b382d9ef712 tpl/bigint/v1.72.inc
+SHA1 e8ce895802fdc69fa1c74a003aefc79974bd6fa4 tpl/perl/Perl.inc
 -----BEGIN PGP SIGNATURE-----
 Version: GnuPG v1.2.4 (GNU/Linux)
-Comment: When cryptography is outlawed, bayl bhgynjf jvyy unir cevinpl.
 
-iQEVAwUBQSiK2HcLPEOTuEwVAQHXOQf9GYtrCveHiKsubVMKAjQpKtIdS38oEz1X
-1GRa07jTNuvisv6EhxuRfDgTz84D5ob3XCQrzRMDl+RpdP/opiGspgNvGstOPhQy
-MFrPUSPMN4XrvYKwS7qPNsWiadsevm6vcplMizaObLoO/Id1vsmk1V3iWR8V5hA3
-hSIbC2nyLRSizcpajzptjxe43kWoq3LViIDZIpuyTz6Pda2oJOlD6PvZYwk69fgm
-0y0a+TkQcB6pFgskIgOpQeJBs5kvW3Ddxio2XA1X/Z3JaJJyGH+FvkHm4eYlHk4S
-UQ3kVNsvt26p7Fy8dFfHRoaISkDaBIueVLw8oSiQ6eneYPo1H24ZZQ==
-=ykpj
+iQEVAwUBQXQsjncLPEOTuEwVAQHOtwf/QmGhbzAbgaSPF0oYK8IVB9SwmlaqIAuC
+iAvZPKqVvOPSVu3Ntj7FLyO3P/KoUvgiEMUz/ZbBNAvrmCce5HR5ff5LXND1tiQO
+klLIzPpyLjX3C147v3aO31kwvSKJriBoHusKdpF0flAKgOiM0bToNHhz3Pc8Atfc
+qefCY78sdMjFkmFnOiUCSd94gNR212YUstmY8+mZB12E+6gARw8FeX+7JeYwEHUC
+zRwTvuIkrZVbCP4D1556iS8Z6To4OatyDhTQ1Jx8CFoIQ6h9HDey8W7sfh4LqdeY
+KGrwDULdI69lInNSkFcIMRsDItEBXztYNTQ6pdrLjfYN7TYec1WX4g==
+=VHLl
 -----END PGP SIGNATURE-----
