@@ -1,0 +1,11 @@
+
+ToDo:
+ * ability to specify on a per-op base the min version, otherwise a n/a occurs
+ * --skip_group=1,2,3 --skip_op=4,3,2,6  to skip groups or ops
+ * --group=1,2,3 --op=1,2,34             to only run these ops or groups
+ * when a group is n/a for first version, and relative summary requested:
+   search for first not n/a version and set this to $base instead of having
+   all n/a
+ * append a total average to summary
+
+Tels <http://bloodgate.com/perl/>

@@ -1,0 +1,100 @@
+
+# BigBench - benchmark groups of opcodes under different versions
+
+2001-11-25 v0.01 Tels
+ - initial version
+
+2001-11-28 v0.02 Tels
+ - bb#.tmp => bb_#.tmp
+ - align right op id, ops/s right aligned (and aligned at '.')
+ - print reason for 'n/a' cases
+ - print summary table
+ - delete tmp file at END, 'bb_0000.tmp' etc inst. of 'bb.tmp'
+ - print out from which file definitions are read
+ - print out count of groups and ops to bench
+ - added skew factor, to scale results by a constant factor
+ - print date/time
+ - changed output of 'real' to 'combined'
+ - if all timings in group are n/a, group is also n/a
+ - print line number of error in definition file
+
+2001-11-29 v0.03 Tels
+ - read templates from specified subdir
+ - parse commandline options
+   (--help --(no)terse --skew=factor --inc=dir, --path=path, --duration=time
+    --accuracy=digits --definitions=file )
+ - --help prints detailed help screen
+ - renamed to bb
+ - don't try to delete undef tempfile
+ - abort if no templates found
+ - abort if no groups or ops defined
+ - autofill in group and op id's (if unspecified)
+ - summary: output group avrg 
+ - summary, group avarage comes after ops, not before
+ - longest_name includes group names
+ - print duration
+ - pad() for shorter code
+ - v1.48_Pari.inc => "v1.48\nPari" in summary (multiply header lines)
+ - --nosummary to supress summary entirely
+ - --base=number to create a relatively summary (based on first template)
+ - calculate approx. time entire benchmark will take
+ - templates die when wrong version is loaded, so that no false results occur
+
+2001-11-30 v0.04 Tels
+ - v1.38.inc => v1.39.inc
+ - added bmod, blsft() and brsft() in bigint.def
+ - it is a good idea to actually include bb in the distribution: MANIFESTed
+
+2001-11-30 v0.05 Tels
+ added:
+   --code='"aaabbbaba" =~ /a+/;' for short commandline benchmarking fun
+   --(no)unlink for leaving the temporary files around, to easier debug
+   --simulate=srand for creating consistent, yet artificially results
+   (used by testsuite)
+   --tight for tighter spacing in summary
+   some bare-bones pod
+ fixed:
+   summary if results were longer than template-name-parts
+   longestname defaults to 6, not 10 (tighter output for only short names)
+
+2001-12-01 v0.06 Tels
+ added:
+   --runs=number 			- run benchmark multiple times
+   --take=average|lowest|highest|last   - take this from all runs
+   --accuracy=digits                    - to change default from 3 to digits
+   some basic tests to see whether bb is there and runs, at least
+   print a summay of how many benchmarks failed
+   print how long benchmark will take in seconds, minutes or hours
+ fixed:
+   better validity checks for options 
+   use File::Spec for /dev/null
+   extended doc to cover all commandline options
+   removed bigfloat stuff from bigint.def and moved it to bigfloat.def
+   added a lot of bigfloat benchmarks, added bmul() to bigint
+   v1.33.inc dies for fsqrt() since that hangs in that version
+   combined => both
+
+2001-12-03 v0.07 Tels
+ fixed:
+   better result extraction
+   don't bround() for NaN (check for eq 'n/a' was not enough)
+   display correct time and not '...approximately 0 minutes'
+ added:
+   more sqrt() benchmarks to bigfloat/bigint
+
+2002-02-15 v0.08 Tels
+ added:
+   nointeger 
+   hex/bin benchmarks to bigfloat/bigint
+
+2002-08-01 v0.09 Tels
+ fixed:
+   automaticaly do --terse when using --code
+   some spellings
+   renamed group 'bb' to 'code' for --code 
+2004-08-21 v0.10 Tels
+ * reorganized files to unclutter dir
+ * empty options print out the help screen
+ * print out time it took all in all in seconds
+ * for --code, use a good default template (Perl)
+

@@ -1,0 +1,3 @@
+# Empty definition file to test error detection
+
+group=blah#0#Some group

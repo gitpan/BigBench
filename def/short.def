@@ -1,0 +1,37 @@
+###############################################################################
+# BigBenchmark data file.
+#
+# Contains all the groups and ops you want to benchmark.
+#
+# Format is as follows:
+#
+# For defining groups:
+# group=groupid#groupname#groupdescription
+# The ops follow the group defintion and go like this:
+# opid#opname#startupcode#emptycode#benchmarkcode
+#
+# The opid is to sort the ops in one group, they will be done numerically
+# sorted. Same goes for group id's, lowest id will be benchmarked first.
+# You can leave group and op id's empty (set to 0), then they will be
+# filled-in automatically.
+#
+# The startup code is done before running the benchmark, so set any variables
+# you need there. The empty code is benchmarked and then subtracted from the
+# benchmark's code timing.
+###############################################################################
+
+# Short definition file for fast tests
+
+# BigInt/BigFloat:
+# You should use $class->new(); instead of Math::BigInt->new() etc, so that
+# the benchmarks are independed of the actual class used.
+
+# Actual definitions:
+
+group=new#1#Big integer new
+1#1###$x = $c->new(1)
+2#1e10###$x = $c->new('1'.'0' x 10)
+
+group=new specials#0#Big integer new (special values)
+0#NaN###$x = $c->new('abcdefg')
+

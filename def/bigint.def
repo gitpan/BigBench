@@ -1,0 +1,492 @@
+###############################################################################
+# BigBenchmark data file.
+#
+# Contains all the groups and ops you want to benchmark.
+#
+# Format is as follows:
+#
+# For defining groups:
+# group=groupid#groupname#groupdescription
+# The ops follow the group defintion and go like this:
+# opid#opname#startupcode#emptycode#benchmarkcode
+#
+# The opid is to sort the ops in one group, they will be done numerically
+# sorted. Same goes for group id's, lowest id will be benchmarked first.
+# You can leave group and op id's empty (set to 0), then they will be
+# filled-in automatically.
+#
+# The startup code is done before running the benchmark, so set any variables
+# you need there. The empty code is benchmarked and then subtracted from the
+# benchmark's code timing.
+###############################################################################
+
+# BigInt/BigFloat:
+# You should use $c->new(); instead of Math::BigInt->new() etc, so that
+# the benchmarks are independed of the actual class used.
+
+# Actual definitions:
+
+group=new#1#Big integer new
+0#1###$x = $c->new(1)
+0#1e10###$x = $c->new('1'.'0' x 10)
+0#1e100###$x = $c->new('1'.'0' x 100)
+0#1e1000###$x = $c->new('1'.'0' x 1000)
+0#1e10000###$x = $c->new('1'.'0' x 10000)
+0#-1234567890###$x = $c->new('-1234567890')
+
+group=new specials#2#Big integer new (special values)
+0#NaN###$x = $c->new('abcdefg')
+0#-1e123###$x = $c->new('-1e123')
+0#-1.23456789e123###$x = $c->new('-1.23456789e123')
+0#+inf###$x = $c->new('+inf')
+0#-inf###$x = $c->new('-inf')
+
+group=bcmp#0#Big integer bcmp
+0#1 1#$x=$c->new('1');$y=$x->copy();##$x->bcmp($y);
+0#1e10 1e10#$x=$c->new('1'x10);$y=$x->copy();##$x->bcmp($y);
+0#1e10 1e20#$x=$c->new('1'x10);$y=$c->new('1'x20);##$x->bcmp($y);
+0#1e100 1e100#$x=$c->new('1'x100);$y=$x->copy();##$x->bcmp($y);
+0#1e1000 1e1000#$x=$c->new('1'x1000);$y=$x->copy();##$x->bcmp($y);
+0#1 -1#$x=$c->new('1');$y=$c->new(-1);##$x->bcmp($y);
+0#0 0#$x=$c->new('0');$y=$c->new(0);##$x->bcmp($y);
+0#0 1e100#$x=$c->new('0');$y=$c->new('1'x100);##$x->bcmp($y);
+0#1e100 0#$x=$c->new('1'x100);$y=$c->new(0);##$x->bcmp($y);
+0#1e1000 1#$x=$c->new('1'x1000);$y=$c->new(1);##$x->bcmp($y);
+0#1e1000 -1#$x=$c->new('1'x1000);$y=$c->new(-1);##$x->bcmp($y);
+0#1e1000 1e10#$x=$c->new('1'x1000);$y=$c->new('1'x10);##$x->bcmp($y);
+0#1e1000 -1e10#$x=$c->new('1'x1000);$y=$c->new('-'.'1'x10);##$x->bcmp($y);
+0#1e1000 1x10#$x=$c->new('1'x1000);$y=$c->new('1'x10);##$x->bcmp($y);
+0#1e1000 1x100#$x=$c->new('1'x1000);$y=$c->new('1'x100);##$x->bcmp($y);
+
+group=<=>#0#Big integer <=>
+0#1 1#$x=$c->new('1');$y=$x->copy();##$x <=> $y;
+0#1e10 1e10#$x=$c->new('1'x10);$y=$x->copy();##$x <=> $y;
+0#1e10 1e20#$x=$c->new('1'x10);$y=$c->new('1'x20);##$x <=> $y;
+0#1e100 1e100#$x=$c->new('1'x100);$y=$x->copy();##$x <=> $y;
+0#1e1000 1e1000#$x=$c->new('1'x1000);$y=$x->copy();##$x <=> $y;
+0#1 -1#$x=$c->new('1');$y=$c->new(-1);##$x <=> $y;
+0#0 0#$x=$c->new('0');$y=$c->new(0);##$x <=> $y;
+0#0 1e100#$x=$c->new('0');$y=$c->new('1'x100);##$x <=> $y;
+0#1e100 0#$x=$c->new('1'x100);$y=$c->new(0);##$x <=> $y;
+0#1e1000 1#$x=$c->new('1'x1000);$y=$c->new(1);##$x <=> $y;
+0#1e1000 -1#$x=$c->new('1'x1000);$y=$c->new(-1);##$x <=> $y;
+0#1e1000 1e10#$x=$c->new('1'x1000);$y=$c->new('1'x10);##$x <=> $y;
+0#1e1000 -1e10#$x=$c->new('1'x1000);$y=$c->new('-'.'1'x10);##$x <=> $y;
+0#1e1000 1x10#$x=$c->new('1'x1000);$y=$c->new('1'x10);##$x <=> $y;
+0#1e1000 1x100#$x=$c->new('1'x1000);$y=$c->new('1'x100);##$x <=> $y;
+
+group=bsqrt#0#Big integer square root
+0#5#$x=$c->new('5');#$x->copy();#$x->copy()->bsqrt();
+0#12#$x=$c->new('12');#$x->copy();#$x->copy()->bsqrt();
+0#123#$x=$c->new('123');#$x->copy();#$x->copy()->bsqrt();
+0#1234#$x=$c->new('1234');#$x->copy();#$x->copy()->bsqrt();
+0#12345#$x=$c->new('12345');#$x->copy();#$x->copy()->bsqrt();
+0#123456#$x=$c->new('123456');#$x->copy();#$x->copy()->bsqrt();
+0#1234567#$x=$c->new('1234567');#$x->copy();#$x->copy()->bsqrt();
+0#12345**2+1#$x=($c->new('12345')**2)+1;#$x->copy();#$x->copy()->bsqrt();
+0#144e100#$x=$c->new('144'.'0'x100);#$x->copy();#$x->copy()->bsqrt();
+0#144e101#$x=$c->new('144'.'0'x101);#$x->copy();#$x->copy()->bsqrt();
+0#144e1000#$x=$c->new('144'.'0'x1000);#$x->copy();#$x->copy()->bsqrt();
+0#123e100#$x=$c->new('123'.'0'x100);#$x->copy();#$x->copy()->bsqrt();
+0#123e1000#$x=$c->new('123'.'0'x1000);#$x->copy();#$x->copy()->bsqrt();
+
+# v1.33 hangs here
+#0#12345**2-1#$x=($c->new('12345')**2)-1;#$x->copy();#$x->copy()->bsqrt();
+
+0#1e10#$x=$c->new('1e10');#$x->copy();#$x->copy()->bsqrt();
+0#1e100#$x=$c->new('1e100');#$x->copy();#$x->copy()->bsqrt(); 
+
+group=binc#0#Big integer increment
+0#1#$x=$c->new('1');##$x->binc();
+0#1e10#$x=$c->new('1'.'0' x 10);##$x->binc();
+0#1e100#$x=$c->new('1'.'0' x 100);##$x->binc();
+0#1e1000#$x=$c->new('1'.'0' x 1000);##$x->binc();
+
+group=++#0#Big integer plusplus
+0#1#$x=$c->new('1');##$x++;
+0#1e10#$x=$c->new('1'.'0' x 10);##$x++;
+0#1e100#$x=$c->new('1'.'0' x 100);##$x++;
+0#1e1000#$x=$c->new('1'.'0' x 1000);##$x++;
+0#1e10000#$x=$c->new('1'.'0' x 10000);##$x++;
+
+group=bdec#0#Big integer decrement
+0#1#$x=$c->new('1');##$x->bdec();
+0#1e10#$x=$c->new('1'.'0' x 10);##$x->bdec();
+0#1e100#$x=$c->new('1'.'0' x 100);##$x->bdec();
+0#1e1000#$x=$c->new('1'.'0' x 1000);##$x->bdec();
+
+group=--#0#Big integer minusminus
+0#1#$x=$c->new('1');##$x--;
+0#1e10#$x=$c->new('1'.'0' x 10);##$x--;
+0#1e100#$x=$c->new('1'.'0' x 100);##$x--;
+0#1e1000#$x=$c->new('1'.'0' x 1000);##$x--;
+0#1e10000#$x=$c->new('1'.'0' x 10000);##$x--;
+
+group=badd#0#Big integer add
+0#1+1#$x=$c->new('1');$y=$x->copy();#$x->copy()#$x->copy()->copy()->badd($y);
+0#1e10+1e10#$x=$c->new('1'.'0' x 10);$y=$x->copy();#$x->copy()#$x->copy()->badd($y);
+0#1e100+1e100#$x=$c->new('1'.'0' x 100);$y=$x->copy();#$x->copy()#$x->copy()->badd($y);
+0#1e1000+1e1000#$x=$c->new('1'.'0' x 1000);$y=$x->copy();#$x->copy()#$x->copy()->badd($y);
+0#1+ -1#$x=$c->new('1');$y=$x->copy()->bneg();#$x->copy()#$x->copy()->badd($y);
+0#1e1000+1#$x=$c->new('1'.'0' x 1000);$y=$c->new(1);#$x->copy()#$x->copy()->badd($y);
+0#1e1000+-1#$x=$c->new('1'.'0' x 1000);$y=$c->new(-1);#$x->copy()#$x->copy()->badd($y);
+
+group=bsub#0#Big integer sub
+0#1 - 1#$x=$c->new('1');$y=$x->copy();#$x->copy()#$x->copy()->copy()->bsub($y);
+0#1e10 - 1e10#$x=$c->new('1'.'0' x 10);$y=$x->copy();#$x->copy()#$x->copy()->bsub($y);
+0#1e100 - 1e100#$x=$c->new('1'.'0' x 100);$y=$x->copy();#$x->copy()#$x->copy()->bsub($y);
+0#1e1000 - 1e1000#$x=$c->new('1'.'0' x 1000);$y=$x->copy();#$x->copy()#$x->copy()->bsub($y);
+0#1 - -1#$x=$c->new('1');$y=$x->copy()->bneg();#$x->copy()#$x->copy()->bsub($y);
+0#1e1000 - 1#$x=$c->new('1'.'0' x 1000);$y=$c->new(1);#$x->copy()#$x->copy()->bsub($y);
+0#1e1000 - -1#$x=$c->new('1'.'0' x 1000);$y=$c->new(-1);#$x->copy()#$x->copy()->bsub($y);
+
+group=$x - $y#0#Big integer sub
+0#1 - 1#$x=$c->new(1);$y=$c->new(1);##$x - $y;
+0#1e10 - 1#$x=$c->new('1'.'0' x 10);$y=$c->new(1);##$x - $y;
+0#1e100 - 1#$x=$c->new('1'.'0' x 100);$y=$c->new(1);##$x - $y;
+0#1e100 - 1e10#$x=$c->new('1'.'0' x 100);$y=$c->new('1'.'0' x 10);##$x - $y;
+
+group=bmul#0#Big integer multiply
+0#1 * 1#$x=$c->new('1');$y=$x->copy();#$x->copy()#$x->copy()->bmul($y);
+0#2 * 2#$x=$c->new('2');$y=$x->copy();#$x->copy()#$x->copy()->bmul($y);
+0#12 * 12#$x=$c->new('12');$y=$x->copy();#$x->copy()#$x->copy()->bmul($y);
+0#123 * 123#$x=$c->new('123');$y=$x->copy();#$x->copy()#$x->copy()->bmul($y);
+0#1234 * 1234#$x=$c->new('1234');$y=$x->copy();#$x->copy()#$x->copy()->bmul($y);
+0#12345 * 12345#$x=$c->new('12345');$y=$x->copy();#$x->copy()#$x->copy()->bmul($y);
+0#123456*123456#$x=$c->new('123456');$y=$x->copy();#$x->copy()#$x->copy()->bmul($y);
+0#1234567*1234567#$x=$c->new('1234567');$y=$x->copy();#$x->copy()#$x->copy()->bmul($y);
+0#12345678*12345678#$x=$c->new('12345678');$y=$x->copy();#$x->copy()#$x->copy()->bmul($y);
+0#12345679*12345679#$x=$c->new('123456789');$y=$x->copy();#$x->copy()#$x->copy()->bmul($y);
+0#12 * 2#$x=$c->new('12');$y=$c->new(2);#$x->copy()#$x->copy()->bmul($y);
+0#123 * 2#$x=$c->new('123');$y=$c->new(2);#$x->copy()#$x->copy()->bmul($y);
+0#1234 * 2#$x=$c->new('1234');$y=$c->new(2);#$x->copy()#$x->copy()->bmul($y);
+0#12345 * 2#$x=$c->new('12345');$y=$c->new(2);#$x->copy()#$x->copy()->bmul($y);
+0#123456 * 2#$x=$c->new('123456');$y=$c->new(2);#$x->copy()#$x->copy()->bmul($y);
+0#1234567 * 2#$x=$c->new('1234567');$y=$c->new(2);#$x->copy()#$x->copy()->bmul($y);
+0#12345678 * 2#$x=$c->new('12345678');$y=$c->new(2);#$x->copy()#$x->copy()->bmul($y);
+0#123456789 * 2#$x=$c->new('123456789');$y=$c->new(2);#$x->copy()#$x->copy()->bmul($y);
+0#1e10 * 1e10#$x=$c->new('1'.'0' x 10);$y=$x->copy();#$x->copy()#$x->copy()->bmul($y);
+0#1e100 * 1e100#$x=$c->new('1'.'0' x 100);$y=$x->copy();#$x->copy()#$x->copy()->bmul($y);
+0#1e1000 * 1e1000#$x=$c->new('1'.'0' x 1000);$y=$x->copy();#$x->copy()#$x->copy()->bmul($y);
+0#1 * -1#$x=$c->new('1');$y=$x->copy()->bneg();#$x->copy()#$x->copy()->bmul($y);
+0#1e1000 * 1#$x=$c->new('1'.'0' x 1000);$y=$c->new(1);#$x->copy()#$x->copy()->bmul($y);
+0#1e1000 * 10#$x=$c->new('1'.'0' x 1000);$y=$c->new(10);#$x->copy()#$x->copy()->bmul($y);
+0#1e1000 * -10#$x=$c->new('1'.'0' x 1000);$y=$c->new(-10);#$x->copy()#$x->copy()->bmul($y);
+
+group=bneg#0#Big integer negation
+0#1#$x=$c->new('1');##$x->bneg();
+0#1e10#$x=$c->new('1'.'0' x 100);##$x->bneg();
+0#1e100#$x=$c->new('1'.'0' x 100);##$x->bneg();
+0#1e1000#$x=$c->new('1'.'0' x 1000);##$x->bneg();
+0#1e10000#$x=$c->new('1'.'0' x 10000);##$x->bneg();
+
+group=bnot#0#Big integer twos complement
+0#1#$x=$c->new('1');##$x->bnot();
+0#1e10#$x=$c->new('1'.'0' x 100);##$x->bnot();
+0#1e100#$x=$c->new('1'.'0' x 100);##$x->bnot();
+0#1e1000#$x=$c->new('1'.'0' x 1000);##$x->bnot();
+0#1e10000#$x=$c->new('1'.'0' x 10000);##$x->bnot();
+
+group=x = -x#0#Big integer negation
+0#1#$x=$c->new('1');##$x = -$x;
+0#1e10#$x=$c->new('1'.'0' x 10);##$x = -$x;
+0#1e100#$x=$c->new('1'.'0' x 100);##$x = -$x;
+0#1e1000#$x=$c->new('1'.'0' x 1000);##$x = -$x;
+0#1e10000#$x=$c->new('1'.'0' x 10000);##$x = -$x;
+
+group=babs#0#Big integer absolute value
+0#1#$x=$c->new('1');##$x->babs();
+0#1e10#$x=$c->new('1'.'0' x 10);##$x->babs();
+0#1e100#$x=$c->new('1'.'0' x 100);##$x->babs();
+0#1e1000#$x=$c->new('1'.'0' x 1000);##$x->babs();
+0#1e10000#$x=$c->new('1'.'0' x 10000);##$x->babs();
+
+group=x = abs(x)#0#Big integer absolute value
+0#-1#$x=$c->new('1')#$x->copy()#$y = abs($x);
+0#-1e10#$x=$c->new('1'.'0' x 10)#$x->copy()#$y = abs($x);
+0#-1e100#$x=$c->new('1'.'0' x 100)#$x->copy()#$y = abs($x);
+0#-1e1000#$x=$c->new('1'.'0' x 1000)#$x->copy()#$y = abs($x);
+0#-1e10000#$x=$c->new('1'.'0' x 10000)#$x->copy()#$y = abs($x);
+ 
+group=x->bpow(y)#0#Big integer power
+0#1 ** 1#$x=$c->new(1);$y=$c->new(100)#$x->copy()#$x->copy()->bpow($y)
+0#1 ** 100#$x=$c->new(1);$y=$c->new(100)#$x->copy()#$x->copy()->bpow($y)
+0#2 ** 15#$x=$c->new(2);$y=$c->new(15)#$x->copy()#$x->copy()->bpow($y)
+0#3 ** 15#$x=$c->new(3);$y=$c->new(15)#$x->copy()#$x->copy()->bpow($y)
+0#4 ** 15#$x=$c->new(4);$y=$c->new(15)#$x->copy()#$x->copy()->bpow($y)
+0#2 ** 150#$x=$c->new(2);$y=$c->new(150)#$x->copy()#$x->copy()->bpow($y)
+0#3 ** 150#$x=$c->new(3);$y=$c->new(150)#$x->copy()#$x->copy()->bpow($y)
+0#2 ** 255#$x=$c->new(2);$y=$c->new(255)#$x->copy()#$x->copy()->bpow($y)
+0#3 ** 255#$x=$c->new(3);$y=$c->new(255)#$x->copy()#$x->copy()->bpow($y)
+0#7 ** 777#$x=$c->new(7);$y=$c->new(777)#$x->copy()#$x->copy()->bpow($y)
+0#123456789 ** 2#$x=$c->new('123456789');$y=$c->new(2)#$x->copy()#$x->copy()->bpow($y)
+
+group=x ** y#0#Big integer power
+0#1 ** 1#$x=$c->new('1');$y=$c->new('1')##$x ** $y
+0#1 ** 100#$x=$c->new('1');$y=$c->new('100')##$x ** $y
+0#2 ** 150#$x=$c->new('2');$y=$c->new('150')##$x ** $y
+0#3 ** 150#$x=$c->new('3');$y=$c->new('150')##$x ** $y
+0#7 ** 777#$x=$c->new('7');$y=$c->new('777')##$x ** $y
+0#123456789 ** 2#$x=$c->new('123456789');$y=$c->new(2)##$x ** $y
+ 
+group=bdiv#0#Big integer divide
+0#1 / 1#$x=$c->new('1');$y = $x->copy();#$x->copy();#$x->copy()->bdiv($y);
+0#123 / 1#$x=$c->new('123');$y = $c->new(1);#$x->copy();#$x->copy()->bdiv($y);
+0#1e100 / 1#$x=$c->new('1'.'0' x 100);$y=$c->new(1);#$x->copy();#$x->copy()->bdiv($y);
+0#123456789 / 1#$x=$c->new('123456789');$y=$x->copy();#$x->copy();#$x->copy()->bdiv($y);
+0#1234 / 123#$x=$c->new(1234);$y=$c->new(123);#$x->copy();#$x->copy()->bdiv($y);
+0#1e100 / 1e10#$x=$c->new('1'.'0' x 100);$y=$c->new('1'.'0' x 10);#$x->copy();#$x->copy()->bdiv($y);
+0#1e1000 / 1e10#$x=$c->new('1'.'0' x 1000);$y=$c->new('1'.'0' x 10);#$x->copy();#$x->copy()->bdiv($y);
+0#1e10000 / 1e10#$x=$c->new('1'.'0' x 10000);$y=$c->new('1'.'0' x 10);#$x->copy();#$x->copy()->bdiv($y);
+0#1e1000 / 1e100#$x=$c->new('1'.'0' x 1000);$y=$c->new('1'.'0' x 100);#$x->copy();#$x->copy()->bdiv($y);
+0#1e10000 / 1e100#$x=$c->new('1'.'0' x 10000);$y=$c->new('1'.'0' x 100);#$x->copy();#$x->copy()->bdiv($y);
+0#1e10000 / 1e1000#$x=$c->new('1'.'0' x 10000);$y=$c->new('1'.'0' x 1000);#$x->copy();#$x->copy()->bdiv($y);
+0#1e100 / 123456#$x=$c->new('1'.'0' x 100);$y=$c->new('123456');#$x->copy();#$x->copy()->bdiv($y);
+0#1e1000 / 123456#$x=$c->new('1'.'0' x 1000);$y=$c->new('123456');#$x->copy();#$x->copy()->bdiv($y);
+0#1e10000 / 123456#$x=$c->new('1'.'0' x 10000);$y=$c->new('123456');#$x->copy();#$x->copy()->bdiv($y);
+
+group=bdiv list#0#Big integer divide list context
+0#1 / 1#$x=$c->new('1');$y = $x->copy();#$x->copy();#@a = $x->copy()->bdiv($y);
+0#123 / 1#$x=$c->new('123');$y = $c->new(1);#$x->copy();#@a = $x->copy()->bdiv($y);
+0#1e100 / 1#$x=$c->new('1'.'0' x 100);$y=$c->new(1);#$x->copy();#@a = $x->copy()->bdiv($y);
+4#123456789 / 1#$x=$c->new('123456789');$y=$x->copy();#$x->copy();#@a = $x->copy()->bdiv($y);
+0#1234 / 123#$x=$c->new(1234);$y=$c->new(123);#$x->copy();#@a = $x->copy()->bdiv($y);
+0#1e100 / 1e10#$x=$c->new('1'.'0' x 100);$y=$c->new('1'.'0' x 10);#$x->copy();#@a = $x->copy()->bdiv($y);
+0#1e1000 / 1e10#$x=$c->new('1'.'0' x 1000);$y=$c->new('1'.'0' x 10);#$x->copy();#@a = $x->copy()->bdiv($y);
+0#1e10000 / 1e10#$x=$c->new('1'.'0' x 10000);$y=$c->new('1'.'0' x 10);#$x->copy();#@a = $x->copy()->bdiv($y);
+0#1e1000 / 1e100#$x=$c->new('1'.'0' x 1000);$y=$c->new('1'.'0' x 100);#$x->copy();#@a = $x->copy()->bdiv($y);
+0#1e10000 / 1e100#$x=$c->new('1'.'0' x 10000);$y=$c->new('1'.'0' x 100);#$x->copy();#@a = $x->copy()->bdiv($y);
+0#1e10000 / 1e1000#$x=$c->new('1'.'0' x 10000);$y=$c->new('1'.'0' x 1000);#$x->copy();#@a = $x->copy()->bdiv($y);
+0#1e100 / 1234#$x=$c->new('1'.'0' x 100);$y=$c->new('1234');#$x->copy();#@a = $x->copy()->bdiv($y);
+0#1e1000 / 1234#$x=$c->new('1'.'0' x 1000);$y=$c->new('1234');#$x->copy();#@a = $x->copy()->bdiv($y);
+0#1e10000 / 1234#$x=$c->new('1'.'0' x 10000);$y=$c->new('1234');#$x->copy();#@a = $x->copy()->bdiv($y);
+0#1e100 / 20#$x=$c->new('1'.'0' x 100);$y=$c->new('20');#$x->copy();#@a = $x->copy()->bdiv($y);
+0#1e1000 / 20#$x=$c->new('1'.'0' x 1000);$y=$c->new('20');#$x->copy();#@a = $x->copy()->bdiv($y);
+0#1e10000 / 20#$x=$c->new('1'.'0' x 10000);$y=$c->new('20');#$x->copy();#@a = $x->copy()->bdiv($y);
+
+group=bmod#0#Big integer remainder
+0#1 % 1#$x=$c->new('1');$y = $c->new(1);#$x->copy();#$x->copy()->bmod($y);
+0#1234 % 123#$x=$c->new(1234);$y = $c->new(123);#$x->copy();#$x->copy()->bmod($y);
+0#1e10 % 2#$x=$c->new('1'.'0'x10);$y=$c->new(2);#$x->copy();#$x->copy()->bmod($y);
+0#1e100 % 2#$x=$c->new('1'.'0'x100);$y=$c->new(2);#$x->copy();#$x->copy()->bmod($y);
+0#1e1000 % 2#$x=$c->new('1'.'0'x1000);$y=$c->new(2);#$x->copy();#$x->copy()->bmod($y);
+0#1e10000 % 2#$x=$c->new('1'.'0'x10000);$y=$c->new(2);#$x->copy();#$x->copy()->bmod($y);
+0#1e10 % 3#$x=$c->new('1'.'0'x10);$y=$c->new(3);#$x->copy();#$x->copy()->bmod($y);
+0#1e100 % 3#$x=$c->new('1'.'0'x100);$y=$c->new(3);#$x->copy();#$x->copy()->bmod($y);
+0#1e1000 % 3#$x=$c->new('1'.'0'x1000);$y=$c->new(3);#$x->copy();#$x->copy()->bmod($y);
+0#1e10000 % 3#$x=$c->new('1'.'0'x10000);$y=$c->new(3);#$x->copy();#$x->copy()->bmod($y);
+0#1e10 % 7#$x=$c->new('1'.'0'x10);$y=$c->new(7);#$x->copy();#$x->copy()->bmod($y);
+0#1e100 % 7#$x=$c->new('1'.'0'x100);$y=$c->new(7);#$x->copy();#$x->copy()->bmod($y);
+0#1e1000 % 7#$x=$c->new('1'.'0'x1000);$y = $c->new(7);#$x->copy();#$x->copy()->bmod($y);
+0#1e10000 % 7#$x=$c->new('1'.'0'x10000);$y = $c->new(7);#$x->copy();#$x->copy()->bmod($y);
+0#1e10 % 1e9#$x=$c->new('1'.'0'x10);$y = $c->new('1'.'0'x9);#$x->copy();#$x->copy()->bmod($y);
+0#1e100 % 1e9#$x=$c->new('1'.'0'x100);$y = $c->new('1'.'0'x9);#$x->copy();#$x->copy()->bmod($y);
+0#1e1000 % 1e9#$x=$c->new('1'.'0'x1000);$y = $c->new('1'.'0'x9);#$x->copy();#$x->copy()->bmod($y);
+0#1e10000 % 1e9#$x=$c->new('1'.'0'x10000);$y = $c->new('1'.'0'x9);#$x->copy();#$x->copy()->bmod($y);
+
+group=copy#0#Big integer copy/new from object
+0#x = copy(1)#$y=$c->new(1);##$x = $y->copy()
+0#x = copy(1e10)#$y=$c->new('1'.'0'x10);##$x = $y->copy()
+0#x = copy(1e100)#$y=$c->new('1'.'0'x100);##$x = $y->copy()
+0#x = copy(1e1000)#$y=$c->new('1'.'0'x1000);##$x = $y->copy()
+0#x = copy(1e10000)#$y=$c->new('1'.'0'x10000);##$x = $y->copy()
+
+group=copy via new#0#Big integer copy/new from object
+0#x = new(1)#$y=$c->new(1);##$x = $c->new($y)
+0#x = new(1e10)#$y=$c->new('1'.'0'x10);##$x = $c->new($y)
+0#x = new(1e100)#$y=$c->new('1'.'0'x100);##$x = $c->new($y)
+0#x = new(1e1000)#$y=$c->new('1'.'0'x1000);##$x = $c->new($y)
+0#x = new(1e10000)#$y=$c->new('1'.'0'x10000);##$x = $c->new($y)
+ 
+group=brsft#0#Big integer shift right
+0#1 >> 1#$x=$c->new(1);$y=$c->new(1);#$x->copy()#$x->copy()->brsft($y)
+0#1e10 >> 1#$x=$c->new('1'.'0'x10);$y=$c->new(1);#$x->copy()#$x->copy()->brsft($y)
+0#1e10 >> 8#$x=$c->new('1'.'0'x10);$y=$c->new(8);#$x->copy()#$x->copy()->brsft($y)
+0#1e100 >> 1#$x=$c->new('1'.'0'x100);$y=$c->new(1);#$x->copy()#$x->copy()->brsft($y)
+0#1e100 >> 8#$x=$c->new('1'.'0'x100);$y=$c->new(8);#$x->copy()#$x->copy()->brsft($y)
+0#1e100 >> 255#$x=$c->new('1'.'0'x100);$y=$c->new(255);#$x->copy()#$x->copy()->brsft($y)
+0#1e1000 >> 255#$x=$c->new('1'.'0'x1000);$y=$c->new(255);#$x->copy()#$x->copy()->brsft($y)
+#0#1e100 >> 10#$x=$c->new('1'.'0'x100);$y=$c->new(10);$ten=$c->new(10);#$x->copy()#$x->copy()->brsft($y,$ten)
+ 
+group=blsft#0#Big integer shift left
+0#1 << 1#$x=$c->new(1);$y=$c->new(1);#$x->copy()#$x->copy()->blsft($y)
+0#1e10 << 1#$x=$c->new('1'.'0'x10);$y=$c->new(1);#$x->copy()#$x->copy()->blsft($y)
+0#1e10 << 8#$x=$c->new('1'.'0'x10);$y=$c->new(8);#$x->copy()#$x->copy()->blsft($y)
+0#1e100 << 1#$x=$c->new('1'.'0'x100);$y=$c->new(1);#$x->copy()#$x->copy()->blsft($y)
+0#1e100 << 8#$x=$c->new('1'.'0'x100);$y=$c->new(8);#$x->copy()#$x->copy()->blsft($y)
+0#1e100 << 255#$x=$c->new('1'.'0'x100);$y=$c->new(255);#$x->copy()#$x->copy()->blsft($y)
+0#1e1000 << 255#$x=$c->new('1'.'0'x1000);$y=$c->new(255);#$x->copy()#$x->copy()->blsft($y)
+#0#1e100 << 10#$x=$c->new('1'.'0'x100);$y=$c->new(10);$ten=$c->new(10);#$x->copy()#$x->copy()->blsft($y,$ten)
+ 
+group=band#0#Big integer and
+0#1 & 1#$x=$c->new(1);$y=$c->new(1)#$x->copy()#$x & $y
+
+# double new because we need a $c for copy to work with 0.01
+0#1 & 2**32#$x=$c->new(1);$y=$c->new(2)**32#$x->copy()#$x & $y
+0#2**32 & 1#$x=$c->new(1);$y=$c->new($c->new(2)**32)#$y->copy()#$y & $x
+0#2**64 & 1#$x=$c->new(1);$y=$c->new($c->new(2)**64)#$y->copy()#$y & $x
+0#2**128 & 1#$x=$c->new(1);$y=$c->new($c->new(2)**128)#$y->copy()#$y & $x
+0#2**256 & 1#$x=$c->new(1);$y=$c->new($c->new(2)**256)#$y->copy()#$y & $x
+0#2**32 & 123#$x=$c->new(123);$y=$c->new($c->new(2)**32)#$y->copy()#$y & $x
+0#2**64 & 123#$x=$c->new(123);$y=$c->new($c->new(2)**64)#$y->copy()#$y & $x
+0#2**128 & 123#$x=$c->new(123);$y=$c->new($c->new(2)**128)#$y->copy()#$y & $x
+0#2**256 & 123#$x=$c->new(123);$y=$c->new($c->new(2)**256)#$y->copy()#$y & $x
+0#2**32 & 2**64#$x=$c->new($c->new(2)**32);$y=$c->new(2)**64#$x->copy()#$x & $y
+0#2**64 & 2**32#$x=$c->new(2)**32;$y=$c->new($c->new(2)**64)#$y->copy()#$y & $x
+0#2**32 & 2**128#$x=$c->new($c->new(2)**32);$y=$c->new(2)**128#$x->copy()#$x & $y
+0#2**128 & 2**32#$x=$c->new(2)**32;$y=$c->new($c->new(2)**128)#$y->copy()#$y & $x
+0#2**64 & 2**128#$x=$c->new($c->new(2)**64);$y=$c->new(2)**128#$x->copy()#$x & $y
+0#2**128 & 2**64#$x=$c->new(2)**64;$y=$c->new($c->new(2)**128)#$y->copy()#$y & $x
+0#2**64 & 2**256#$x=$c->new($c->new(2)**64);$y=$c->new(2)**256#$x->copy()#$x & $y
+0#2**256 & 2**64#$x=$c->new(2)**64;$y=$c->new($c->new(2)**256)#$y->copy()#$y & $x
+0#2**128 & 2**256#$x=$c->new($c->new(2)**128);$y=$c->new(2)**256#$x->copy()#$x & $y
+0#2**256 & 2**128#$x=$c->new(2)**128;$y=$c->new($c->new(2)**256)#$y->copy()#$y & $x
+0#2**256 & 2**256#$x=$c->new($c->new(2)**256);$y=$c->new(2)**256#$x->copy()#$x & $y
+
+group=bxor#0#Big integer xor
+0#1 ^ 1#$x=$c->new(1);$y=$c->new(1)#$x->copy()#$x ^ $y
+# double new because we need a $c for copy to work with 0.01
+0#1 ^ 2**32#$x=$c->new(1);$y=$c->new(2)**32#$x->copy()#$x ^ $y
+0#2**32 ^ 1#$x=$c->new(1);$y=$c->new($c->new(2)**32)#$y->copy()#$y ^ $x
+0#2**64 ^ 1#$x=$c->new(1);$y=$c->new($c->new(2)**64)#$y->copy()#$y ^ $x
+0#2**128 ^ 1#$x=$c->new(1);$y=$c->new($c->new(2)**128)#$y->copy()#$y ^ $x
+0#2**256 ^ 1#$x=$c->new(1);$y=$c->new($c->new(2)**256)#$y->copy()#$y ^ $x
+0#2**32 ^ 123#$x=$c->new(123);$y=$c->new($c->new(2)**32)#$y->copy()#$y ^ $x
+0#2**64 ^ 123#$x=$c->new(123);$y=$c->new($c->new(2)**64)#$y->copy()#$y ^ $x
+0#2**128 ^ 123#$x=$c->new(123);$y=$c->new($c->new(2)**128)#$y->copy()#$y ^ $x
+0#2**256 ^ 123#$x=$c->new(123);$y=$c->new($c->new(2)**256)#$y->copy()#$y ^ $x
+0#2**32 ^ 2**64#$x=$c->new($c->new(2)**32);$y=$c->new(2)**64#$x->copy()#$x ^ $y
+0#2**64 ^ 2**32#$x=$c->new(2)**32;$y=$c->new($c->new(2)**64)#$y->copy()#$y ^ $x
+0#2**32 ^ 2**128#$x=$c->new($c->new(2)**32);$y=$c->new(2)**128#$x->copy()#$x ^ $y
+0#2**128 ^ 2**32#$x=$c->new(2)**32;$y=$c->new($c->new(2)**128)#$y->copy()#$y ^ $x
+0#2**64 ^ 2**128#$x=$c->new($c->new(2)**64);$y=$c->new(2)**128#$x->copy()#$x ^ $y
+0#2**128 ^ 2**64#$x=$c->new(2)**64;$y=$c->new($c->new(2)**128)#$y->copy()#$y ^ $x
+0#2**64 ^ 2**256#$x=$c->new($c->new(2)**64);$y=$c->new(2)**256#$x->copy()#$x ^ $y
+0#2**256 ^ 2**64#$x=$c->new(2)**64;$y=$c->new($c->new(2)**256)#$y->copy()#$y ^ $x
+0#2**128 ^ 2**256#$x=$c->new($c->new(2)**128);$y=$c->new(2)**256#$x->copy()#$x ^ $y
+0#2**256 ^ 2**128#$x=$c->new(2)**128;$y=$c->new($c->new(2)**256)#$y->copy()#$y ^ $x
+0#2**256 ^ 2**256#$x=$c->new($c->new(2)**256);$y=$c->new(2)**256#$x->copy()#$x ^ $y
+
+group=bior#0#Big integer or
+0#1 | 1#$x=$c->new(1);$y=$c->new(1)#$x->copy()#$x | $y
+# double new because we need a $c for copy to work with 0.01
+0#1 | 2**32#$x=$c->new(1);$y=$c->new(2)**32#$x->copy()#$x | $y
+0#2**32 | 1#$x=$c->new(1);$y=$c->new($c->new(2)**32)#$y->copy()#$y | $x
+0#2**64 | 1#$x=$c->new(1);$y=$c->new($c->new(2)**64)#$y->copy()#$y | $x
+0#2**128 | 1#$x=$c->new(1);$y=$c->new($c->new(2)**128)#$y->copy()#$y | $x
+0#2**256 | 1#$x=$c->new(1);$y=$c->new($c->new(2)**256)#$y->copy()#$y | $x
+0#2**32 | 123#$x=$c->new(123);$y=$c->new($c->new(2)**32)#$y->copy()#$y | $x
+0#2**64 | 123#$x=$c->new(123);$y=$c->new($c->new(2)**64)#$y->copy()#$y | $x
+0#2**128 | 123#$x=$c->new(123);$y=$c->new($c->new(2)**128)#$y->copy()#$y | $x
+0#2**256 | 123#$x=$c->new(123);$y=$c->new($c->new(2)**256)#$y->copy()#$y | $x
+0#2**32 | 2**64#$x=$c->new($c->new(2)**32);$y=$c->new(2)**64#$x->copy()#$x | $y
+0#2**64 | 2**32#$x=$c->new(2)**32;$y=$c->new($c->new(2)**64)#$y->copy()#$y | $x
+0#2**32 | 2**128#$x=$c->new($c->new(2)**32);$y=$c->new(2)**128#$x->copy()#$x | $y
+0#2**128 | 2**32#$x=$c->new(2)**32;$y=$c->new($c->new(2)**128)#$y->copy()#$y | $x
+0#2**64 | 2**128#$x=$c->new($c->new(2)**64);$y=$c->new(2)**128#$x->copy()#$x | $y
+0#2**128 | 2**64#$x=$c->new(2)**64;$y=$c->new($c->new(2)**128)#$y->copy()#$y | $x
+0#2**64 | 2**256#$x=$c->new($c->new(2)**64);$y=$c->new(2)**256#$x->copy()#$x | $y
+0#2**256 | 2**64#$x=$c->new(2)**64;$y=$c->new($c->new(2)**256)#$y->copy()#$y | $x
+0#2**128 | 2**256#$x=$c->new($c->new(2)**128);$y=$c->new(2)**256#$x->copy()#$x | $y
+0#2**256 | 2**128#$x=$c->new(2)**128;$y=$c->new($c->new(2)**256)#$y->copy()#$y | $x
+0#2**256 | 2**256#$x=$c->new($c->new(2)**256);$y=$c->new(2)**256#$x->copy()#$x | $y
+
+
+group=round#0#Big integer rounding via round()
+0#()#$x=$c->new('2');#$x->copy();#$x->copy()->round();
+0#(undef,undef)#$x=$c->new('2');#$x->copy();#$x->copy()->round(undef,undef);
+0#12 (3)#$x=$c->new('12');#$x->copy();#$x->copy()->round(3,undef);
+0#12 (undef,3)#$x=$c->new('12');#$x->copy();#$x->copy()->round(undef,3);
+0#123 (3)#$x=$c->new('123');#$x->copy();#$x->copy()->round(3,undef);
+0#123 (undef,3)#$x=$c->new('123');#$x->copy();#$x->copy()->round(undef,3);
+0#1234 (3)#$x=$c->new('1234');#$x->copy();#$x->copy()->round(3,undef);
+0#1234 (undef,3)#$x=$c->new('1234');#$x->copy();#$x->copy()->round(undef,3);
+0#a=3 ()#$x=$c->new('1234');$Math::BigInt::accuracy=3;#$x->copy();#$x->copy()->round();
+0#a=3 (1)#$x=$c->new('1234');$Math::BigInt::accuracy=3;#$x->copy();#$x->copy()->round(1);
+0#$x->a=3 (4)#$x=$c->new('1234');$x->accuracy(3);#$x->copy();#$x->copy()->round(4);
+
+group=from_hex#0#Big integers from hex input
+0#0x0###$x=$c->new('0x0')
+0#0x1###$x=$c->new('0x1')
+0#0x10###$x=$c->new('0x10')
+0#0xFFFF###$x=$c->new('0xFFFF')
+0#0xFFFFFF###$x=$c->new('0xFFFFFF')
+0#0xFFFFFFFF###$x=$c->new('0xFFFFFFFF')
+0#0xFFFFFFFFFF###$x=$c->new('0xFFFFFFFFFF')
+0#2 ** 64###$x=$c->new('0xFFFFFFFFFFFFFFFF')
+0#2 ** 128###$x=$c->new('0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF')
+0#2 ** 256###$x=$c->new('0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF')
+
+group=from_bin#0#Big integers from binary input
+0#0x0###$x=$c->new('0b0')
+0#0x1###$x=$c->new('0b1')
+0#0x10###$x=$c->new('0b10000')
+0#0xFFFF###$x=$c->new('0b1111111111111111')
+0#0xFFFFFF###$x=$c->new('0b111111111111111111111111')
+0#0xFFFFFFFF###$x=$c->new('0b11111111111111111111111111111111')
+0#0xFFFFFFFFFF###$x=$c->new('0b11111111111111111111111111111111111111')
+0#2 ** 64###$x=$c->new('0b1111111111111111111111111111111111111111111111111111111111111111');
+0#2 ** 128###$x=$c->new('0b11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111');
+0#2 ** 256###$x=$c->new('0b1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111');
+
+group=as_hex#0#Hex from big integer
+0#0x0#$x = $c->new(0x0);##$x->as_hex()
+0#0x1#$x = $c->new(0x1);##$x->as_hex()
+0#0x10#$x = $c->new(0x10)##$x->as_hex()
+0#0xFFFF#$x = $c->new(0xFFFF);##$x->as_hex()
+0#0xFFFFFF#$x = $c->new('0xFFFFFF');##$x->as_hex()
+0#0xFFFFFFFF#$x = $c->new('0xFFFFFFFF');##$x->as_hex()
+0#0xFFFFFFFFFF#$x = $c->new('0xFFFFFFFFFF');##$x->as_hex()
+0#0xFFFFFFFFFFFF#$x = $c->new('0xFFFFFFFFFFFF');##$x->as_hex()
+0#2 ** 64#$x = $c->new(2)**64;##$x->as_hex()
+0#2 ** 128#$x = $c->new(2)**128;##$x->as_hex()
+0#2 ** 256#$x = $c->new(2)**256;##$x->as_hex()
+0#2 ** 512#$x = $c->new(2)**512;##$x->as_hex()
+
+group=as_bin#0#Bin from big integer
+0#0x0#$x = $c->new(0x0);##$x->copy()->as_bin()
+0#0x1#$x = $c->new(0x1);##$x->copy()->as_bin()
+0#0x10#$x = $c->new(0x10);##$x->copy()->as_bin()
+0#0xFFFF#$x = $c->new(0xFFFF);##$x->copy()->as_bin()
+0#0xFFFFFF#$x = $c->new('0xFFFFFF');##$x->copy()->as_bin()
+0#0xFFFFFFFF#$x = $c->new('0xFFFFFFFF');##$x->copy()->as_bin()
+0#0xFFFFFFFFFF#$x = $c->new('0xFFFFFFFFFF');##$x->copy()->as_bin()
+0#0xFFFFFFFFFFFF#$x = $c->new('0xFFFFFFFFFFFF');##$x->copy()->as_bin()
+0#2 ** 64#$x = $c->new(2)**64;##$x->as_bin()
+0#2 ** 128#$x = $c->new(2)**128;##$x->as_bin()
+0#2 ** 256#$x = $c->new(2)**256;##$x->as_bin()
+0#2 ** 512#$x = $c->new(2)**512;##$x->as_bin()
+
+group=bfac#0#Big integer factorial
+0#0#$x = $c->new(0);#$x->copy();#$x->copy()->bfac()
+0#1#$x = $c->new(1);#$x->copy();#$x->copy()->bfac()
+0#2#$x = $c->new(2);#$x->copy();#$x->copy()->bfac()
+0#3#$x = $c->new(3);#$x->copy();#$x->copy()->bfac()
+0#4#$x = $c->new(4);#$x->copy();#$x->copy()->bfac()
+0#5#$x = $c->new(5);#$x->copy();#$x->copy()->bfac()
+0#6#$x = $c->new(6);#$x->copy();#$x->copy()->bfac()
+0#7#$x = $c->new(7);#$x->copy();#$x->copy()->bfac()
+0#8#$x = $c->new(8);#$x->copy();#$x->copy()->bfac()
+0#9#$x = $c->new(9);#$x->copy();#$x->copy()->bfac()
+0#10#$x = $c->new(10);#$x->copy();#$x->copy()->bfac()
+0#11#$x = $c->new(11);#$x->copy();#$x->copy()->bfac()
+0#12#$x = $c->new(12);#$x->copy();#$x->copy()->bfac()
+0#100#$x = $c->new(100);#$x->copy();#$x->copy()->bfac()
+0#200#$x = $c->new(200);#$x->copy();#$x->copy()->bfac()
+
+group=bmodinv#0#Big integer inverse modulus
+0#8,5033#$x=$c->new(8);$y=$c->new(5033);#$x->copy();#$x->copy()->bmodinv($y);
+0#1234567891,13#$x=$c->new('1234567891');$y=$c->new(13);#$x->copy();#$x->copy()->bmodinv($y);
+0#-1234567891,13#$x=$c->new('-1234567891');$y=$c->new(13);#$x->copy();#$x->copy()->bmodinv($y);
+0#two HUGE numbers#$x=$c->new('324958749843759385732954874325984357439658735983745');$y=$c->new('2348249874968739');#$x->copy();#$x->copy()->bmodinv($y);
+
+group=bmodpow#0#Big integer power remainder
+0#1 ** 1 % 1#$x=$c->new('1');$y = $c->new(1);$z = $c->new(1);#$x->copy();#$x->copy()->bmodpow($y,$z);
+0#10 ** 10 % 13#$x=$c->new('10');$y = $c->new(10);$z = $c->new(13);#$x->copy();#$x->copy()->bmodpow($y,$z);
+0#100 ** 100 % 13#$x=$c->new('100');$y = $c->new(100);$z = $c->new(13);#$x->copy();#$x->copy()->bmodpow($y,$z);
+0#1000 ** 1000 % 13#$x=$c->new('1000');$y = $c->new(1000);$z = $c->new(13);#$x->copy();#$x->copy()->bmodpow($y,$z);
+0#10 ** 10000 % 13#$x=$c->new('10');$y = $c->new(10000);$z = $c->new(13);#$x->copy();#$x->copy()->bmodpow($y,$z);
+0#10 ** 10000 % 123456789123#$x=$c->new('10');$y = $c->new(10000);$z = $c->new('123456789123');#$x->copy();#$x->copy()->bmodpow($y,$z);
+0#8,-1,5033#$x=$c->new('8');$y = $c->new(-1);$z = $c->new('5033');#$x->copy();#$x->copy()->bmodpow($y,$z);
+0#three HUGE numbers#$x=$c->new('98436739867439843769485798542749827593285729587325');$y = $c->new('43698764986460981048259837659386739857456983759328457');$z = $c->new('6943857329857295827698367');#$x->copy();#$x->copy()->bmodpow($y,$z);
+

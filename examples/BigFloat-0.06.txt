@@ -1,0 +1,2045 @@
+BigBench v0.06  (c) Copyright by Tels 2001.  Have fun!
+
+Sat Dec  1 22:04:20 2001 Reading templates from 'bigint/'...done.
+ Got 8 templates.
+Sat Dec  1 22:04:20 2001 Reading definitions from bigfloat.def...done.
+ Got 175 ops in 24 groups.
+
+Each op will run for at least 2 seconds.
+Results are scaled by factor 1 and rounded to 3 digits.
+Time to complete benchmark is approximately 106 minutes.
+
+Running 'v0.01':
+ Benchmarking group 1 ('new'):
+      1  1                       29400 ops/s
+      2  1e10                    26000 ops/s
+      3  1e100                   24200 ops/s
+      4  1e1000                  16000 ops/s
+      5  1e10000                  3730 ops/s
+      6  1.'1'x10                29000 ops/s
+      7  1.'1'x100               26800 ops/s
+      8  1.'1'x1000              15800 ops/s
+      9  -1234567890             22600 ops/s
+     10  -1.23456789             23700 ops/s
+     11  -1.23e123456            23200 ops/s
+ Average:                        21900 ops/s
+ Benchmarking group 2 ('new specials'):
+      1  NaN                     59200 ops/s
+      4  +inf                    55100 ops/s
+      5  -inf                    55700 ops/s
+ Average:                        56700 ops/s
+ Benchmarking group 4 ('fsqrt'):
+      1  123456                     71 ops/s (empty: 13300, both: 70.4)
+      2  123.456                    69 ops/s (empty: 12500, both: 68.8)
+      3  123456789                  70 ops/s (empty: 12600, both: 69.4)
+      4  1e10                      127 ops/s (empty: 12800, both: 125)
+      5  1e100                     126 ops/s (empty: 12500, both: 125)
+      7  1.'1'x10                   67 ops/s (empty: 13000, both: 66.7)
+      8  1.'1'x100                  20 ops/s (empty: 12000, both: 20.3)
+ Average:                         78.5 ops/s
+ Benchmarking group 5 ('finc'):
+      1  1                         n/a (got no result)
+      2  1e10                      n/a (got no result)
+      3  1e100                     n/a (got no result)
+      4  1e1000                    n/a (got no result)
+ Average:                          n/a
+ Benchmarking group 6 ('++'):
+      1  1                        3420 ops/s
+      2  1e10                     3180 ops/s
+      3  1e100                    2290 ops/s
+      4  1e1000                    622 ops/s
+      5  1e10000                    62 ops/s
+      6  123.456                  3240 ops/s
+ Average:                         2140 ops/s
+ Benchmarking group 7 ('fdec'):
+      1  1                         n/a (got no result)
+      2  1e10                      n/a (got no result)
+      3  1e100                     n/a (got no result)
+      4  1e1000                    n/a (got no result)
+ Average:                          n/a
+ Benchmarking group 8 ('--'):
+      1  1                        3510 ops/s
+      2  1e10                     3240 ops/s
+      3  1e100                    2610 ops/s
+      4  1e1000                    928 ops/s
+      5  1e10000                    94 ops/s
+      6  123.456                  3340 ops/s
+ Average:                         2290 ops/s
+ Benchmarking group 9 ('fadd'):
+      1  1+1                      3490 ops/s (empty: 13300, both: 2760)
+      2  1e10+1e10                3430 ops/s (empty: 12900, both: 2710)
+      3  1e100+1e100              3360 ops/s (empty: 12500, both: 2650)
+      4  1e1000+1e1000            2830 ops/s (empty: 9550, both: 2180)
+      5  1+ -1                    3260 ops/s (empty: 13500, both: 2620)
+      6  1e1000+1                  781 ops/s (empty: 9440, both: 722)
+      7  1e1000+-1                 480 ops/s (empty: 9450, both: 457)
+      8  1e1000+1e10               785 ops/s (empty: 9440, both: 725)
+      9  1e1000+-1e10              485 ops/s (empty: 9390, both: 461)
+ Average:                         2100 ops/s
+ Benchmarking group 10 ('fsub'):
+      1  1 - 1                    2970 ops/s (empty: 13500, both: 2430)
+      2  1e10 - 1e10              2930 ops/s (empty: 12800, both: 2380)
+      3  1e100 - 1e100            2860 ops/s (empty: 12400, both: 2330)
+      4  1e1000 - 1e1000          2490 ops/s (empty: 9440, both: 1970)
+      5  1 - -1                   3070 ops/s (empty: 13500, both: 2500)
+      6  1e1000 - 1                473 ops/s (empty: 9440, both: 451)
+      7  1e1000 - -1               759 ops/s (empty: 9500, both: 702)
+      8  1e1000 - 1e10             476 ops/s (empty: 9390, both: 453)
+      9  1e1000 - -1e10            759 ops/s (empty: 9480, both: 703)
+ Average:                         1870 ops/s
+ Benchmarking group 11 ('$x - $y'):
+      1  1 - 1                    2950 ops/s
+      2  1e10 - 1                 2740 ops/s
+      3  1e100 - 1                1890 ops/s
+      4  1e100 - 1e10             1960 ops/s
+      5  1e1000 - 1e10             477 ops/s
+ Average:                         2000 ops/s
+ Benchmarking group 12 ('fmul'):
+      1  1 * 1                    4880 ops/s (empty: 13300, both: 3580)
+      2  1e10 * 1e10              3450 ops/s (empty: 12900, both: 2720)
+      3  1e100 * 1e100            3330 ops/s (empty: 12600, both: 2630)
+      4  1e1000 * 1e1000          2840 ops/s (empty: 9450, both: 2180)
+      5  1 * -1                   3450 ops/s (empty: 13500, both: 2750)
+      6  1e1000 * 10              3110 ops/s (empty: 9390, both: 2340)
+      7  1e1000 * -10             3050 ops/s (empty: 9410, both: 2300)
+ Average:                         3450 ops/s
+ Benchmarking group 13 ('x * y'):
+      1  1 * 1                    3060 ops/s
+      2  1e10 * 1e10              3020 ops/s
+      3  1e100 * 1e100            2970 ops/s
+      4  1e1000 * 1e1000          2540 ops/s
+      5  1 * -1                   3040 ops/s
+      6  1e1000 * 10              2770 ops/s
+      7  1e1000 * -10             2710 ops/s
+ Average:                         2870 ops/s
+ Benchmarking group 14 ('fneg'):
+      1  1                       15000 ops/s
+      2  1e10                    13800 ops/s
+      3  1e100                   13900 ops/s
+      4  1e1000                  10100 ops/s
+      5  1e10000                  2810 ops/s
+      6  1.'1'x10                14600 ops/s
+      7  1.'1'x100               13100 ops/s
+      8  1.'1'x1000               6790 ops/s
+      9  1.'1'x10000              1140 ops/s
+ Average:                        10100 ops/s
+ Benchmarking group 15 ('x = -x'):
+      1  1                        9300 ops/s
+      2  1e10                     8900 ops/s
+      3  1e100                    8660 ops/s
+      4  1e1000                   7080 ops/s
+      5  1e10000                  2420 ops/s
+      6  1.'1'x10                 9050 ops/s
+      7  1.'1'x100                8300 ops/s
+      8  1.'1'x1000               4620 ops/s
+      9  1.'1'x10000               822 ops/s
+ Average:                         6570 ops/s
+ Benchmarking group 16 ('fabs'):
+      1  1                       15400 ops/s
+      2  1e10                    14900 ops/s
+      3  1e100                   14200 ops/s
+      4  1e1000                  10400 ops/s
+      5  1e10000                  2830 ops/s
+ Average:                        11600 ops/s
+ Benchmarking group 17 ('x = abs(x)'):
+      1  -1                      33800 ops/s (empty: 13500, both: 9630)
+      2  -1e10                   32100 ops/s (empty: 13000, both: 9260)
+      3  -1e100                  33200 ops/s (empty: 12500, both: 9090)
+      4  -1e1000                 32300 ops/s (empty: 9440, both: 7310)
+      5  -1e10000                34400 ops/s (empty: 2720, both: 2520)
+ Average:                        33100 ops/s
+ Benchmarking group 18 ('x->fpow(y)'):
+      1  1 ** 1                    n/a (got no result)
+      2  1 ** 100                  n/a (got no result)
+      3  2 ** 15                   n/a (got no result)
+      4  3 ** 15                   n/a (got no result)
+      5  4 ** 15                   n/a (got no result)
+      6  2 ** 150                  n/a (got no result)
+      7  3 ** 150                  n/a (got no result)
+      8  2 ** 255                  n/a (got no result)
+      9  3 ** 255                  n/a (got no result)
+     10  7 ** 777                  n/a (got no result)
+     11  123456789 ** 2            n/a (got no result)
+ Average:                          n/a
+ Benchmarking group 19 ('x ** y'):
+      1  1 ** 1                    n/a (got no result)
+      2  1 ** 100                  n/a (got no result)
+      3  2 ** 150                  n/a (got no result)
+      4  3 ** 150                  n/a (got no result)
+      5  7 ** 777                  n/a (got no result)
+      6  123456789 ** 2            n/a (got no result)
+ Average:                          n/a
+ Benchmarking group 20 ('fdiv'):
+      1  1 / 1                    1350 ops/s (empty: 13400, both: 1220)
+      2  123 / 1                  1320 ops/s (empty: 13300, both: 1200)
+      3  1e100 / 1                1320 ops/s (empty: 12600, both: 1200)
+      4  123456789 / 1            1290 ops/s (empty: 13200, both: 1170)
+      5  1e100 / 1e10             1320 ops/s (empty: 12500, both: 1190)
+      6  1e1000 / 1e10            1270 ops/s (empty: 9440, both: 1120)
+      7  1e10000 / 1e10            832 ops/s (empty: 2770, both: 639)
+      8  1e1000 / 1e100           1270 ops/s (empty: 9450, both: 1120)
+      9  1e10000 / 1e100           847 ops/s (empty: 2740, both: 647)
+     10  1e10000 / 1e1000          815 ops/s (empty: 2740, both: 628)
+     11  1e10000 / 123456          647 ops/s (empty: 2730, both: 523)
+ Average:                         1120 ops/s
+ Benchmarking group 21 ('bmod'):
+      1  1 % 1                    2640 ops/s (empty: 13400, both: 2210)
+      2  1e10 % 2                 2290 ops/s (empty: 13100, both: 1950)
+      3  1e100 % 2                2300 ops/s (empty: 13000, both: 1960)
+      4  1e1000 % 2               2300 ops/s (empty: 13000, both: 1950)
+      5  1e10000 % 2              2310 ops/s (empty: 13000, both: 1960)
+      6  1e10 % 3                 2250 ops/s (empty: 13000, both: 1920)
+      7  1e100 % 3                2270 ops/s (empty: 13000, both: 1930)
+      8  1e1000 % 3               2270 ops/s (empty: 13000, both: 1930)
+      9  1e10000 % 3              2250 ops/s (empty: 13000, both: 1920)
+     10  1e10 % 7                 2270 ops/s (empty: 13000, both: 1930)
+     11  1e100 % 7                2260 ops/s (empty: 13000, both: 1920)
+     12  1e1000 % 7               2240 ops/s (empty: 13000, both: 1910)
+     13  1e10000 % 7              2240 ops/s (empty: 13000, both: 1910)
+     14  1e10 % 1e9               2540 ops/s (empty: 13100, both: 2130)
+     15  1e100 % 1e9              1390 ops/s (empty: 12500, both: 1250)
+     16  1e1000 % 1e9              248 ops/s (empty: 9440, both: 242)
+     17  1e10000 % 1e9              25 ops/s (empty: 2740, both: 25)
+ Average:                         2010 ops/s
+ Benchmarking group 22 ('copy'):
+      1  x = copy(1)             13300 ops/s
+      2  x = copy(1e10)          12800 ops/s
+      3  x = copy(1e100)         12400 ops/s
+      4  x = copy(1e1000)         9350 ops/s
+      5  x = copy(1e10000)        2720 ops/s
+ Average:                        10100 ops/s
+ Benchmarking group 23 ('copy via new'):
+      1  x = new(1)              13500 ops/s
+      2  x = new(1e10)           13100 ops/s
+      3  x = new(1e100)          12500 ops/s
+      4  x = new(1e1000)          9480 ops/s
+      5  x = new(1e10000)         2750 ops/s
+ Average:                        10300 ops/s
+ Benchmarking group 24 ('frsft'):
+      1  1 >> 1                    n/a (got no result)
+      2  1e10 >> 1                 n/a (got no result)
+      3  1e10 >> 8                 n/a (got no result)
+      4  1e100 >> 1                n/a (got no result)
+      5  1e100 >> 8                n/a (got no result)
+      6  1e100 >> 255              n/a (got no result)
+      7  1e1000 >> 255             n/a (got no result)
+ Average:                          n/a
+ Benchmarking group 25 ('flsft'):
+      1  1 << 1                    n/a (got no result)
+      2  1e10 << 1                 n/a (got no result)
+      3  1e10 << 8                 n/a (got no result)
+      4  1e100 << 1                n/a (got no result)
+      5  1e100 << 8                n/a (got no result)
+      6  1e100 << 255              n/a (got no result)
+      7  1e1000 << 255             n/a (got no result)
+ Average:                          n/a
+
+Running 'v1.33':
+ Benchmarking group 1 ('new'):
+      1  1                        1870 ops/s
+      2  1e10                     1160 ops/s
+      3  1e100                    1090 ops/s
+      4  1e1000                    686 ops/s
+      5  1e10000                   121 ops/s
+      6  1.'1'x10                 1850 ops/s
+      7  1.'1'x100                1750 ops/s
+      8  1.'1'x1000               1160 ops/s
+      9  -1234567890              1120 ops/s
+     10  -1.23456789              1720 ops/s
+     11  -1.23e123456             1610 ops/s
+ Average:                         1290 ops/s
+ Benchmarking group 2 ('new specials'):
+      1  NaN                      5130 ops/s
+      4  +inf                     5120 ops/s
+      5  -inf                     5140 ops/s
+ Average:                         5130 ops/s
+ Benchmarking group 4 ('fsqrt'):
+      1  123456                    n/a (got no result)
+      2  123.456                   n/a (got no result)
+      3  123456789                 n/a (got no result)
+      4  1e10                      n/a (got no result)
+      5  1e100                     n/a (got no result)
+      7  1.'1'x10                  n/a (got no result)
+      8  1.'1'x100                 n/a (got no result)
+ Average:                          n/a
+ Benchmarking group 5 ('finc'):
+      1  1                         914 ops/s
+      2  1e10                      922 ops/s
+      3  1e100                     889 ops/s
+      4  1e1000                    696 ops/s
+ Average:                          855 ops/s
+ Benchmarking group 6 ('++'):
+      1  1                         825 ops/s
+      2  1e10                      829 ops/s
+      3  1e100                     801 ops/s
+      4  1e1000                    597 ops/s
+      5  1e10000                   163 ops/s
+      6  123.456                   390 ops/s
+ Average:                          601 ops/s
+ Benchmarking group 7 ('fdec'):
+      1  1                         835 ops/s
+      2  1e10                      848 ops/s
+      3  1e100                     818 ops/s
+      4  1e1000                    640 ops/s
+ Average:                          785 ops/s
+ Benchmarking group 8 ('--'):
+      1  1                         787 ops/s
+      2  1e10                      766 ops/s
+      3  1e100                     748 ops/s
+      4  1e1000                    546 ops/s
+      5  1e10000                   146 ops/s
+      6  123.456                   447 ops/s
+ Average:                          573 ops/s
+ Benchmarking group 9 ('fadd'):
+      1  1+1                      1360 ops/s (empty: 10200, both: 1200)
+      2  1e10+1e10                1250 ops/s (empty: 10200, both: 1110)
+      3  1e100+1e100              1240 ops/s (empty: 10200, both: 1110)
+      4  1e1000+1e1000            1260 ops/s (empty: 10200, both: 1120)
+      5  1+ -1                    1160 ops/s (empty: 10100, both: 1040)
+      6  1e1000+1                  365 ops/s (empty: 10200, both: 352)
+      7  1e1000+-1                 313 ops/s (empty: 10300, both: 304)
+      8  1e1000+1e10               359 ops/s (empty: 10100, both: 347)
+      9  1e1000+-1e10              311 ops/s (empty: 10200, both: 302)
+ Average:                          847 ops/s
+ Benchmarking group 10 ('fsub'):
+      1  1 - 1                    1070 ops/s (empty: 10200, both: 968)
+      2  1e10 - 1e10               995 ops/s (empty: 10100, both: 906)
+      3  1e100 - 1e100             989 ops/s (empty: 10200, both: 902)
+      4  1e1000 - 1e1000           995 ops/s (empty: 10300, both: 907)
+      5  1 - -1                   1210 ops/s (empty: 10200, both: 1080)
+      6  1e1000 - 1                306 ops/s (empty: 10200, both: 298)
+      7  1e1000 - -1               358 ops/s (empty: 10200, both: 346)
+      8  1e1000 - 1e10             300 ops/s (empty: 10100, both: 291)
+      9  1e1000 - -1e10            349 ops/s (empty: 10100, both: 337)
+ Average:                          730 ops/s
+ Benchmarking group 11 ('$x - $y'):
+      1  1 - 1                     949 ops/s
+      2  1e10 - 1                  511 ops/s
+      3  1e100 - 1                 473 ops/s
+      4  1e100 - 1e10              474 ops/s
+      5  1e1000 - 1e10             293 ops/s
+ Average:                          540 ops/s
+ Benchmarking group 12 ('fmul'):
+      1  1 * 1                    4780 ops/s (empty: 10100, both: 3250)
+      2  1e10 * 1e10              2780 ops/s (empty: 10100, both: 2180)
+      3  1e100 * 1e100            2820 ops/s (empty: 10100, both: 2210)
+      4  1e1000 * 1e1000          2790 ops/s (empty: 10100, both: 2190)
+      5  1 * -1                   3100 ops/s (empty: 10200, both: 2380)
+      6  1e1000 * 10              2800 ops/s (empty: 10200, both: 2200)
+      7  1e1000 * -10             2770 ops/s (empty: 10100, both: 2180)
+ Average:                         3120 ops/s
+ Benchmarking group 13 ('x * y'):
+      1  1 * 1                    2350 ops/s
+      2  1e10 * 1e10              2160 ops/s
+      3  1e100 * 1e100            2160 ops/s
+      4  1e1000 * 1e1000          2150 ops/s
+      5  1 * -1                   2350 ops/s
+      6  1e1000 * 10              2120 ops/s
+      7  1e1000 * -10             2140 ops/s
+ Average:                         2200 ops/s
+ Benchmarking group 14 ('fneg'):
+      1  1                         n/a (got no result)
+      2  1e10                      n/a (got no result)
+      3  1e100                     n/a (got no result)
+      4  1e1000                    n/a (got no result)
+      5  1e10000                   n/a (got no result)
+      6  1.'1'x10                  n/a (got no result)
+      7  1.'1'x100                 n/a (got no result)
+      8  1.'1'x1000                n/a (got no result)
+      9  1.'1'x10000               n/a (got no result)
+ Average:                          n/a
+ Benchmarking group 15 ('x = -x'):
+      1  1                        7280 ops/s
+      2  1e10                     7280 ops/s
+      3  1e100                    7270 ops/s
+      4  1e1000                   7230 ops/s
+      5  1e10000                  7170 ops/s
+      6  1.'1'x10                 7360 ops/s
+      7  1.'1'x100                6730 ops/s
+      8  1.'1'x1000               3670 ops/s
+      9  1.'1'x10000               646 ops/s
+ Average:                         6070 ops/s
+ Benchmarking group 16 ('fabs'):
+      1  1                         n/a (got no result)
+      2  1e10                      n/a (got no result)
+      3  1e100                     n/a (got no result)
+      4  1e1000                    n/a (got no result)
+      5  1e10000                   n/a (got no result)
+ Average:                          n/a
+ Benchmarking group 17 ('x = abs(x)'):
+      1  -1                     129000 ops/s (empty: 10000, both: 9300)
+      2  -1e10                  121000 ops/s (empty: 10000, both: 9260)
+      3  -1e100                  93700 ops/s (empty: 10300, both: 9260)
+      4  -1e1000                123000 ops/s (empty: 10200, both: 9400)
+      5  -1e10000               119000 ops/s (empty: 10000, both: 9260)
+ Average:                       117000 ops/s
+ Benchmarking group 18 ('x->fpow(y)'):
+      1  1 ** 1                   7810 ops/s (empty: 8680, both: 4110)
+      2  1 ** 100                 6660 ops/s (empty: 10200, both: 4030)
+      3  2 ** 15                   238 ops/s (empty: 10200, both: 233)
+      4  3 ** 15                   211 ops/s (empty: 10200, both: 207)
+      5  4 ** 15                   235 ops/s (empty: 10200, both: 229)
+      6  2 ** 150                  152 ops/s (empty: 10200, both: 150)
+      7  3 ** 150                  153 ops/s (empty: 10200, both: 151)
+      8  2 ** 255                  148 ops/s (empty: 10300, both: 146)
+      9  3 ** 255                  142 ops/s (empty: 10100, both: 140)
+     10  7 ** 777                   45 ops/s (empty: 10200, both: 44.7)
+     11  123456789 ** 2            405 ops/s (empty: 10100, both: 390)
+ Average:                         1470 ops/s
+ Benchmarking group 19 ('x ** y'):
+      1  1 ** 1                   3790 ops/s
+      2  1 ** 100                 3900 ops/s
+      3  2 ** 150                  155 ops/s
+      4  3 ** 150                  152 ops/s
+      5  7 ** 777                   46 ops/s
+      6  123456789 ** 2            388 ops/s
+ Average:                         1410 ops/s
+ Benchmarking group 20 ('fdiv'):
+      1  1 / 1                    6900 ops/s (empty: 10300, both: 4130)
+      2  123 / 1                  6970 ops/s (empty: 10200, both: 4150)
+      3  1e100 / 1                6600 ops/s (empty: 10000, both: 3980)
+      4  123456789 / 1             367 ops/s (empty: 10200, both: 354)
+      5  1e100 / 1e10              434 ops/s (empty: 10000, both: 416)
+      6  1e1000 / 1e10             458 ops/s (empty: 10300, both: 438)
+      7  1e10000 / 1e10            452 ops/s (empty: 9940, both: 432)
+      8  1e1000 / 1e100            444 ops/s (empty: 10200, both: 425)
+      9  1e10000 / 1e100           443 ops/s (empty: 9940, both: 424)
+     10  1e10000 / 1e1000          454 ops/s (empty: 9910, both: 434)
+     11  1e10000 / 123456          518 ops/s (empty: 9930, both: 493)
+ Average:                         2190 ops/s
+ Benchmarking group 21 ('bmod'):
+      1  1 % 1                    4270 ops/s (empty: 10200, both: 3010)
+      2  1e10 % 2                 7110 ops/s (empty: 9840, both: 4130)
+      3  1e100 % 2                7610 ops/s (empty: 10000, both: 4330)
+      4  1e1000 % 2               7430 ops/s (empty: 10000, both: 4270)
+      5  1e10000 % 2              7450 ops/s (empty: 9990, both: 4270)
+      6  1e10 % 3                 7380 ops/s (empty: 10200, both: 4280)
+      7  1e100 % 3                7120 ops/s (empty: 10200, both: 4190)
+      8  1e1000 % 3               7270 ops/s (empty: 10200, both: 4250)
+      9  1e10000 % 3              7300 ops/s (empty: 10200, both: 4260)
+     10  1e10 % 7                 7420 ops/s (empty: 10200, both: 4290)
+     11  1e100 % 7                7460 ops/s (empty: 10100, both: 4290)
+     12  1e1000 % 7               7510 ops/s (empty: 9940, both: 4280)
+     13  1e10000 % 7              7310 ops/s (empty: 10200, both: 4260)
+     14  1e10 % 1e9               7720 ops/s (empty: 10300, both: 4420)
+     15  1e100 % 1e9              7780 ops/s (empty: 10200, both: 4420)
+     16  1e1000 % 1e9             7780 ops/s (empty: 10200, both: 4420)
+     17  1e10000 % 1e9            7670 ops/s (empty: 10100, both: 4360)
+ Average:                         7270 ops/s
+ Benchmarking group 22 ('copy'):
+      1  x = copy(1)             10200 ops/s
+      2  x = copy(1e10)          10100 ops/s
+      3  x = copy(1e100)         10200 ops/s
+      4  x = copy(1e1000)        10100 ops/s
+      5  x = copy(1e10000)       10100 ops/s
+ Average:                        10100 ops/s
+ Benchmarking group 23 ('copy via new'):
+      1  x = new(1)               9390 ops/s
+      2  x = new(1e10)            9440 ops/s
+      3  x = new(1e100)           9390 ops/s
+      4  x = new(1e1000)          9350 ops/s
+      5  x = new(1e10000)         9280 ops/s
+ Average:                         9370 ops/s
+ Benchmarking group 24 ('frsft'):
+      1  1 >> 1                    n/a (got no result)
+      2  1e10 >> 1                 n/a (got no result)
+      3  1e10 >> 8                 n/a (got no result)
+      4  1e100 >> 1                n/a (got no result)
+      5  1e100 >> 8                n/a (got no result)
+      6  1e100 >> 255              n/a (got no result)
+      7  1e1000 >> 255             n/a (got no result)
+ Average:                          n/a
+ Benchmarking group 25 ('flsft'):
+      1  1 << 1                    n/a (got no result)
+      2  1e10 << 1                 n/a (got no result)
+      3  1e10 << 8                 n/a (got no result)
+      4  1e100 << 1                n/a (got no result)
+      5  1e100 << 8                n/a (got no result)
+      6  1e100 << 255              n/a (got no result)
+      7  1e1000 << 255             n/a (got no result)
+ Average:                          n/a
+
+Running 'v1.39':
+ Benchmarking group 1 ('new'):
+      1  1                        1980 ops/s
+      2  1e10                     1150 ops/s
+      3  1e100                    1100 ops/s
+      4  1e1000                    784 ops/s
+      5  1e10000                   172 ops/s
+      6  1.'1'x10                 1940 ops/s
+      7  1.'1'x100                1880 ops/s
+      8  1.'1'x1000               1440 ops/s
+      9  -1234567890              1110 ops/s
+     10  -1.23456789              1680 ops/s
+     11  -1.23e123456             1600 ops/s
+ Average:                         1350 ops/s
+ Benchmarking group 2 ('new specials'):
+      1  NaN                      5970 ops/s
+      4  +inf                     6280 ops/s
+      5  -inf                     6290 ops/s
+ Average:                         6180 ops/s
+ Benchmarking group 4 ('fsqrt'):
+      1  123456                      4 ops/s (empty: 8590, both: 3.85)
+      2  123.456                     5 ops/s (empty: 8590, both: 5.29)
+      3  123456789                   5 ops/s (empty: 8520, both: 5.29)
+      4  1e10                        3 ops/s (empty: 8690, both: 2.63)
+      5  1e100                       0 ops/s (empty: 8650, both: 0.35)
+      7  1.'1'x10                    3 ops/s (empty: 8480, both: 2.63)
+      8  1.'1'x100                   0 ops/s (empty: 7880, both: 0.3)
+ Average:                         2.91 ops/s
+ Benchmarking group 5 ('finc'):
+      1  1                         879 ops/s
+      2  1e10                      877 ops/s
+      3  1e100                     860 ops/s
+      4  1e1000                    782 ops/s
+ Average:                          850 ops/s
+ Benchmarking group 6 ('++'):
+      1  1                         789 ops/s
+      2  1e10                      785 ops/s
+      3  1e100                     766 ops/s
+      4  1e1000                    656 ops/s
+      5  1e10000                   265 ops/s
+      6  123.456                   344 ops/s
+ Average:                          601 ops/s
+ Benchmarking group 7 ('fdec'):
+      1  1                         901 ops/s
+      2  1e10                      800 ops/s
+      3  1e100                     846 ops/s
+      4  1e1000                    666 ops/s
+ Average:                          803 ops/s
+ Benchmarking group 8 ('--'):
+      1  1                         799 ops/s
+      2  1e10                      750 ops/s
+      3  1e100                     734 ops/s
+      4  1e1000                    592 ops/s
+      5  1e10000                   181 ops/s
+      6  123.456                   347 ops/s
+ Average:                          567 ops/s
+ Benchmarking group 9 ('fadd'):
+      1  1+1                      1310 ops/s (empty: 8530, both: 1130)
+      2  1e10+1e10                1210 ops/s (empty: 8760, both: 1070)
+      3  1e100+1e100              1200 ops/s (empty: 8590, both: 1060)
+      4  1e1000+1e1000            1240 ops/s (empty: 8590, both: 1090)
+      5  1+ -1                    1120 ops/s (empty: 8450, both: 985)
+      6  1e1000+1                   96 ops/s (empty: 8360, both: 94.8)
+      7  1e1000+-1                  94 ops/s (empty: 8500, both: 93.3)
+      8  1e1000+1e10                94 ops/s (empty: 8630, both: 93.3)
+      9  1e1000+-1e10               91 ops/s (empty: 8480, both: 89.7)
+ Average:                          718 ops/s
+ Benchmarking group 10 ('fsub'):
+      1  1 - 1                    1030 ops/s (empty: 8460, both: 916)
+      2  1e10 - 1e10              1010 ops/s (empty: 8570, both: 907)
+      3  1e100 - 1e100            1020 ops/s (empty: 8570, both: 911)
+      4  1e1000 - 1e1000          1010 ops/s (empty: 8800, both: 907)
+      5  1 - -1                   1210 ops/s (empty: 8650, both: 1060)
+      6  1e1000 - 1                 91 ops/s (empty: 8520, both: 90.1)
+      7  1e1000 - -1                94 ops/s (empty: 8260, both: 92.9)
+      8  1e1000 - 1e10              90 ops/s (empty: 8490, both: 89.2)
+      9  1e1000 - -1e10             86 ops/s (empty: 9010, both: 85.2)
+ Average:                          627 ops/s
+ Benchmarking group 11 ('$x - $y'):
+      1  1 - 1                     935 ops/s
+      2  1e10 - 1                  256 ops/s
+      3  1e100 - 1                 146 ops/s
+      4  1e100 - 1e10              150 ops/s
+      5  1e1000 - 1e10              88 ops/s
+ Average:                          315 ops/s
+ Benchmarking group 12 ('fmul'):
+      1  1 * 1                    2800 ops/s (empty: 8510, both: 2110)
+      2  1e10 * 1e10              1940 ops/s (empty: 8610, both: 1580)
+      3  1e100 * 1e100            1950 ops/s (empty: 8620, both: 1590)
+      4  1e1000 * 1e1000          1940 ops/s (empty: 8530, both: 1580)
+      5  1 * -1                   2090 ops/s (empty: 8750, both: 1680)
+      6  1e1000 * 10              1950 ops/s (empty: 8670, both: 1590)
+      7  1e1000 * -10             2040 ops/s (empty: 8590, both: 1650)
+ Average:                         2100 ops/s
+ Benchmarking group 13 ('x * y'):
+      1  1 * 1                    1630 ops/s
+      2  1e10 * 1e10              1560 ops/s
+      3  1e100 * 1e100            1560 ops/s
+      4  1e1000 * 1e1000          1560 ops/s
+      5  1 * -1                   1650 ops/s
+      6  1e1000 * 10              1550 ops/s
+      7  1e1000 * -10             1580 ops/s
+ Average:                         1580 ops/s
+ Benchmarking group 14 ('fneg'):
+      1  1                         n/a (got no result)
+      2  1e10                      n/a (got no result)
+      3  1e100                     n/a (got no result)
+      4  1e1000                    n/a (got no result)
+      5  1e10000                   n/a (got no result)
+      6  1.'1'x10                  n/a (got no result)
+      7  1.'1'x100                 n/a (got no result)
+      8  1.'1'x1000                n/a (got no result)
+      9  1.'1'x10000               n/a (got no result)
+ Average:                          n/a
+ Benchmarking group 15 ('x = -x'):
+      1  1                        7310 ops/s
+      2  1e10                     7310 ops/s
+      3  1e100                    7380 ops/s
+      4  1e1000                   7380 ops/s
+      5  1e10000                  7310 ops/s
+      6  1.'1'x10                 7250 ops/s
+      7  1.'1'x100                6790 ops/s
+      8  1.'1'x1000               4340 ops/s
+      9  1.'1'x10000               894 ops/s
+ Average:                         6220 ops/s
+ Benchmarking group 16 ('fabs'):
+      1  1                         n/a (got no result)
+      2  1e10                      n/a (got no result)
+      3  1e100                     n/a (got no result)
+      4  1e1000                    n/a (got no result)
+      5  1e10000                   n/a (got no result)
+ Average:                          n/a
+ Benchmarking group 17 ('x = abs(x)'):
+      1  -1                     141000 ops/s (empty: 8360, both: 7890)
+      2  -1e10                   99500 ops/s (empty: 8560, both: 7880)
+      3  -1e100                  90300 ops/s (empty: 8670, both: 7910)
+      4  -1e1000                 92600 ops/s (empty: 8830, both: 8060)
+      5  -1e10000                94600 ops/s (empty: 8570, both: 7860)
+ Average:                       104000 ops/s
+ Benchmarking group 18 ('x->fpow(y)'):
+      1  1 ** 1                  13800 ops/s (empty: 8650, both: 5320)
+      2  1 ** 100                13700 ops/s (empty: 8570, both: 5270)
+      3  2 ** 15                   238 ops/s (empty: 8510, both: 231)
+      4  3 ** 15                   234 ops/s (empty: 8550, both: 228)
+      5  4 ** 15                   237 ops/s (empty: 8530, both: 230)
+      6  2 ** 150                  139 ops/s (empty: 8590, both: 137)
+      7  3 ** 150                  135 ops/s (empty: 8530, both: 133)
+      8  2 ** 255                  128 ops/s (empty: 8530, both: 126)
+      9  3 ** 255                  124 ops/s (empty: 8570, both: 122)
+     10  7 ** 777                   60 ops/s (empty: 8570, both: 59.2)
+     11  123456789 ** 2            566 ops/s (empty: 8520, both: 530)
+ Average:                         2670 ops/s
+ Benchmarking group 19 ('x ** y'):
+      1  1 ** 1                   4970 ops/s
+      2  1 ** 100                 4940 ops/s
+      3  2 ** 150                  134 ops/s
+      4  3 ** 150                  134 ops/s
+      5  7 ** 777                   60 ops/s
+      6  123456789 ** 2            530 ops/s
+ Average:                         1800 ops/s
+ Benchmarking group 20 ('fdiv'):
+      1  1 / 1                    5290 ops/s (empty: 8650, both: 3280)
+      2  123 / 1                  5240 ops/s (empty: 8560, both: 3250)
+      3  1e100 / 1                5240 ops/s (empty: 8580, both: 3250)
+      4  123456789 / 1             364 ops/s (empty: 8450, both: 349)
+      5  1e100 / 1e10              412 ops/s (empty: 8720, both: 393)
+      6  1e1000 / 1e10             419 ops/s (empty: 8620, both: 400)
+      7  1e10000 / 1e10            421 ops/s (empty: 8490, both: 401)
+      8  1e1000 / 1e100            418 ops/s (empty: 8570, both: 399)
+      9  1e10000 / 1e100           425 ops/s (empty: 8490, both: 404)
+     10  1e10000 / 1e1000          418 ops/s (empty: 8710, both: 399)
+     11  1e10000 / 123456          344 ops/s (empty: 8570, both: 331)
+ Average:                         1730 ops/s
+ Benchmarking group 21 ('bmod'):
+      1  1 % 1                    8170 ops/s (empty: 8610, both: 4190)
+      2  1e10 % 2                 5510 ops/s (empty: 8620, both: 3360)
+      3  1e100 % 2                5600 ops/s (empty: 8590, both: 3390)
+      4  1e1000 % 2               5520 ops/s (empty: 8570, both: 3360)
+      5  1e10000 % 2              5480 ops/s (empty: 8590, both: 3350)
+      6  1e10 % 3                 5470 ops/s (empty: 8610, both: 3350)
+      7  1e100 % 3                5510 ops/s (empty: 8610, both: 3360)
+      8  1e1000 % 3               5550 ops/s (empty: 8570, both: 3370)
+      9  1e10000 % 3              5560 ops/s (empty: 8590, both: 3380)
+     10  1e10 % 7                 5560 ops/s (empty: 8610, both: 3380)
+     11  1e100 % 7                5510 ops/s (empty: 8720, both: 3380)
+     12  1e1000 % 7               5560 ops/s (empty: 8610, both: 3380)
+     13  1e10000 % 7              5640 ops/s (empty: 8430, both: 3380)
+     14  1e10 % 1e9               5710 ops/s (empty: 8950, both: 3490)
+     15  1e100 % 1e9              6060 ops/s (empty: 8590, both: 3560)
+     16  1e1000 % 1e9             6040 ops/s (empty: 8530, both: 3530)
+     17  1e10000 % 1e9            5750 ops/s (empty: 8580, both: 3440)
+ Average:                         5780 ops/s
+ Benchmarking group 22 ('copy'):
+      1  x = copy(1)              8450 ops/s
+      2  x = copy(1e10)           8340 ops/s
+      3  x = copy(1e100)          8490 ops/s
+      4  x = copy(1e1000)         8750 ops/s
+      5  x = copy(1e10000)        8530 ops/s
+ Average:                         8510 ops/s
+ Benchmarking group 23 ('copy via new'):
+      1  x = new(1)               8180 ops/s
+      2  x = new(1e10)            8110 ops/s
+      3  x = new(1e100)           8250 ops/s
+      4  x = new(1e1000)          8140 ops/s
+      5  x = new(1e10000)         8030 ops/s
+ Average:                         8140 ops/s
+ Benchmarking group 24 ('frsft'):
+      1  1 >> 1                    n/a (got no result)
+      2  1e10 >> 1                 n/a (got no result)
+      3  1e10 >> 8                 n/a (got no result)
+      4  1e100 >> 1                n/a (got no result)
+      5  1e100 >> 8                n/a (got no result)
+      6  1e100 >> 255              n/a (got no result)
+      7  1e1000 >> 255             n/a (got no result)
+ Average:                          n/a
+ Benchmarking group 25 ('flsft'):
+      1  1 << 1                    n/a (got no result)
+      2  1e10 << 1                 n/a (got no result)
+      3  1e10 << 8                 n/a (got no result)
+      4  1e100 << 1                n/a (got no result)
+      5  1e100 << 8                n/a (got no result)
+      6  1e100 << 255              n/a (got no result)
+      7  1e1000 << 255             n/a (got no result)
+ Average:                          n/a
+
+Running 'v1.40':
+ Benchmarking group 1 ('new'):
+      1  1                        1960 ops/s
+      2  1e10                     1140 ops/s
+      3  1e100                    1090 ops/s
+      4  1e1000                    769 ops/s
+      5  1e10000                   166 ops/s
+      6  1.'1'x10                 1920 ops/s
+      7  1.'1'x100                1860 ops/s
+      8  1.'1'x1000               1430 ops/s
+      9  -1234567890              1100 ops/s
+     10  -1.23456789              1710 ops/s
+     11  -1.23e123456             1750 ops/s
+ Average:                         1360 ops/s
+ Benchmarking group 2 ('new specials'):
+      1  NaN                      5800 ops/s
+      4  +inf                     6330 ops/s
+      5  -inf                     6290 ops/s
+ Average:                         6140 ops/s
+ Benchmarking group 4 ('fsqrt'):
+      1  123456                      4 ops/s (empty: 8660, both: 3.81)
+      2  123.456                     5 ops/s (empty: 8480, both: 5.29)
+      3  123456789                   5 ops/s (empty: 8620, both: 5.34)
+      4  1e10                        3 ops/s (empty: 8750, both: 2.62)
+      5  1e100                       0 ops/s (empty: 8720, both: 0.35)
+      7  1.'1'x10                    3 ops/s (empty: 8660, both: 2.63)
+      8  1.'1'x100                   0 ops/s (empty: 8030, both: 0.3)
+ Average:                         2.91 ops/s
+ Benchmarking group 5 ('finc'):
+      1  1                         897 ops/s
+      2  1e10                      898 ops/s
+      3  1e100                     889 ops/s
+      4  1e1000                    798 ops/s
+ Average:                          871 ops/s
+ Benchmarking group 6 ('++'):
+      1  1                         797 ops/s
+      2  1e10                      793 ops/s
+      3  1e100                     780 ops/s
+      4  1e1000                    680 ops/s
+      5  1e10000                   271 ops/s
+      6  123.456                   339 ops/s
+ Average:                          610 ops/s
+ Benchmarking group 7 ('fdec'):
+      1  1                         927 ops/s
+      2  1e10                      873 ops/s
+      3  1e100                     859 ops/s
+      4  1e1000                    693 ops/s
+ Average:                          838 ops/s
+ Benchmarking group 8 ('--'):
+      1  1                         817 ops/s
+      2  1e10                      784 ops/s
+      3  1e100                     755 ops/s
+      4  1e1000                    595 ops/s
+      5  1e10000                   187 ops/s
+      6  123.456                   344 ops/s
+ Average:                          580 ops/s
+ Benchmarking group 9 ('fadd'):
+      1  1+1                      1330 ops/s (empty: 8630, both: 1150)
+      2  1e10+1e10                1240 ops/s (empty: 8630, both: 1080)
+      3  1e100+1e100              1250 ops/s (empty: 8580, both: 1090)
+      4  1e1000+1e1000            1250 ops/s (empty: 8630, both: 1090)
+      5  1+ -1                    1160 ops/s (empty: 8630, both: 1020)
+      6  1e1000+1                   94 ops/s (empty: 8580, both: 92.9)
+      7  1e1000+-1                  91 ops/s (empty: 8620, both: 90.0)
+      8  1e1000+1e10                92 ops/s (empty: 8720, both: 90.7)
+      9  1e1000+-1e10               89 ops/s (empty: 8660, both: 88.0)
+ Average:                          733 ops/s
+ Benchmarking group 10 ('fsub'):
+      1  1 - 1                    1100 ops/s (empty: 8630, both: 973)
+      2  1e10 - 1e10              1060 ops/s (empty: 8650, both: 945)
+      3  1e100 - 1e100            1050 ops/s (empty: 8750, both: 941)
+      4  1e1000 - 1e1000          1060 ops/s (empty: 8590, both: 943)
+      5  1 - -1                   1230 ops/s (empty: 8670, both: 1080)
+      6  1e1000 - 1                 90 ops/s (empty: 8590, both: 89.6)
+      7  1e1000 - -1                93 ops/s (empty: 8590, both: 92.4)
+      8  1e1000 - 1e10              88 ops/s (empty: 8660, both: 87.6)
+      9  1e1000 - -1e10             91 ops/s (empty: 8700, both: 90.0)
+ Average:                          652 ops/s
+ Benchmarking group 11 ('$x - $y'):
+      1  1 - 1                     963 ops/s
+      2  1e10 - 1                  257 ops/s
+      3  1e100 - 1                 146 ops/s
+      4  1e100 - 1e10              152 ops/s
+      5  1e1000 - 1e10              88 ops/s
+ Average:                          321 ops/s
+ Benchmarking group 12 ('fmul'):
+      1  1 * 1                    2820 ops/s (empty: 8630, both: 2130)
+      2  1e10 * 1e10              1940 ops/s (empty: 8670, both: 1580)
+      3  1e100 * 1e100            1950 ops/s (empty: 8720, both: 1590)
+      4  1e1000 * 1e1000          1950 ops/s (empty: 8530, both: 1580)
+      5  1 * -1                   2080 ops/s (empty: 8700, both: 1680)
+      6  1e1000 * 10              1940 ops/s (empty: 8570, both: 1580)
+      7  1e1000 * -10             1970 ops/s (empty: 8720, both: 1600)
+ Average:                         2090 ops/s
+ Benchmarking group 13 ('x * y'):
+      1  1 * 1                    1640 ops/s
+      2  1e10 * 1e10              1560 ops/s
+      3  1e100 * 1e100            1560 ops/s
+      4  1e1000 * 1e1000          1560 ops/s
+      5  1 * -1                   1660 ops/s
+      6  1e1000 * 10              1560 ops/s
+      7  1e1000 * -10             1580 ops/s
+ Average:                         1590 ops/s
+ Benchmarking group 14 ('fneg'):
+      1  1                         n/a (got no result)
+      2  1e10                      n/a (got no result)
+      3  1e100                     n/a (got no result)
+      4  1e1000                    n/a (got no result)
+      5  1e10000                   n/a (got no result)
+      6  1.'1'x10                  n/a (got no result)
+      7  1.'1'x100                 n/a (got no result)
+      8  1.'1'x1000                n/a (got no result)
+      9  1.'1'x10000               n/a (got no result)
+ Average:                          n/a
+ Benchmarking group 15 ('x = -x'):
+      1  1                        7330 ops/s
+      2  1e10                     7420 ops/s
+      3  1e100                    7400 ops/s
+      4  1e1000                   7310 ops/s
+      5  1e10000                  7330 ops/s
+      6  1.'1'x10                 7330 ops/s
+      7  1.'1'x100                6870 ops/s
+      8  1.'1'x1000               4360 ops/s
+      9  1.'1'x10000               906 ops/s
+ Average:                         6250 ops/s
+ Benchmarking group 16 ('fabs'):
+      1  1                         n/a (got no result)
+      2  1e10                      n/a (got no result)
+      3  1e100                     n/a (got no result)
+      4  1e1000                    n/a (got no result)
+      5  1e10000                   n/a (got no result)
+ Average:                          n/a
+ Benchmarking group 17 ('x = abs(x)'):
+      1  -1                      91300 ops/s (empty: 8720, both: 7960)
+      2  -1e10                  109000 ops/s (empty: 8700, both: 8060)
+      3  -1e100                 101000 ops/s (empty: 8720, both: 8030)
+      4  -1e1000                 97600 ops/s (empty: 8620, both: 7920)
+      5  -1e10000                94900 ops/s (empty: 8630, both: 7910)
+ Average:                        98900 ops/s
+ Benchmarking group 18 ('x->fpow(y)'):
+      1  1 ** 1                  13700 ops/s (empty: 8700, both: 5320)
+      2  1 ** 100                13800 ops/s (empty: 8670, both: 5320)
+      3  2 ** 15                   233 ops/s (empty: 8670, both: 227)
+      4  3 ** 15                   234 ops/s (empty: 8650, both: 228)
+      5  4 ** 15                   232 ops/s (empty: 8670, both: 226)
+      6  2 ** 150                  136 ops/s (empty: 8660, both: 134)
+      7  3 ** 150                  134 ops/s (empty: 8650, both: 132)
+      8  2 ** 255                  125 ops/s (empty: 8630, both: 124)
+      9  3 ** 255                  121 ops/s (empty: 8630, both: 120)
+     10  7 ** 777                   60 ops/s (empty: 8650, both: 59.2)
+     11  123456789 ** 2            573 ops/s (empty: 8630, both: 537)
+ Average:                         2670 ops/s
+ Benchmarking group 19 ('x ** y'):
+      1  1 ** 1                   5000 ops/s
+      2  1 ** 100                 5040 ops/s
+      3  2 ** 150                  134 ops/s
+      4  3 ** 150                  131 ops/s
+      5  7 ** 777                   59 ops/s
+      6  123456789 ** 2            532 ops/s
+ Average:                         1820 ops/s
+ Benchmarking group 20 ('fdiv'):
+      1  1 / 1                    5260 ops/s (empty: 8630, both: 3270)
+      2  123 / 1                  5250 ops/s (empty: 8660, both: 3270)
+      3  1e100 / 1                5220 ops/s (empty: 8720, both: 3270)
+      4  123456789 / 1             362 ops/s (empty: 8620, both: 347)
+      5  1e100 / 1e10              426 ops/s (empty: 8650, both: 406)
+      6  1e1000 / 1e10             427 ops/s (empty: 8590, both: 406)
+      7  1e10000 / 1e10            420 ops/s (empty: 8730, both: 400)
+      8  1e1000 / 1e100            422 ops/s (empty: 8800, both: 403)
+      9  1e10000 / 1e100           422 ops/s (empty: 8630, both: 402)
+     10  1e10000 / 1e1000          422 ops/s (empty: 8590, both: 402)
+     11  1e10000 / 123456          342 ops/s (empty: 8710, both: 329)
+ Average:                         1730 ops/s
+ Benchmarking group 21 ('bmod'):
+      1  1 % 1                    8170 ops/s (empty: 8670, both: 4210)
+      2  1e10 % 2                 5430 ops/s (empty: 8720, both: 3350)
+      3  1e100 % 2                5430 ops/s (empty: 8720, both: 3350)
+      4  1e1000 % 2               5450 ops/s (empty: 8660, both: 3350)
+      5  1e10000 % 2              5470 ops/s (empty: 8670, both: 3350)
+      6  1e10 % 3                 5450 ops/s (empty: 8660, both: 3350)
+      7  1e100 % 3                5440 ops/s (empty: 8760, both: 3350)
+      8  1e1000 % 3               5490 ops/s (empty: 8660, both: 3360)
+      9  1e10000 % 3              5430 ops/s (empty: 8760, both: 3350)
+     10  1e10 % 7                 5450 ops/s (empty: 8670, both: 3350)
+     11  1e100 % 7                5450 ops/s (empty: 8700, both: 3350)
+     12  1e1000 % 7               5450 ops/s (empty: 8670, both: 3350)
+     13  1e10000 % 7              5490 ops/s (empty: 8660, both: 3360)
+     14  1e10 % 1e9               5890 ops/s (empty: 8670, both: 3510)
+     15  1e100 % 1e9              5890 ops/s (empty: 8660, both: 3510)
+     16  1e1000 % 1e9             5890 ops/s (empty: 8610, both: 3500)
+     17  1e10000 % 1e9            5870 ops/s (empty: 8610, both: 3490)
+ Average:                         5710 ops/s
+ Benchmarking group 22 ('copy'):
+      1  x = copy(1)              8610 ops/s
+      2  x = copy(1e10)           8650 ops/s
+      3  x = copy(1e100)          8660 ops/s
+      4  x = copy(1e1000)         8570 ops/s
+      5  x = copy(1e10000)        8650 ops/s
+ Average:                         8630 ops/s
+ Benchmarking group 23 ('copy via new'):
+      1  x = new(1)               8230 ops/s
+      2  x = new(1e10)            8250 ops/s
+      3  x = new(1e100)           8180 ops/s
+      4  x = new(1e1000)          8150 ops/s
+      5  x = new(1e10000)         8250 ops/s
+ Average:                         8210 ops/s
+ Benchmarking group 24 ('frsft'):
+      1  1 >> 1                    n/a (got no result)
+      2  1e10 >> 1                 n/a (got no result)
+      3  1e10 >> 8                 n/a (got no result)
+      4  1e100 >> 1                n/a (got no result)
+      5  1e100 >> 8                n/a (got no result)
+      6  1e100 >> 255              n/a (got no result)
+      7  1e1000 >> 255             n/a (got no result)
+ Average:                          n/a
+ Benchmarking group 25 ('flsft'):
+      1  1 << 1                    n/a (got no result)
+      2  1e10 << 1                 n/a (got no result)
+      3  1e10 << 8                 n/a (got no result)
+      4  1e100 << 1                n/a (got no result)
+      5  1e100 << 8                n/a (got no result)
+      6  1e100 << 255              n/a (got no result)
+      7  1e1000 << 255             n/a (got no result)
+ Average:                          n/a
+
+Running 'v1.45':
+ Benchmarking group 1 ('new'):
+      1  1                        1980 ops/s
+      2  1e10                     1070 ops/s
+      3  1e100                    1020 ops/s
+      4  1e1000                    738 ops/s
+      5  1e10000                   167 ops/s
+      6  1.'1'x10                 1930 ops/s
+      7  1.'1'x100                1900 ops/s
+      8  1.'1'x1000               1420 ops/s
+      9  -1234567890               984 ops/s
+     10  -1.23456789              1700 ops/s
+     11  -1.23e123456             1560 ops/s
+ Average:                         1320 ops/s
+ Benchmarking group 2 ('new specials'):
+      1  NaN                      5880 ops/s
+      4  +inf                     6170 ops/s
+      5  -inf                     6290 ops/s
+ Average:                         6110 ops/s
+ Benchmarking group 4 ('fsqrt'):
+      1  123456                      3 ops/s (empty: 7240, both: 3.29)
+      2  123.456                     5 ops/s (empty: 7270, both: 4.65)
+      3  123456789                   5 ops/s (empty: 7310, both: 4.57)
+      4  1e10                        2 ops/s (empty: 7310, both: 2.23)
+      5  1e100                       0 ops/s (empty: 7280, both: 0.3)
+      7  1.'1'x10                    2 ops/s (empty: 7220, both: 2.21)
+      8  1.'1'x100                   0 ops/s (empty: 6780, both: 0.26)
+ Average:                         2.50 ops/s
+ Benchmarking group 5 ('finc'):
+      1  1                         929 ops/s
+      2  1e10                      941 ops/s
+      3  1e100                     922 ops/s
+      4  1e1000                    832 ops/s
+ Average:                          906 ops/s
+ Benchmarking group 6 ('++'):
+      1  1                         806 ops/s
+      2  1e10                      809 ops/s
+      3  1e100                     801 ops/s
+      4  1e1000                    693 ops/s
+      5  1e10000                   270 ops/s
+      6  123.456                   334 ops/s
+ Average:                          619 ops/s
+ Benchmarking group 7 ('fdec'):
+      1  1                         972 ops/s
+      2  1e10                      923 ops/s
+      3  1e100                     893 ops/s
+      4  1e1000                    717 ops/s
+ Average:                          876 ops/s
+ Benchmarking group 8 ('--'):
+      1  1                         842 ops/s
+      2  1e10                      803 ops/s
+      3  1e100                     778 ops/s
+      4  1e1000                    607 ops/s
+      5  1e10000                   185 ops/s
+      6  123.456                   338 ops/s
+ Average:                          592 ops/s
+ Benchmarking group 9 ('fadd'):
+      1  1+1                      1190 ops/s (empty: 7270, both: 1020)
+      2  1e10+1e10                1120 ops/s (empty: 7220, both: 968)
+      3  1e100+1e100              1130 ops/s (empty: 7240, both: 976)
+      4  1e1000+1e1000            1120 ops/s (empty: 7240, both: 971)
+      5  1+ -1                    1270 ops/s (empty: 7230, both: 1080)
+      6  1e1000+1                  100 ops/s (empty: 7210, both: 99.0)
+      7  1e1000+-1                  97 ops/s (empty: 7100, both: 95.6)
+      8  1e1000+1e10                97 ops/s (empty: 7270, both: 96.1)
+      9  1e1000+-1e10               95 ops/s (empty: 7260, both: 93.5)
+ Average:                          691 ops/s
+ Benchmarking group 10 ('fsub'):
+      1  1 - 1                    1180 ops/s (empty: 7140, both: 1010)
+      2  1e10 - 1e10              1120 ops/s (empty: 7160, both: 967)
+      3  1e100 - 1e100            1130 ops/s (empty: 7380, both: 983)
+      4  1e1000 - 1e1000          1130 ops/s (empty: 7270, both: 976)
+      5  1 - -1                   1100 ops/s (empty: 7240, both: 957)
+      6  1e1000 - 1                 98 ops/s (empty: 7290, both: 97.1)
+      7  1e1000 - -1               101 ops/s (empty: 7180, both: 100)
+      8  1e1000 - 1e10              95 ops/s (empty: 7300, both: 93.9)
+      9  1e1000 - -1e10             99 ops/s (empty: 7280, both: 97.6)
+ Average:                          672 ops/s
+ Benchmarking group 11 ('$x - $y'):
+      1  1 - 1                    1020 ops/s
+      2  1e10 - 1                  269 ops/s
+      3  1e100 - 1                 158 ops/s
+      4  1e100 - 1e10              164 ops/s
+      5  1e1000 - 1e10              93 ops/s
+ Average:                          340 ops/s
+ Benchmarking group 12 ('fmul'):
+      1  1 * 1                    3040 ops/s (empty: 7250, both: 2140)
+      2  1e10 * 1e10              1920 ops/s (empty: 7240, both: 1520)
+      3  1e100 * 1e100            1920 ops/s (empty: 7310, both: 1520)
+      4  1e1000 * 1e1000          1920 ops/s (empty: 7280, both: 1520)
+      5  1 * -1                   2080 ops/s (empty: 7330, both: 1620)
+      6  1e1000 * 10              1960 ops/s (empty: 7250, both: 1540)
+      7  1e1000 * -10             2010 ops/s (empty: 7210, both: 1570)
+ Average:                         2120 ops/s
+ Benchmarking group 13 ('x * y'):
+      1  1 * 1                    1570 ops/s
+      2  1e10 * 1e10              1500 ops/s
+      3  1e100 * 1e100            1520 ops/s
+      4  1e1000 * 1e1000          1510 ops/s
+      5  1 * -1                   1620 ops/s
+      6  1e1000 * 10              1500 ops/s
+      7  1e1000 * -10             1530 ops/s
+ Average:                         1530 ops/s
+ Benchmarking group 14 ('fneg'):
+      1  1                         n/a (got no result)
+      2  1e10                      n/a (got no result)
+      3  1e100                     n/a (got no result)
+      4  1e1000                    n/a (got no result)
+      5  1e10000                   n/a (got no result)
+      6  1.'1'x10                  n/a (got no result)
+      7  1.'1'x100                 n/a (got no result)
+      8  1.'1'x1000                n/a (got no result)
+      9  1.'1'x10000               n/a (got no result)
+ Average:                          n/a
+ Benchmarking group 15 ('x = -x'):
+      1  1                        6230 ops/s
+      2  1e10                     6260 ops/s
+      3  1e100                    6250 ops/s
+      4  1e1000                   6190 ops/s
+      5  1e10000                  6220 ops/s
+      6  1.'1'x10                 6200 ops/s
+      7  1.'1'x100                5940 ops/s
+      8  1.'1'x1000               3830 ops/s
+      9  1.'1'x10000               881 ops/s
+ Average:                         5330 ops/s
+ Benchmarking group 16 ('fabs'):
+      1  1                       46700 ops/s
+      2  1e10                    46500 ops/s
+      3  1e100                   46500 ops/s
+      4  1e1000                  46500 ops/s
+      5  1e10000                 46000 ops/s
+ Average:                        46400 ops/s
+ Benchmarking group 17 ('x = abs(x)'):
+      1  -1                     104000 ops/s (empty: 7280, both: 6800)
+      2  -1e10                   94700 ops/s (empty: 7280, both: 6760)
+      3  -1e100                  92300 ops/s (empty: 7330, both: 6790)
+      4  -1e1000                101000 ops/s (empty: 7240, both: 6760)
+      5  -1e10000                81400 ops/s (empty: 7220, both: 6630)
+ Average:                        94700 ops/s
+ Benchmarking group 18 ('x->fpow(y)'):
+      1  1 ** 1                   5950 ops/s (empty: 7330, both: 3280)
+      2  1 ** 100                 5880 ops/s (empty: 7290, both: 3250)
+      3  2 ** 15                   226 ops/s (empty: 7310, both: 219)
+      4  3 ** 15                   234 ops/s (empty: 7290, both: 227)
+      5  4 ** 15                   223 ops/s (empty: 7210, both: 216)
+      6  2 ** 150                  136 ops/s (empty: 7330, both: 133)
+      7  3 ** 150                  138 ops/s (empty: 7360, both: 135)
+      8  2 ** 255                  128 ops/s (empty: 7210, both: 126)
+      9  3 ** 255                  128 ops/s (empty: 7290, both: 126)
+     10  7 ** 777                   61 ops/s (empty: 7380, both: 60.8)
+     11  123456789 ** 2            508 ops/s (empty: 7270, both: 475)
+ Average:                         1240 ops/s
+ Benchmarking group 19 ('x ** y'):
+      1  1 ** 1                   3140 ops/s
+      2  1 ** 100                 3170 ops/s
+      3  2 ** 150                  134 ops/s
+      4  3 ** 150                  135 ops/s
+      5  7 ** 777                   60 ops/s
+      6  123456789 ** 2            479 ops/s
+ Average:                         1190 ops/s
+ Benchmarking group 20 ('fdiv'):
+      1  1 / 1                    3440 ops/s (empty: 7240, both: 2330)
+      2  123 / 1                  3400 ops/s (empty: 7280, both: 2320)
+      3  1e100 / 1                3440 ops/s (empty: 7310, both: 2340)
+      4  123456789 / 1             323 ops/s (empty: 7250, both: 310)
+      5  1e100 / 1e10              340 ops/s (empty: 7210, both: 325)
+      6  1e1000 / 1e10             345 ops/s (empty: 7310, both: 329)
+      7  1e10000 / 1e10            345 ops/s (empty: 7290, both: 329)
+      8  1e1000 / 1e100            345 ops/s (empty: 7310, both: 329)
+      9  1e10000 / 1e100           345 ops/s (empty: 7240, both: 329)
+     10  1e10000 / 1e1000          343 ops/s (empty: 7210, both: 327)
+     11  1e10000 / 123456          307 ops/s (empty: 7230, both: 295)
+ Average:                         1180 ops/s
+ Benchmarking group 21 ('bmod'):
+      1  1 % 1                    4520 ops/s (empty: 7210, both: 2780)
+      2  1e10 % 2                 3850 ops/s (empty: 7330, both: 2520)
+      3  1e100 % 2                3830 ops/s (empty: 7210, both: 2500)
+      4  1e1000 % 2               3850 ops/s (empty: 7220, both: 2510)
+      5  1e10000 % 2              3840 ops/s (empty: 7380, both: 2520)
+      6  1e10 % 3                 3960 ops/s (empty: 7160, both: 2550)
+      7  1e100 % 3                3720 ops/s (empty: 7180, both: 2450)
+      8  1e1000 % 3               3710 ops/s (empty: 6880, both: 2410)
+      9  1e10000 % 3              3900 ops/s (empty: 7310, both: 2540)
+     10  1e10 % 7                 3780 ops/s (empty: 7510, both: 2510)
+     11  1e100 % 7                3890 ops/s (empty: 7270, both: 2530)
+     12  1e1000 % 7               3880 ops/s (empty: 7110, both: 2510)
+     13  1e10000 % 7              3640 ops/s (empty: 7240, both: 2420)
+     14  1e10 % 1e9               1890 ops/s (empty: 7250, both: 1500)
+     15  1e100 % 1e9              1930 ops/s (empty: 7110, both: 1520)
+     16  1e1000 % 1e9             1900 ops/s (empty: 7040, both: 1500)
+     17  1e10000 % 1e9            1920 ops/s (empty: 7210, both: 1520)
+ Average:                         3410 ops/s
+ Benchmarking group 22 ('copy'):
+      1  x = copy(1)              7160 ops/s
+      2  x = copy(1e10)           6490 ops/s
+      3  x = copy(1e100)          7190 ops/s
+      4  x = copy(1e1000)         7140 ops/s
+      5  x = copy(1e10000)        6990 ops/s
+ Average:                         6990 ops/s
+ Benchmarking group 23 ('copy via new'):
+      1  x = new(1)               6770 ops/s
+      2  x = new(1e10)            6780 ops/s
+      3  x = new(1e100)           6690 ops/s
+      4  x = new(1e1000)          6510 ops/s
+      5  x = new(1e10000)         6520 ops/s
+ Average:                         6650 ops/s
+ Benchmarking group 24 ('frsft'):
+      1  1 >> 1                    n/a (got no result)
+      2  1e10 >> 1                 n/a (got no result)
+      3  1e10 >> 8                 n/a (got no result)
+      4  1e100 >> 1                n/a (got no result)
+      5  1e100 >> 8                n/a (got no result)
+      6  1e100 >> 255              n/a (got no result)
+      7  1e1000 >> 255             n/a (got no result)
+ Average:                          n/a
+ Benchmarking group 25 ('flsft'):
+      1  1 << 1                    n/a (got no result)
+      2  1e10 << 1                 n/a (got no result)
+      3  1e10 << 8                 n/a (got no result)
+      4  1e100 << 1                n/a (got no result)
+      5  1e100 << 8                n/a (got no result)
+      6  1e100 << 255              n/a (got no result)
+      7  1e1000 << 255             n/a (got no result)
+ Average:                          n/a
+
+Running 'v1.47':
+ Benchmarking group 1 ('new'):
+      1  1                        3860 ops/s
+      2  1e10                     1460 ops/s
+      3  1e100                    1400 ops/s
+      4  1e1000                    849 ops/s
+      5  1e10000                   174 ops/s
+      6  1.'1'x10                 3490 ops/s
+      7  1.'1'x100                3600 ops/s
+      8  1.'1'x1000               2360 ops/s
+      9  -1234567890              1480 ops/s
+     10  -1.23456789              2000 ops/s
+     11  -1.23e123456             1790 ops/s
+ Average:                         2040 ops/s
+ Benchmarking group 2 ('new specials'):
+      1  NaN                     13200 ops/s
+      4  +inf                    15500 ops/s
+      5  -inf                    15400 ops/s
+ Average:                        14700 ops/s
+ Benchmarking group 4 ('fsqrt'):
+      1  123456                      3 ops/s (empty: 7110, both: 3.48)
+      2  123.456                     5 ops/s (empty: 6890, both: 4.95)
+      3  123456789                   5 ops/s (empty: 6980, both: 4.93)
+      4  1e10                        2 ops/s (empty: 7240, both: 2.46)
+      5  1e100                       0 ops/s (empty: 7160, both: 0.37)
+      7  1.'1'x10                    2 ops/s (empty: 7190, both: 2.46)
+      8  1.'1'x100                   0 ops/s (empty: 6790, both: 0.3)
+ Average:                         2.71 ops/s
+ Benchmarking group 5 ('finc'):
+      1  1                        4600 ops/s
+      2  1e10                     4560 ops/s
+      3  1e100                    4330 ops/s
+      4  1e1000                   2030 ops/s
+ Average:                         3880 ops/s
+ Benchmarking group 6 ('++'):
+      1  1                        2510 ops/s
+      2  1e10                     2550 ops/s
+      3  1e100                    2360 ops/s
+      4  1e1000                   1450 ops/s
+      5  1e10000                   286 ops/s
+      6  123.456                   504 ops/s
+ Average:                         1610 ops/s
+ Benchmarking group 7 ('fdec'):
+      1  1                        3260 ops/s
+      2  1e10                     3000 ops/s
+      3  1e100                    2820 ops/s
+      4  1e1000                   1630 ops/s
+ Average:                         2680 ops/s
+ Benchmarking group 8 ('--'):
+      1  1                        2240 ops/s
+      2  1e10                     1930 ops/s
+      3  1e100                    1850 ops/s
+      4  1e1000                   1210 ops/s
+      5  1e10000                   247 ops/s
+      6  123.456                   509 ops/s
+ Average:                         1330 ops/s
+ Benchmarking group 9 ('fadd'):
+      1  1+1                      1170 ops/s (empty: 6860, both: 1000)
+      2  1e10+1e10                1070 ops/s (empty: 7170, both: 930)
+      3  1e100+1e100              1020 ops/s (empty: 6500, both: 881)
+      4  1e1000+1e1000            1070 ops/s (empty: 6920, both: 925)
+      5  1+ -1                    1360 ops/s (empty: 7300, both: 1150)
+      6  1e1000+1                  262 ops/s (empty: 7200, both: 253)
+      7  1e1000+-1                 246 ops/s (empty: 6860, both: 238)
+      8  1e1000+1e10               247 ops/s (empty: 6680, both: 238)
+      9  1e1000+-1e10              226 ops/s (empty: 6890, both: 219)
+ Average:                          741 ops/s
+ Benchmarking group 10 ('fsub'):
+      1  1 - 1                    1350 ops/s (empty: 7150, both: 1130)
+      2  1e10 - 1e10              1200 ops/s (empty: 7080, both: 1030)
+      3  1e100 - 1e100            1180 ops/s (empty: 7130, both: 1010)
+      4  1e1000 - 1e1000          1110 ops/s (empty: 7040, both: 957)
+      5  1 - -1                   1160 ops/s (empty: 6790, both: 991)
+      6  1e1000 - 1                221 ops/s (empty: 6970, both: 214)
+      7  1e1000 - -1               251 ops/s (empty: 6980, both: 243)
+      8  1e1000 - 1e10             227 ops/s (empty: 7150, both: 220)
+      9  1e1000 - -1e10            256 ops/s (empty: 7120, both: 247)
+ Average:                          773 ops/s
+ Benchmarking group 11 ('$x - $y'):
+      1  1 - 1                    1090 ops/s
+      2  1e10 - 1                  522 ops/s
+      3  1e100 - 1                 410 ops/s
+      4  1e100 - 1e10              412 ops/s
+      5  1e1000 - 1e10             223 ops/s
+ Average:                          531 ops/s
+ Benchmarking group 12 ('fmul'):
+      1  1 * 1                    2960 ops/s (empty: 7180, both: 2090)
+      2  1e10 * 1e10              1900 ops/s (empty: 7170, both: 1500)
+      3  1e100 * 1e100            1870 ops/s (empty: 7170, both: 1480)
+      4  1e1000 * 1e1000          1900 ops/s (empty: 7010, both: 1490)
+      5  1 * -1                   1900 ops/s (empty: 7130, both: 1500)
+      6  1e1000 * 10              1830 ops/s (empty: 7160, both: 1460)
+      7  1e1000 * -10             1900 ops/s (empty: 7490, both: 1520)
+ Average:                         2040 ops/s
+ Benchmarking group 13 ('x * y'):
+      1  1 * 1                    1550 ops/s
+      2  1e10 * 1e10              1450 ops/s
+      3  1e100 * 1e100            1370 ops/s
+      4  1e1000 * 1e1000          1310 ops/s
+      5  1 * -1                   1580 ops/s
+      6  1e1000 * 10              1450 ops/s
+      7  1e1000 * -10             1460 ops/s
+ Average:                         1450 ops/s
+ Benchmarking group 14 ('fneg'):
+      1  1                         n/a (got no result)
+      2  1e10                      n/a (got no result)
+      3  1e100                     n/a (got no result)
+      4  1e1000                    n/a (got no result)
+      5  1e10000                   n/a (got no result)
+      6  1.'1'x10                  n/a (got no result)
+      7  1.'1'x100                 n/a (got no result)
+      8  1.'1'x1000                n/a (got no result)
+      9  1.'1'x10000               n/a (got no result)
+ Average:                          n/a
+ Benchmarking group 15 ('x = -x'):
+      1  1                        6080 ops/s
+      2  1e10                     5930 ops/s
+      3  1e100                    5970 ops/s
+      4  1e1000                   6050 ops/s
+      5  1e10000                  5960 ops/s
+      6  1.'1'x10                 6180 ops/s
+      7  1.'1'x100                5880 ops/s
+      8  1.'1'x1000               3810 ops/s
+      9  1.'1'x10000               846 ops/s
+ Average:                         5190 ops/s
+ Benchmarking group 16 ('fabs'):
+      1  1                       44200 ops/s
+      2  1e10                    46400 ops/s
+      3  1e100                   43900 ops/s
+      4  1e1000                  44500 ops/s
+      5  1e10000                 46000 ops/s
+ Average:                        45000 ops/s
+ Benchmarking group 17 ('x = abs(x)'):
+      1  -1                     111000 ops/s (empty: 7160, both: 6730)
+      2  -1e10                  138000 ops/s (empty: 6970, both: 6630)
+      3  -1e100                  92300 ops/s (empty: 7130, both: 6620)
+      4  -1e1000                 67800 ops/s (empty: 7240, both: 6540)
+      5  -1e10000               127000 ops/s (empty: 7100, both: 6720)
+ Average:                       107000 ops/s
+ Benchmarking group 18 ('x->fpow(y)'):
+      1  1 ** 1                   5990 ops/s (empty: 7140, both: 3260)
+      2  1 ** 100                 5810 ops/s (empty: 7240, both: 3220)
+      3  2 ** 15                   568 ops/s (empty: 7250, both: 527)
+      4  3 ** 15                   653 ops/s (empty: 7240, both: 599)
+      5  4 ** 15                   570 ops/s (empty: 6880, both: 527)
+      6  2 ** 150                  287 ops/s (empty: 7070, both: 275)
+      7  3 ** 150                  333 ops/s (empty: 6820, both: 318)
+      8  2 ** 255                  413 ops/s (empty: 7020, both: 390)
+      9  3 ** 255                  366 ops/s (empty: 6980, both: 347)
+     10  7 ** 777                   90 ops/s (empty: 6970, both: 89.3)
+     11  123456789 ** 2            653 ops/s (empty: 6620, both: 594)
+ Average:                         1430 ops/s
+ Benchmarking group 19 ('x ** y'):
+      1  1 ** 1                   2850 ops/s
+      2  1 ** 100                 2760 ops/s
+      3  2 ** 150                  288 ops/s
+      4  3 ** 150                  312 ops/s
+      5  7 ** 777                   94 ops/s
+      6  123456789 ** 2            663 ops/s
+ Average:                         1160 ops/s
+ Benchmarking group 20 ('fdiv'):
+      1  1 / 1                    2840 ops/s (empty: 6790, both: 2000)
+      2  123 / 1                  3030 ops/s (empty: 6740, both: 2090)
+      3  1e100 / 1                2910 ops/s (empty: 6480, both: 2010)
+      4  123456789 / 1             274 ops/s (empty: 7120, both: 264)
+      5  1e100 / 1e10              343 ops/s (empty: 6510, both: 326)
+      6  1e1000 / 1e10             310 ops/s (empty: 7050, both: 297)
+      7  1e10000 / 1e10            315 ops/s (empty: 7150, both: 302)
+      8  1e1000 / 1e100            339 ops/s (empty: 7110, both: 323)
+      9  1e10000 / 1e100           337 ops/s (empty: 6730, both: 321)
+     10  1e10000 / 1e1000          330 ops/s (empty: 6890, both: 315)
+     11  1e10000 / 123456          302 ops/s (empty: 7090, both: 290)
+ Average:                         1030 ops/s
+ Benchmarking group 21 ('bmod'):
+      1  1 % 1                    4320 ops/s (empty: 7070, both: 2680)
+      2  1e10 % 2                 3590 ops/s (empty: 7060, both: 2380)
+      3  1e100 % 2                3680 ops/s (empty: 6820, both: 2390)
+      4  1e1000 % 2               3530 ops/s (empty: 7010, both: 2350)
+      5  1e10000 % 2              3600 ops/s (empty: 7060, both: 2380)
+      6  1e10 % 3                 3510 ops/s (empty: 7010, both: 2340)
+      7  1e100 % 3                3610 ops/s (empty: 6810, both: 2360)
+      8  1e1000 % 3               3730 ops/s (empty: 6740, both: 2400)
+      9  1e10000 % 3              3440 ops/s (empty: 7080, both: 2310)
+     10  1e10 % 7                 3500 ops/s (empty: 7010, both: 2340)
+     11  1e100 % 7                3610 ops/s (empty: 6950, both: 2380)
+     12  1e1000 % 7               3680 ops/s (empty: 6840, both: 2390)
+     13  1e10000 % 7              3430 ops/s (empty: 7040, both: 2310)
+     14  1e10 % 1e9               1780 ops/s (empty: 7010, both: 1420)
+     15  1e100 % 1e9              1810 ops/s (empty: 7080, both: 1440)
+     16  1e1000 % 1e9             1850 ops/s (empty: 6880, both: 1460)
+     17  1e10000 % 1e9            1680 ops/s (empty: 6880, both: 1350)
+ Average:                         3200 ops/s
+ Benchmarking group 22 ('copy'):
+      1  x = copy(1)              7050 ops/s
+      2  x = copy(1e10)           6920 ops/s
+      3  x = copy(1e100)          7050 ops/s
+      4  x = copy(1e1000)         7020 ops/s
+      5  x = copy(1e10000)        6760 ops/s
+ Average:                         6960 ops/s
+ Benchmarking group 23 ('copy via new'):
+      1  x = new(1)               6580 ops/s
+      2  x = new(1e10)            6480 ops/s
+      3  x = new(1e100)           6630 ops/s
+      4  x = new(1e1000)          6820 ops/s
+      5  x = new(1e10000)         6600 ops/s
+ Average:                         6620 ops/s
+ Benchmarking group 24 ('frsft'):
+      1  1 >> 1                    n/a (got no result)
+      2  1e10 >> 1                 n/a (got no result)
+      3  1e10 >> 8                 n/a (got no result)
+      4  1e100 >> 1                n/a (got no result)
+      5  1e100 >> 8                n/a (got no result)
+      6  1e100 >> 255              n/a (got no result)
+      7  1e1000 >> 255             n/a (got no result)
+ Average:                          n/a
+ Benchmarking group 25 ('flsft'):
+      1  1 << 1                    n/a (got no result)
+      2  1e10 << 1                 n/a (got no result)
+      3  1e10 << 8                 n/a (got no result)
+      4  1e100 << 1                n/a (got no result)
+      5  1e100 << 8                n/a (got no result)
+      6  1e100 << 255              n/a (got no result)
+      7  1e1000 << 255             n/a (got no result)
+ Average:                          n/a
+
+Running 'v1.48':
+ Benchmarking group 1 ('new'):
+      1  1                        4100 ops/s
+      2  1e10                     1430 ops/s
+      3  1e100                    1360 ops/s
+      4  1e1000                    878 ops/s
+      5  1e10000                   175 ops/s
+      6  1.'1'x10                 3930 ops/s
+      7  1.'1'x100                3780 ops/s
+      8  1.'1'x1000               2240 ops/s
+      9  -1234567890              1440 ops/s
+     10  -1.23456789              1910 ops/s
+     11  -1.23e123456             1750 ops/s
+ Average:                         2090 ops/s
+ Benchmarking group 2 ('new specials'):
+      1  NaN                     12900 ops/s
+      4  +inf                    14600 ops/s
+      5  -inf                    14900 ops/s
+ Average:                        14100 ops/s
+ Benchmarking group 4 ('fsqrt'):
+      1  123456                      9 ops/s (empty: 8890, both: 9.09)
+      2  123.456                    12 ops/s (empty: 8970, both: 12.2)
+      3  123456789                  12 ops/s (empty: 9010, both: 12.5)
+      4  1e10                       79 ops/s (empty: 8760, both: 78.4)
+      5  1e100                      81 ops/s (empty: 8880, both: 80.7)
+      7  1.'1'x10                   12 ops/s (empty: 8840, both: 12.3)
+      8  1.'1'x100                   9 ops/s (empty: 8450, both: 8.97)
+ Average:                         30.8 ops/s
+ Benchmarking group 5 ('finc'):
+      1  1                        4730 ops/s
+      2  1e10                     4740 ops/s
+      3  1e100                    4170 ops/s
+      4  1e1000                   2280 ops/s
+ Average:                         3980 ops/s
+ Benchmarking group 6 ('++'):
+      1  1                        2720 ops/s
+      2  1e10                     2850 ops/s
+      3  1e100                    2620 ops/s
+      4  1e1000                   1570 ops/s
+      5  1e10000                   293 ops/s
+      6  123.456                   534 ops/s
+ Average:                         1760 ops/s
+ Benchmarking group 7 ('fdec'):
+      1  1                        3370 ops/s
+      2  1e10                     3310 ops/s
+      3  1e100                    2970 ops/s
+      4  1e1000                   1820 ops/s
+ Average:                         2870 ops/s
+ Benchmarking group 8 ('--'):
+      1  1                        2300 ops/s
+      2  1e10                     2170 ops/s
+      3  1e100                    2140 ops/s
+      4  1e1000                   1350 ops/s
+      5  1e10000                   271 ops/s
+      6  123.456                   554 ops/s
+ Average:                         1460 ops/s
+ Benchmarking group 9 ('fadd'):
+      1  1+1                      1320 ops/s (empty: 8920, both: 1150)
+      2  1e10+1e10                1170 ops/s (empty: 8960, both: 1030)
+      3  1e100+1e100              1150 ops/s (empty: 8960, both: 1020)
+      4  1e1000+1e1000            1130 ops/s (empty: 9280, both: 1010)
+      5  1+ -1                    1330 ops/s (empty: 9000, both: 1160)
+      6  1e1000+1                  251 ops/s (empty: 8840, both: 245)
+      7  1e1000+-1                 250 ops/s (empty: 9000, both: 243)
+      8  1e1000+1e10               260 ops/s (empty: 9220, both: 253)
+      9  1e1000+-1e10              224 ops/s (empty: 8530, both: 218)
+ Average:                          787 ops/s
+ Benchmarking group 10 ('fsub'):
+      1  1 - 1                    1370 ops/s (empty: 9040, both: 1190)
+      2  1e10 - 1e10              1200 ops/s (empty: 9260, both: 1060)
+      3  1e100 - 1e100            1230 ops/s (empty: 9280, both: 1090)
+      4  1e1000 - 1e1000          1210 ops/s (empty: 9120, both: 1070)
+      5  1 - -1                   1290 ops/s (empty: 9130, both: 1130)
+      6  1e1000 - 1                237 ops/s (empty: 9180, both: 231)
+      7  1e1000 - -1               267 ops/s (empty: 8840, both: 260)
+      8  1e1000 - 1e10             218 ops/s (empty: 8920, both: 213)
+      9  1e1000 - -1e10            245 ops/s (empty: 8620, both: 238)
+ Average:                          807 ops/s
+ Benchmarking group 11 ('$x - $y'):
+      1  1 - 1                    1090 ops/s
+      2  1e10 - 1                  506 ops/s
+      3  1e100 - 1                 399 ops/s
+      4  1e100 - 1e10              422 ops/s
+      5  1e1000 - 1e10             209 ops/s
+ Average:                          525 ops/s
+ Benchmarking group 12 ('fmul'):
+      1  1 * 1                    4340 ops/s (empty: 8700, both: 2900)
+      2  1e10 * 1e10              2190 ops/s (empty: 8540, both: 1750)
+      3  1e100 * 1e100            2300 ops/s (empty: 7920, both: 1780)
+      4  1e1000 * 1e1000          2340 ops/s (empty: 9100, both: 1860)
+      5  1 * -1                   2590 ops/s (empty: 9300, both: 2030)
+      6  1e1000 * 10              2620 ops/s (empty: 8570, both: 2010)
+      7  1e1000 * -10             2350 ops/s (empty: 9220, both: 1880)
+ Average:                         2680 ops/s
+ Benchmarking group 13 ('x * y'):
+      1  1 * 1                    2100 ops/s
+      2  1e10 * 1e10              1820 ops/s
+      3  1e100 * 1e100            1860 ops/s
+      4  1e1000 * 1e1000          1970 ops/s
+      5  1 * -1                   2110 ops/s
+      6  1e1000 * 10              1830 ops/s
+      7  1e1000 * -10             2020 ops/s
+ Average:                         1960 ops/s
+ Benchmarking group 14 ('fneg'):
+      1  1                       31400 ops/s
+      2  1e10                    31500 ops/s
+      3  1e100                   31400 ops/s
+      4  1e1000                  31300 ops/s
+      5  1e10000                 31000 ops/s
+      6  1.'1'x10                30400 ops/s
+      7  1.'1'x100               29900 ops/s
+      8  1.'1'x1000              29700 ops/s
+      9  1.'1'x10000             30400 ops/s
+ Average:                        30800 ops/s
+ Benchmarking group 15 ('x = -x'):
+      1  1                        7520 ops/s
+      2  1e10                     7120 ops/s
+      3  1e100                    7340 ops/s
+      4  1e1000                   7620 ops/s
+      5  1e10000                  7660 ops/s
+      6  1.'1'x10                 7630 ops/s
+      7  1.'1'x100                6950 ops/s
+      8  1.'1'x1000               4410 ops/s
+      9  1.'1'x10000               894 ops/s
+ Average:                         6350 ops/s
+ Benchmarking group 16 ('fabs'):
+      1  1                       46200 ops/s
+      2  1e10                    47000 ops/s
+      3  1e100                   47100 ops/s
+      4  1e1000                  45900 ops/s
+      5  1e10000                 48100 ops/s
+ Average:                        46900 ops/s
+ Benchmarking group 17 ('x = abs(x)'):
+      1  -1                      84200 ops/s (empty: 9280, both: 8360)
+      2  -1e10                   72800 ops/s (empty: 9260, both: 8220)
+      3  -1e100                  88100 ops/s (empty: 9350, both: 8450)
+      4  -1e1000                138000 ops/s (empty: 9050, both: 8490)
+      5  -1e10000               193000 ops/s (empty: 8920, both: 8530)
+ Average:                       115000 ops/s
+ Benchmarking group 18 ('x->fpow(y)'):
+      1  1 ** 1                   5400 ops/s (empty: 9440, both: 3440)
+      2  1 ** 100                 6000 ops/s (empty: 9240, both: 3640)
+      3  2 ** 15                   811 ops/s (empty: 9190, both: 745)
+      4  3 ** 15                   906 ops/s (empty: 9260, both: 825)
+      5  4 ** 15                   823 ops/s (empty: 9190, both: 755)
+      6  2 ** 150                  406 ops/s (empty: 9160, both: 389)
+      7  3 ** 150                  417 ops/s (empty: 9130, both: 399)
+      8  2 ** 255                  533 ops/s (empty: 9300, both: 504)
+      9  3 ** 255                  506 ops/s (empty: 8900, both: 479)
+     10  7 ** 777                  105 ops/s (empty: 9230, both: 103)
+     11  123456789 ** 2           1170 ops/s (empty: 9070, both: 1040)
+ Average:                         1550 ops/s
+ Benchmarking group 19 ('x ** y'):
+      1  1 ** 1                   3370 ops/s
+      2  1 ** 100                 3510 ops/s
+      3  2 ** 150                  393 ops/s
+      4  3 ** 150                  395 ops/s
+      5  7 ** 777                  100 ops/s
+      6  123456789 ** 2           1020 ops/s
+ Average:                         1460 ops/s
+ Benchmarking group 20 ('fdiv'):
+      1  1 / 1                    3330 ops/s (empty: 9260, both: 2450)
+      2  123 / 1                  3480 ops/s (empty: 9170, both: 2520)
+      3  1e100 / 1                3500 ops/s (empty: 9220, both: 2540)
+      4  123456789 / 1             396 ops/s (empty: 9000, both: 379)
+      5  1e100 / 1e10              374 ops/s (empty: 9400, both: 360)
+      6  1e1000 / 1e10             383 ops/s (empty: 9250, both: 368)
+      7  1e10000 / 1e10            379 ops/s (empty: 9280, both: 364)
+      8  1e1000 / 1e100            387 ops/s (empty: 9110, both: 371)
+      9  1e10000 / 1e100           366 ops/s (empty: 9220, both: 352)
+     10  1e10000 / 1e1000          385 ops/s (empty: 9070, both: 369)
+     11  1e10000 / 123456          367 ops/s (empty: 9090, both: 352)
+ Average:                         1210 ops/s
+ Benchmarking group 21 ('bmod'):
+      1  1 % 1                    4450 ops/s (empty: 9360, both: 3020)
+      2  1e10 % 2                 3890 ops/s (empty: 9230, both: 2730)
+      3  1e100 % 2                3950 ops/s (empty: 9080, both: 2750)
+      4  1e1000 % 2               3810 ops/s (empty: 9090, both: 2690)
+      5  1e10000 % 2              3840 ops/s (empty: 9260, both: 2710)
+      6  1e10 % 3                 3870 ops/s (empty: 9090, both: 2710)
+      7  1e100 % 3                3830 ops/s (empty: 9160, both: 2700)
+      8  1e1000 % 3               3960 ops/s (empty: 9260, both: 2770)
+      9  1e10000 % 3              3870 ops/s (empty: 9170, both: 2720)
+     10  1e10 % 7                 3890 ops/s (empty: 9220, both: 2740)
+     11  1e100 % 7                3830 ops/s (empty: 9170, both: 2700)
+     12  1e1000 % 7               4010 ops/s (empty: 9160, both: 2790)
+     13  1e10000 % 7              3910 ops/s (empty: 9260, both: 2750)
+     14  1e10 % 1e9               1880 ops/s (empty: 9120, both: 1560)
+     15  1e100 % 1e9              1800 ops/s (empty: 9130, both: 1500)
+     16  1e1000 % 1e9             1870 ops/s (empty: 9090, both: 1550)
+     17  1e10000 % 1e9            1890 ops/s (empty: 8970, both: 1560)
+ Average:                         3440 ops/s
+ Benchmarking group 22 ('copy'):
+      1  x = copy(1)              9100 ops/s
+      2  x = copy(1e10)           8530 ops/s
+      3  x = copy(1e100)          8980 ops/s
+      4  x = copy(1e1000)         9000 ops/s
+      5  x = copy(1e10000)        9220 ops/s
+ Average:                         8970 ops/s
+ Benchmarking group 23 ('copy via new'):
+      1  x = new(1)               8590 ops/s
+      2  x = new(1e10)            8520 ops/s
+      3  x = new(1e100)           8670 ops/s
+      4  x = new(1e1000)          8800 ops/s
+      5  x = new(1e10000)         8880 ops/s
+ Average:                         8690 ops/s
+ Benchmarking group 24 ('frsft'):
+      1  1 >> 1                    306 ops/s (empty: 9300, both: 296)
+      2  1e10 >> 1                 292 ops/s (empty: 9670, both: 284)
+      3  1e10 >> 8                 221 ops/s (empty: 9240, both: 216)
+      4  1e100 >> 1                284 ops/s (empty: 9130, both: 276)
+      5  1e100 >> 8                233 ops/s (empty: 9240, both: 227)
+      6  1e100 >> 255              157 ops/s (empty: 9090, both: 155)
+      7  1e1000 >> 255             161 ops/s (empty: 9350, both: 158)
+ Average:                          236 ops/s
+ Benchmarking group 25 ('flsft'):
+      1  1 << 1                    808 ops/s (empty: 9240, both: 743)
+      2  1e10 << 1                 789 ops/s (empty: 9300, both: 728)
+      3  1e10 << 8                 455 ops/s (empty: 9210, both: 433)
+      4  1e100 << 1                809 ops/s (empty: 9220, both: 743)
+      5  1e100 << 8                449 ops/s (empty: 9300, both: 428)
+      6  1e100 << 255              334 ops/s (empty: 9240, both: 322)
+      7  1e1000 << 255             328 ops/s (empty: 9300, both: 317)
+ Average:                          567 ops/s
+
+Running 'v1.48_Pari_v1.05':
+ Benchmarking group 1 ('new'):
+      1  1                        3920 ops/s
+      2  1e10                      973 ops/s
+      3  1e100                     945 ops/s
+      4  1e1000                    587 ops/s
+      5  1e10000                    24 ops/s
+      6  1.'1'x10                 3830 ops/s
+      7  1.'1'x100                3700 ops/s
+      8  1.'1'x1000               2700 ops/s
+      9  -1234567890              1010 ops/s
+     10  -1.23456789              1870 ops/s
+     11  -1.23e123456             1810 ops/s
+ Average:                         1940 ops/s
+ Benchmarking group 2 ('new specials'):
+      1  NaN                     12200 ops/s
+      4  +inf                    13700 ops/s
+      5  -inf                    13700 ops/s
+ Average:                        13200 ops/s
+ Benchmarking group 4 ('fsqrt'):
+      1  123456                     10 ops/s (empty: 8500, both: 9.52)
+      2  123.456                    13 ops/s (empty: 8330, both: 13.0)
+      3  123456789                  13 ops/s (empty: 8370, both: 12.9)
+      4  1e10                       77 ops/s (empty: 8370, both: 76.6)
+      5  1e100                      77 ops/s (empty: 8410, both: 76.6)
+      7  1.'1'x10                   12 ops/s (empty: 8410, both: 12.5)
+      8  1.'1'x100                  10 ops/s (empty: 8500, both: 10.3)
+ Average:                         30.4 ops/s
+ Benchmarking group 5 ('finc'):
+      1  1                        3530 ops/s
+      2  1e10                     3470 ops/s
+      3  1e100                    1640 ops/s
+      4  1e1000                     31 ops/s
+ Average:                         2170 ops/s
+ Benchmarking group 6 ('++'):
+      1  1                        2290 ops/s
+      2  1e10                     2270 ops/s
+      3  1e100                    1310 ops/s
+      4  1e1000                     31 ops/s
+      5  1e10000                     0 ops/s
+      6  123.456                   673 ops/s
+ Average:                         1100 ops/s
+ Benchmarking group 7 ('fdec'):
+      1  1                        2670 ops/s
+      2  1e10                     2570 ops/s
+      3  1e100                    2320 ops/s
+      4  1e1000                    932 ops/s
+ Average:                         2120 ops/s
+ Benchmarking group 8 ('--'):
+      1  1                        1900 ops/s
+      2  1e10                     1850 ops/s
+      3  1e100                    1720 ops/s
+      4  1e1000                    817 ops/s
+      5  1e10000                    26 ops/s
+      6  123.456                   674 ops/s
+ Average:                         1160 ops/s
+ Benchmarking group 9 ('fadd'):
+      1  1+1                      1340 ops/s (empty: 8460, both: 1150)
+      2  1e10+1e10                1180 ops/s (empty: 8450, both: 1030)
+      3  1e100+1e100              1190 ops/s (empty: 8410, both: 1040)
+      4  1e1000+1e1000            1200 ops/s (empty: 8410, both: 1050)
+      5  1+ -1                    1470 ops/s (empty: 8460, both: 1250)
+      6  1e1000+1                  831 ops/s (empty: 8420, both: 756)
+      7  1e1000+-1                 835 ops/s (empty: 8530, both: 760)
+      8  1e1000+1e10               814 ops/s (empty: 8410, both: 742)
+      9  1e1000+-1e10              821 ops/s (empty: 8460, both: 748)
+ Average:                         1070 ops/s
+ Benchmarking group 10 ('fsub'):
+      1  1 - 1                    1400 ops/s (empty: 8450, both: 1200)
+      2  1e10 - 1e10              1230 ops/s (empty: 8410, both: 1070)
+      3  1e100 - 1e100            1240 ops/s (empty: 8420, both: 1080)
+      4  1e1000 - 1e1000          1220 ops/s (empty: 8370, both: 1070)
+      5  1 - -1                   1300 ops/s (empty: 8520, both: 1130)
+      6  1e1000 - 1                798 ops/s (empty: 8370, both: 728)
+      7  1e1000 - -1               809 ops/s (empty: 8410, both: 738)
+      8  1e1000 - 1e10             777 ops/s (empty: 8380, both: 711)
+      9  1e1000 - -1e10            790 ops/s (empty: 8370, both: 722)
+ Average:                         1060 ops/s
+ Benchmarking group 11 ('$x - $y'):
+      1  1 - 1                    1200 ops/s
+      2  1e10 - 1                  736 ops/s
+      3  1e100 - 1                 725 ops/s
+      4  1e100 - 1e10              722 ops/s
+      5  1e1000 - 1e10             706 ops/s
+ Average:                          818 ops/s
+ Benchmarking group 12 ('fmul'):
+      1  1 * 1                    4580 ops/s (empty: 8420, both: 2970)
+      2  1e10 * 1e10              2550 ops/s (empty: 8370, both: 1950)
+      3  1e100 * 1e100            2560 ops/s (empty: 8340, both: 1960)
+      4  1e1000 * 1e1000          2570 ops/s (empty: 8330, both: 1960)
+      5  1 * -1                   2870 ops/s (empty: 8490, both: 2150)
+      6  1e1000 * 10              2570 ops/s (empty: 8330, both: 1970)
+      7  1e1000 * -10             2640 ops/s (empty: 8340, both: 2010)
+ Average:                         2910 ops/s
+ Benchmarking group 13 ('x * y'):
+      1  1 * 1                    2060 ops/s
+      2  1e10 * 1e10              1910 ops/s
+      3  1e100 * 1e100            1910 ops/s
+      4  1e1000 * 1e1000          1900 ops/s
+      5  1 * -1                   2110 ops/s
+      6  1e1000 * 10              1900 ops/s
+      7  1e1000 * -10             1940 ops/s
+ Average:                         1960 ops/s
+ Benchmarking group 14 ('fneg'):
+      1  1                       31200 ops/s
+      2  1e10                    31300 ops/s
+      3  1e100                   31400 ops/s
+      4  1e1000                  31100 ops/s
+      5  1e10000                 31200 ops/s
+      6  1.'1'x10                31200 ops/s
+      7  1.'1'x100               31300 ops/s
+      8  1.'1'x1000              31200 ops/s
+      9  1.'1'x10000             31200 ops/s
+ Average:                        31200 ops/s
+ Benchmarking group 15 ('x = -x'):
+      1  1                        6950 ops/s
+      2  1e10                     6910 ops/s
+      3  1e100                    6880 ops/s
+      4  1e1000                   6850 ops/s
+      5  1e10000                  6950 ops/s
+      6  1.'1'x10                 6950 ops/s
+      7  1.'1'x100                6940 ops/s
+      8  1.'1'x1000               6980 ops/s
+      9  1.'1'x10000              6670 ops/s
+ Average:                         6900 ops/s
+ Benchmarking group 16 ('fabs'):
+      1  1                       47200 ops/s
+      2  1e10                    46800 ops/s
+      3  1e100                   46600 ops/s
+      4  1e1000                  46600 ops/s
+      5  1e10000                 46700 ops/s
+ Average:                        46800 ops/s
+ Benchmarking group 17 ('x = abs(x)'):
+      1  -1                      74700 ops/s (empty: 8490, both: 7620)
+      2  -1e10                   70700 ops/s (empty: 8410, both: 7520)
+      3  -1e100                  68300 ops/s (empty: 8450, both: 7520)
+      4  -1e1000                 73600 ops/s (empty: 8420, both: 7550)
+      5  -1e10000                73600 ops/s (empty: 8370, both: 7520)
+ Average:                        72200 ops/s
+ Benchmarking group 18 ('x->fpow(y)'):
+      1  1 ** 1                   6120 ops/s (empty: 8490, both: 3560)
+      2  1 ** 100                 6200 ops/s (empty: 8530, both: 3590)
+      3  2 ** 15                  1270 ops/s (empty: 8450, both: 1100)
+      4  3 ** 15                  1440 ops/s (empty: 8450, both: 1230)
+      5  4 ** 15                  1270 ops/s (empty: 8530, both: 1110)
+      6  2 ** 150                  564 ops/s (empty: 8450, both: 528)
+      7  3 ** 150                  620 ops/s (empty: 8500, both: 578)
+      8  2 ** 255                 1170 ops/s (empty: 8500, both: 1030)
+      9  3 ** 255                 1410 ops/s (empty: 8500, both: 1210)
+     10  7 ** 777                 1390 ops/s (empty: 8470, both: 1200)
+     11  123456789 ** 2           1440 ops/s (empty: 8450, both: 1230)
+ Average:                         2080 ops/s
+ Benchmarking group 19 ('x ** y'):
+      1  1 ** 1                   3430 ops/s
+      2  1 ** 100                 3400 ops/s
+      3  2 ** 150                  524 ops/s
+      4  3 ** 150                  565 ops/s
+      5  7 ** 777                 1170 ops/s
+      6  123456789 ** 2           1200 ops/s
+ Average:                         1720 ops/s
+ Benchmarking group 20 ('fdiv'):
+      1  1 / 1                    3470 ops/s (empty: 8450, both: 2460)
+      2  123 / 1                  3410 ops/s (empty: 8460, both: 2430)
+      3  1e100 / 1                3450 ops/s (empty: 8410, both: 2450)
+      4  123456789 / 1             344 ops/s (empty: 8490, both: 331)
+      5  1e100 / 1e10              307 ops/s (empty: 8410, both: 296)
+      6  1e1000 / 1e10             307 ops/s (empty: 8380, both: 296)
+      7  1e10000 / 1e10            305 ops/s (empty: 8410, both: 294)
+      8  1e1000 / 1e100            306 ops/s (empty: 8380, both: 295)
+      9  1e10000 / 1e100           307 ops/s (empty: 8450, both: 296)
+     10  1e10000 / 1e1000          306 ops/s (empty: 8410, both: 295)
+     11  1e10000 / 123456          350 ops/s (empty: 8330, both: 336)
+ Average:                         1170 ops/s
+ Benchmarking group 21 ('bmod'):
+      1  1 % 1                    4400 ops/s (empty: 8490, both: 2900)
+      2  1e10 % 2                 3770 ops/s (empty: 8340, both: 2600)
+      3  1e100 % 2                3740 ops/s (empty: 8410, both: 2590)
+      4  1e1000 % 2               3750 ops/s (empty: 8420, both: 2600)
+      5  1e10000 % 2              3740 ops/s (empty: 8410, both: 2590)
+      6  1e10 % 3                 3770 ops/s (empty: 8490, both: 2610)
+      7  1e100 % 3                3770 ops/s (empty: 8380, both: 2600)
+      8  1e1000 % 3               3750 ops/s (empty: 8340, both: 2590)
+      9  1e10000 % 3              3780 ops/s (empty: 8410, both: 2610)
+     10  1e10 % 7                 3780 ops/s (empty: 8370, both: 2600)
+     11  1e100 % 7                3740 ops/s (empty: 8420, both: 2590)
+     12  1e1000 % 7               3760 ops/s (empty: 8410, both: 2600)
+     13  1e10000 % 7              3710 ops/s (empty: 8410, both: 2580)
+     14  1e10 % 1e9               1850 ops/s (empty: 8380, both: 1510)
+     15  1e100 % 1e9              1860 ops/s (empty: 8410, both: 1520)
+     16  1e1000 % 1e9             1870 ops/s (empty: 8380, both: 1530)
+     17  1e10000 % 1e9            1830 ops/s (empty: 8450, both: 1510)
+ Average:                         3340 ops/s
+ Benchmarking group 22 ('copy'):
+      1  x = copy(1)              8410 ops/s
+      2  x = copy(1e10)           8220 ops/s
+      3  x = copy(1e100)          8260 ops/s
+      4  x = copy(1e1000)         8220 ops/s
+      5  x = copy(1e10000)        8150 ops/s
+ Average:                         8250 ops/s
+ Benchmarking group 23 ('copy via new'):
+      1  x = new(1)               7910 ops/s
+      2  x = new(1e10)            7820 ops/s
+      3  x = new(1e100)           7840 ops/s
+      4  x = new(1e1000)          7760 ops/s
+      5  x = new(1e10000)         7740 ops/s
+ Average:                         7810 ops/s
+ Benchmarking group 24 ('frsft'):
+      1  1 >> 1                    260 ops/s (empty: 8460, both: 252)
+      2  1e10 >> 1                 257 ops/s (empty: 8410, both: 250)
+      3  1e10 >> 8                 224 ops/s (empty: 8490, both: 218)
+      4  1e100 >> 1                258 ops/s (empty: 8340, both: 251)
+      5  1e100 >> 8                224 ops/s (empty: 8330, both: 218)
+      6  1e100 >> 255              196 ops/s (empty: 8410, both: 192)
+      7  1e1000 >> 255             198 ops/s (empty: 8410, both: 193)
+ Average:                          231 ops/s
+ Benchmarking group 25 ('flsft'):
+      1  1 << 1                    800 ops/s (empty: 8490, both: 731)
+      2  1e10 << 1                 788 ops/s (empty: 8420, both: 720)
+      3  1e10 << 8                 550 ops/s (empty: 8370, both: 516)
+      4  1e100 << 1                790 ops/s (empty: 8380, both: 722)
+      5  1e100 << 8                545 ops/s (empty: 8370, both: 511)
+      6  1e100 << 255              511 ops/s (empty: 8330, both: 482)
+      7  1e1000 << 255             507 ops/s (empty: 8410, both: 478)
+ Average:                          642 ops/s
+
+176 out of 1400 (12.57%) benchmarks failed to return a result.
+
+Sat Dec  1 23:43:56 2001 Numbers are absolute ops/s, scaled by factor 1.
+
+                    | v0.01  v1.33  v1.39  v1.40  v1.45  v1.47  v1.48 v1.48
+                    |                                                  Pari
+                    |                                                 v1.05
+ -------------------+-------------------------------------------------------
+  1                 | 29400   1870   1980   1960   1980   3860   4100  3920
+  1e10              | 26000   1160   1150   1140   1070   1460   1430   973
+  1e100             | 24200   1090   1100   1090   1020   1400   1360   945
+  1e1000            | 16000    686    784    769    738    849    878   587
+  1e10000           |  3730    121    172    166    167    174    175    24
+  1.'1'x10          | 29000   1850   1940   1920   1930   3490   3930  3830
+  1.'1'x100         | 26800   1750   1880   1860   1900   3600   3780  3700
+  1.'1'x1000        | 15800   1160   1440   1430   1420   2360   2240  2700
+  -1234567890       | 22600   1120   1110   1100    984   1480   1440  1010
+  -1.23456789       | 23700   1720   1680   1710   1700   2000   1910  1870
+  -1.23e123456      | 23200   1610   1600   1750   1560   1790   1750  1810
+ new:               | 21900   1290   1350   1360   1320   2040   2090  1940
+ ...................|.......................................................
+  NaN               | 59200   5130   5970   5800   5880  13200  12900 12200
+  +inf              | 55100   5120   6280   6330   6170  15500  14600 13700
+  -inf              | 55700   5140   6290   6290   6290  15400  14900 13700
+ new specials:      | 56700   5130   6180   6140   6110  14700  14100 13200
+ ...................|.......................................................
+  123456            |    71    n/a      4      4      3      3      9    10
+  123.456           |    69    n/a      5      5      5      5     12    13
+  123456789         |    70    n/a      5      5      5      5     12    13
+  1e10              |   127    n/a      3      3      2      2     79    77
+  1e100             |   126    n/a      0      0      0      0     81    77
+  1.'1'x10          |    67    n/a      3      3      2      2     12    12
+  1.'1'x100         |    20    n/a      0      0      0      0      9    10
+ fsqrt:             |  78.5    n/a   2.91   2.91   2.50   2.71   30.8  30.4
+ ...................|.......................................................
+  1                 |   n/a    914    879    897    929   4600   4730  3530
+  1e10              |   n/a    922    877    898    941   4560   4740  3470
+  1e100             |   n/a    889    860    889    922   4330   4170  1640
+  1e1000            |   n/a    696    782    798    832   2030   2280    31
+ finc:              |   n/a    855    850    871    906   3880   3980  2170
+ ...................|.......................................................
+  1                 |  3420    825    789    797    806   2510   2720  2290
+  1e10              |  3180    829    785    793    809   2550   2850  2270
+  1e100             |  2290    801    766    780    801   2360   2620  1310
+  1e1000            |   622    597    656    680    693   1450   1570    31
+  1e10000           |    62    163    265    271    270    286    293     0
+  123.456           |  3240    390    344    339    334    504    534   673
+ ++:                |  2140    601    601    610    619   1610   1760  1100
+ ...................|.......................................................
+  1                 |   n/a    835    901    927    972   3260   3370  2670
+  1e10              |   n/a    848    800    873    923   3000   3310  2570
+  1e100             |   n/a    818    846    859    893   2820   2970  2320
+  1e1000            |   n/a    640    666    693    717   1630   1820   932
+ fdec:              |   n/a    785    803    838    876   2680   2870  2120
+ ...................|.......................................................
+  1                 |  3510    787    799    817    842   2240   2300  1900
+  1e10              |  3240    766    750    784    803   1930   2170  1850
+  1e100             |  2610    748    734    755    778   1850   2140  1720
+  1e1000            |   928    546    592    595    607   1210   1350   817
+  1e10000           |    94    146    181    187    185    247    271    26
+  123.456           |  3340    447    347    344    338    509    554   674
+ --:                |  2290    573    567    580    592   1330   1460  1160
+ ...................|.......................................................
+  1+1               |  3490   1360   1310   1330   1190   1170   1320  1340
+  1e10+1e10         |  3430   1250   1210   1240   1120   1070   1170  1180
+  1e100+1e100       |  3360   1240   1200   1250   1130   1020   1150  1190
+  1e1000+1e1000     |  2830   1260   1240   1250   1120   1070   1130  1200
+  1+ -1             |  3260   1160   1120   1160   1270   1360   1330  1470
+  1e1000+1          |   781    365     96     94    100    262    251   831
+  1e1000+-1         |   480    313     94     91     97    246    250   835
+  1e1000+1e10       |   785    359     94     92     97    247    260   814
+  1e1000+-1e10      |   485    311     91     89     95    226    224   821
+ fadd:              |  2100    847    718    733    691    741    787  1070
+ ...................|.......................................................
+  1 - 1             |  2970   1070   1030   1100   1180   1350   1370  1400
+  1e10 - 1e10       |  2930    995   1010   1060   1120   1200   1200  1230
+  1e100 - 1e100     |  2860    989   1020   1050   1130   1180   1230  1240
+  1e1000 - 1e1000   |  2490    995   1010   1060   1130   1110   1210  1220
+  1 - -1            |  3070   1210   1210   1230   1100   1160   1290  1300
+  1e1000 - 1        |   473    306     91     90     98    221    237   798
+  1e1000 - -1       |   759    358     94     93    101    251    267   809
+  1e1000 - 1e10     |   476    300     90     88     95    227    218   777
+  1e1000 - -1e10    |   759    349     86     91     99    256    245   790
+ fsub:              |  1870    730    627    652    672    773    807  1060
+ ...................|.......................................................
+  1 - 1             |  2950    949    935    963   1020   1090   1090  1200
+  1e10 - 1          |  2740    511    256    257    269    522    506   736
+  1e100 - 1         |  1890    473    146    146    158    410    399   725
+  1e100 - 1e10      |  1960    474    150    152    164    412    422   722
+  1e1000 - 1e10     |   477    293     88     88     93    223    209   706
+ $x - $y:           |  2000    540    315    321    340    531    525   818
+ ...................|.......................................................
+  1 * 1             |  4880   4780   2800   2820   3040   2960   4340  4580
+  1e10 * 1e10       |  3450   2780   1940   1940   1920   1900   2190  2550
+  1e100 * 1e100     |  3330   2820   1950   1950   1920   1870   2300  2560
+  1e1000 * 1e1000   |  2840   2790   1940   1950   1920   1900   2340  2570
+  1 * -1            |  3450   3100   2090   2080   2080   1900   2590  2870
+  1e1000 * 10       |  3110   2800   1950   1940   1960   1830   2620  2570
+  1e1000 * -10      |  3050   2770   2040   1970   2010   1900   2350  2640
+ fmul:              |  3450   3120   2100   2090   2120   2040   2680  2910
+ ...................|.......................................................
+  1 * 1             |  3060   2350   1630   1640   1570   1550   2100  2060
+  1e10 * 1e10       |  3020   2160   1560   1560   1500   1450   1820  1910
+  1e100 * 1e100     |  2970   2160   1560   1560   1520   1370   1860  1910
+  1e1000 * 1e1000   |  2540   2150   1560   1560   1510   1310   1970  1900
+  1 * -1            |  3040   2350   1650   1660   1620   1580   2110  2110
+  1e1000 * 10       |  2770   2120   1550   1560   1500   1450   1830  1900
+  1e1000 * -10      |  2710   2140   1580   1580   1530   1460   2020  1940
+ x * y:             |  2870   2200   1580   1590   1530   1450   1960  1960
+ ...................|.......................................................
+  1                 | 15000    n/a    n/a    n/a    n/a    n/a  31400 31200
+  1e10              | 13800    n/a    n/a    n/a    n/a    n/a  31500 31300
+  1e100             | 13900    n/a    n/a    n/a    n/a    n/a  31400 31400
+  1e1000            | 10100    n/a    n/a    n/a    n/a    n/a  31300 31100
+  1e10000           |  2810    n/a    n/a    n/a    n/a    n/a  31000 31200
+  1.'1'x10          | 14600    n/a    n/a    n/a    n/a    n/a  30400 31200
+  1.'1'x100         | 13100    n/a    n/a    n/a    n/a    n/a  29900 31300
+  1.'1'x1000        |  6790    n/a    n/a    n/a    n/a    n/a  29700 31200
+  1.'1'x10000       |  1140    n/a    n/a    n/a    n/a    n/a  30400 31200
+ fneg:              | 10100    n/a    n/a    n/a    n/a    n/a  30800 31200
+ ...................|.......................................................
+  1                 |  9300   7280   7310   7330   6230   6080   7520  6950
+  1e10              |  8900   7280   7310   7420   6260   5930   7120  6910
+  1e100             |  8660   7270   7380   7400   6250   5970   7340  6880
+  1e1000            |  7080   7230   7380   7310   6190   6050   7620  6850
+  1e10000           |  2420   7170   7310   7330   6220   5960   7660  6950
+  1.'1'x10          |  9050   7360   7250   7330   6200   6180   7630  6950
+  1.'1'x100         |  8300   6730   6790   6870   5940   5880   6950  6940
+  1.'1'x1000        |  4620   3670   4340   4360   3830   3810   4410  6980
+  1.'1'x10000       |   822    646    894    906    881    846    894  6670
+ x = -x:            |  6570   6070   6220   6250   5330   5190   6350  6900
+ ...................|.......................................................
+  1                 | 15400    n/a    n/a    n/a  46700  44200  46200 47200
+  1e10              | 14900    n/a    n/a    n/a  46500  46400  47000 46800
+  1e100             | 14200    n/a    n/a    n/a  46500  43900  47100 46600
+  1e1000            | 10400    n/a    n/a    n/a  46500  44500  45900 46600
+  1e10000           |  2830    n/a    n/a    n/a  46000  46000  48100 46700
+ fabs:              | 11600    n/a    n/a    n/a  46400  45000  46900 46800
+ ...................|.......................................................
+  -1                | 33800 129000 141000  91300 104000 111000  84200 74700
+  -1e10             | 32100 121000  99500 109000  94700 138000  72800 70700
+  -1e100            | 33200  93700  90300 101000  92300  92300  88100 68300
+  -1e1000           | 32300 123000  92600  97600 101000  67800 138000 73600
+  -1e10000          | 34400 119000  94600  94900  81400 127000 193000 73600
+ x = abs(x):        | 33100 117000 104000  98900  94700 107000 115000 72200
+ ...................|.......................................................
+  1 ** 1            |   n/a   7810  13800  13700   5950   5990   5400  6120
+  1 ** 100          |   n/a   6660  13700  13800   5880   5810   6000  6200
+  2 ** 15           |   n/a    238    238    233    226    568    811  1270
+  3 ** 15           |   n/a    211    234    234    234    653    906  1440
+  4 ** 15           |   n/a    235    237    232    223    570    823  1270
+  2 ** 150          |   n/a    152    139    136    136    287    406   564
+  3 ** 150          |   n/a    153    135    134    138    333    417   620
+  2 ** 255          |   n/a    148    128    125    128    413    533  1170
+  3 ** 255          |   n/a    142    124    121    128    366    506  1410
+  7 ** 777          |   n/a     45     60     60     61     90    105  1390
+  123456789 ** 2    |   n/a    405    566    573    508    653   1170  1440
+ x->fpow(y):        |   n/a   1470   2670   2670   1240   1430   1550  2080
+ ...................|.......................................................
+  1 ** 1            |   n/a   3790   4970   5000   3140   2850   3370  3430
+  1 ** 100          |   n/a   3900   4940   5040   3170   2760   3510  3400
+  2 ** 150          |   n/a    155    134    134    134    288    393   524
+  3 ** 150          |   n/a    152    134    131    135    312    395   565
+  7 ** 777          |   n/a     46     60     59     60     94    100  1170
+  123456789 ** 2    |   n/a    388    530    532    479    663   1020  1200
+ x ** y:            |   n/a   1410   1800   1820   1190   1160   1460  1720
+ ...................|.......................................................
+  1 / 1             |  1350   6900   5290   5260   3440   2840   3330  3470
+  123 / 1           |  1320   6970   5240   5250   3400   3030   3480  3410
+  1e100 / 1         |  1320   6600   5240   5220   3440   2910   3500  3450
+  123456789 / 1     |  1290    367    364    362    323    274    396   344
+  1e100 / 1e10      |  1320    434    412    426    340    343    374   307
+  1e1000 / 1e10     |  1270    458    419    427    345    310    383   307
+  1e10000 / 1e10    |   832    452    421    420    345    315    379   305
+  1e1000 / 1e100    |  1270    444    418    422    345    339    387   306
+  1e10000 / 1e100   |   847    443    425    422    345    337    366   307
+  1e10000 / 1e1000  |   815    454    418    422    343    330    385   306
+  1e10000 / 123456  |   647    518    344    342    307    302    367   350
+ fdiv:              |  1120   2190   1730   1730   1180   1030   1210  1170
+ ...................|.......................................................
+  1 % 1             |  2640   4270   8170   8170   4520   4320   4450  4400
+  1e10 % 2          |  2290   7110   5510   5430   3850   3590   3890  3770
+  1e100 % 2         |  2300   7610   5600   5430   3830   3680   3950  3740
+  1e1000 % 2        |  2300   7430   5520   5450   3850   3530   3810  3750
+  1e10000 % 2       |  2310   7450   5480   5470   3840   3600   3840  3740
+  1e10 % 3          |  2250   7380   5470   5450   3960   3510   3870  3770
+  1e100 % 3         |  2270   7120   5510   5440   3720   3610   3830  3770
+  1e1000 % 3        |  2270   7270   5550   5490   3710   3730   3960  3750
+  1e10000 % 3       |  2250   7300   5560   5430   3900   3440   3870  3780
+  1e10 % 7          |  2270   7420   5560   5450   3780   3500   3890  3780
+  1e100 % 7         |  2260   7460   5510   5450   3890   3610   3830  3740
+  1e1000 % 7        |  2240   7510   5560   5450   3880   3680   4010  3760
+  1e10000 % 7       |  2240   7310   5640   5490   3640   3430   3910  3710
+  1e10 % 1e9        |  2540   7720   5710   5890   1890   1780   1880  1850
+  1e100 % 1e9       |  1390   7780   6060   5890   1930   1810   1800  1860
+  1e1000 % 1e9      |   248   7780   6040   5890   1900   1850   1870  1870
+  1e10000 % 1e9     |    25   7670   5750   5870   1920   1680   1890  1830
+ bmod:              |  2010   7270   5780   5710   3410   3200   3440  3340
+ ...................|.......................................................
+  x = copy(1)       | 13300  10200   8450   8610   7160   7050   9100  8410
+  x = copy(1e10)    | 12800  10100   8340   8650   6490   6920   8530  8220
+  x = copy(1e100)   | 12400  10200   8490   8660   7190   7050   8980  8260
+  x = copy(1e1000)  |  9350  10100   8750   8570   7140   7020   9000  8220
+  x = copy(1e10000) |  2720  10100   8530   8650   6990   6760   9220  8150
+ copy:              | 10100  10100   8510   8630   6990   6960   8970  8250
+ ...................|.......................................................
+  x = new(1)        | 13500   9390   8180   8230   6770   6580   8590  7910
+  x = new(1e10)     | 13100   9440   8110   8250   6780   6480   8520  7820
+  x = new(1e100)    | 12500   9390   8250   8180   6690   6630   8670  7840
+  x = new(1e1000)   |  9480   9350   8140   8150   6510   6820   8800  7760
+  x = new(1e10000)  |  2750   9280   8030   8250   6520   6600   8880  7740
+ copy via new:      | 10300   9370   8140   8210   6650   6620   8690  7810
+ ...................|.......................................................
+  1 >> 1            |   n/a    n/a    n/a    n/a    n/a    n/a    306   260
+  1e10 >> 1         |   n/a    n/a    n/a    n/a    n/a    n/a    292   257
+  1e10 >> 8         |   n/a    n/a    n/a    n/a    n/a    n/a    221   224
+  1e100 >> 1        |   n/a    n/a    n/a    n/a    n/a    n/a    284   258
+  1e100 >> 8        |   n/a    n/a    n/a    n/a    n/a    n/a    233   224
+  1e100 >> 255      |   n/a    n/a    n/a    n/a    n/a    n/a    157   196
+  1e1000 >> 255     |   n/a    n/a    n/a    n/a    n/a    n/a    161   198
+ frsft:             |   n/a    n/a    n/a    n/a    n/a    n/a    236   231
+ ...................|.......................................................
+  1 << 1            |   n/a    n/a    n/a    n/a    n/a    n/a    808   800
+  1e10 << 1         |   n/a    n/a    n/a    n/a    n/a    n/a    789   788
+  1e10 << 8         |   n/a    n/a    n/a    n/a    n/a    n/a    455   550
+  1e100 << 1        |   n/a    n/a    n/a    n/a    n/a    n/a    809   790
+  1e100 << 8        |   n/a    n/a    n/a    n/a    n/a    n/a    449   545
+  1e100 << 255      |   n/a    n/a    n/a    n/a    n/a    n/a    334   511
+  1e1000 << 255     |   n/a    n/a    n/a    n/a    n/a    n/a    328   507
+ flsft:             |   n/a    n/a    n/a    n/a    n/a    n/a    567   642
+ ...................|.......................................................
+
+Sat Dec  1 23:43:59 2001 All done. Enjoy!
+

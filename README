@@ -1,0 +1,21 @@
+BigBench - big benchmark suite to bench different versions of a module
+
+(C) ..--- ----- ----- .---- by - . .-.. ... .-.-.-  All rights reserved.
+
+This package contains needs versions of Math::BigInt and Math::BigFloat, you
+can get the at http://search.cpan.org/ or http://bloodgate.com/perl/.
+
+To test, unzip & untar package, then look at bb.pl for settings. Then run
+
+	perl bb.pl
+
+A sample run is included as output.txt.
+
+All *.inc files will be benchmarked. You can remove them if you need only some
+of them. You also ned to supply a "cache" of all the versions of the modules
+you want to benchmark.
+
+Please send me test-reports, your experiences with this and your ideas - I love
+to hear about my work!
+
+Tels <http://bloodgate.com/>

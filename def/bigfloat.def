@@ -1,0 +1,311 @@
+###############################################################################
+# BigBenchmark data file.
+#
+# Contains all the groups and ops you want to benchmark.
+#
+# Format is as follows:
+#
+# For defining groups:
+# group=groupid#groupname#groupdescription
+# The ops follow the group defintion and go like this:
+# opid#opname#startupcode#emptycode#benchmarkcode
+#
+# The opid is to sort the ops in one group, they will be done numerically
+# sorted. Same goes for group id's, lowest id will be benchmarked first.
+# You can leave group and op id's empty (set to 0), then they will be
+# filled-in automatically.
+#
+# The startup code is done before running the benchmark, so set any variables
+# you need there. The empty code is benchmarked and then subtracted from the
+# benchmark's code timing.
+###############################################################################
+
+# BigInt/BigFloat:
+# You should use $cf->new(); instead of Math::BigFloat->new() etc, so that
+# the benchmarks are independed of the actual class used.
+
+# Actual definitions:
+
+group=new#0#Big float new
+0#1###$x = $cf->new(1)
+0#1.'0'x10###$x = $cf->new('1'.'0' x 10)
+0#1.'0'x100###$x = $cf->new('1'.'0' x 100)
+0#1.'0'x1000###$x = $cf->new('1'.'0' x 1000)
+0#1.'0'x10000###$x = $cf->new('1'.'0' x 10000)
+0#1e10###$x = $cf->new('1e10')
+0#1e100###$x = $cf->new('1e100')
+0#1e1000###$x = $cf->new('1e1000')
+0#1e10000###$x = $cf->new('1e10000')
+0#1.'1'x10###$x = $cf->new('1'.'1' x 10)
+0#1.'1'x100###$x = $cf->new('1'.'1' x 100)
+0#1.'1'x1000###$x = $cf->new('1'.'1' x 1000)
+0#-1234567890###$x = $cf->new('-1234567890')
+0#-1.23456789###$x = $cf->new('-1.23456789')
+0#-1.23e123456###$x = $cf->new('-1.23e123456')
+
+group=new specials#0#Big float new (special values)
+1#NaN###$x = $cf->new('abcdefg')
+4#+inf###$x = $cf->new('+inf')
+5#-inf###$x = $cf->new('-inf')
+
+group=fsqrt#4#Big float square root
+0#9#$x=$cf->new('9');#$x->copy();#$x->copy()->fsqrt();
+0#12#$x=$cf->new('12');#$x->copy();#$x->copy()->fsqrt();
+0#16#$x=$cf->new('16');#$x->copy();#$x->copy()->fsqrt();
+0#123#$x=$cf->new('123');#$x->copy();#$x->copy()->fsqrt();
+0#1234#$x=$cf->new('1234');#$x->copy();#$x->copy()->fsqrt();
+0#12345#$x=$cf->new('12345');#$x->copy();#$x->copy()->fsqrt();
+0#123456#$x=$cf->new('123456');#$x->copy();#$x->copy()->fsqrt();
+0#123.456#$x=$cf->new('123.456');#$x->copy();#$x->copy()->fsqrt();
+0#123456789#$x=$cf->new('123.456');#$x->copy();#$x->copy()->fsqrt();
+0#1e10#$x=$cf->new('1'.'0' x 10);#$x->copy();#$x->copy()->fsqrt();
+0#1e100#$x=$cf->new('1'.'0' x 100);#$x->copy();#$x->copy()->fsqrt();
+0#1.'1'x10#$x=$cf->new('1'.'1' x 10);#$x->copy();#$x->copy()->fsqrt();
+0#1.'1'x100#$x=$cf->new('1'.'1' x 100);#$x->copy();#$x->copy()->fsqrt();
+0#144e1000#$x=$cf->new('144e1000');#$x->copy();#$x->copy()->fsqrt();
+0#123e1000#$x=$cf->new('123e1000');#$x->copy();#$x->copy()->fsqrt();
+
+group=finc#0#Big float increment
+1#1#$x=$cf->new('1');##$x->finc();
+2#1e10#$x=$cf->new('1'.'0' x 10);##$x->finc();
+3#1e100#$x=$cf->new('1'.'0' x 100);##$x->finc();
+4#1e1000#$x=$cf->new('1'.'0' x 1000);##$x->finc();
+5#123.456#$x=$cf->new('123.456');##$x->finc();
+
+group=++#0#Big float plusplus
+1#1#$x=$cf->new('1');##$x++;
+2#1e10#$x=$cf->new('1'.'0' x 10);##$x++;
+3#1e100#$x=$cf->new('1'.'0' x 100);##$x++;
+4#1e1000#$x=$cf->new('1'.'0' x 1000);##$x++;
+5#1e10000#$x=$cf->new('1'.'0' x 10000);##$x++;
+6#123.456#$x=$cf->new('123.456');##$x++;
+
+group=fdec#0#Big float decrement
+1#1#$x=$cf->new('1');##$x->fdec();
+2#1e10#$x=$cf->new('1'.'0' x 10);##$x->fdec();
+3#1e100#$x=$cf->new('1'.'0' x 100);##$x->fdec();
+4#1e1000#$x=$cf->new('1'.'0' x 1000);##$x->fdec();
+5#123.456#$x=$cf->new('123.456');##$x->fdec();
+
+group=--#0#Big float minusminus
+1#1#$x=$cf->new('1');##$x--;
+2#1e10#$x=$cf->new('1'.'0' x 10);##$x--;
+3#1e100#$x=$cf->new('1'.'0' x 100);##$x--;
+4#1e1000#$x=$cf->new('1'.'0' x 1000);##$x--;
+5#1e10000#$x=$cf->new('1'.'0' x 10000);##$x--;
+6#123.456#$x=$cf->new('123.456');##$x--;
+
+group=fadd#0#Big float add
+1#1+1#$x=$cf->new('1');$y=$x->copy();#$x->copy()#$x->copy()->fadd($y);
+2#1e10+1e10#$x=$cf->new('1e10');$y=$x->copy();#$x->copy()#$x->copy()->fadd($y);
+3#1e100+1e100#$x=$cf->new('1e100');$y=$x->copy();#$x->copy()#$x->copy()->fadd($y);
+4#1e1000+1e1000#$x=$cf->new('1e1000');$y=$x->copy();#$x->copy()#$x->copy()->fadd($y);
+5#1+ -1#$x=$cf->new('1');$y=$cf->new(-1);#$x->copy()#$x->copy()->fadd($y);
+6#1e1000+1#$x=$cf->new('1e1000');$y=$cf->new(1);#$x->copy()#$x->copy()->fadd($y);
+7#1e1000+-1#$x=$cf->new('1e1000');$y=$cf->new(-1);#$x->copy()#$x->copy()->fadd($y);
+8#1e1000+1e10#$x=$cf->new('1e1000');$y=$cf->new('1e10');#$x->copy()#$x->copy()->fadd($y);
+9#1e1000+-1e10#$x=$cf->new('1e1000');$y=$cf->new('-1e10');#$x->copy()#$x->copy()->fadd($y);
+10#1e1000+1x10#$x=$cf->new('1e1000');$y=$cf->new('1'x10);#$x->copy()#$x->copy()->fadd($y);
+11#1e1000+1x100#$x=$cf->new('1e1000');$y=$cf->new('1'x100);#$x->copy()#$x->copy()->fadd($y);
+
+group=fsub#0#Big float sub
+1#1 - 1#$x=$cf->new('1');$y=$x->copy();#$x->copy()#$x->copy()->fsub($y);
+2#1e10 - 1e10#$x=$cf->new('1'.'0' x 10);$y=$x->copy();#$x->copy()#$x->copy()->fsub($y);
+3#1e100 - 1e100#$x=$cf->new('1'.'0' x 100);$y=$x->copy();#$x->copy()#$x->copy()->fsub($y);
+4#1e1000 - 1e1000#$x=$cf->new('1'.'0' x 1000);$y=$x->copy();#$x->copy()#$x->copy()->fsub($y);
+5#1 - -1#$x=$cf->new('1');$y=$cf->new(-1);#$x->copy()#$x->copy()->fsub($y);
+6#1e1000 - 1#$x=$cf->new('1'.'0' x 1000);$y=$cf->new(1);#$x->copy()#$x->copy->fsub($y);
+7#1e1000 - -1#$x=$cf->new('1'.'0' x 1000);$y=$cf->new(-1);#$x->copy()#$x->copy()->fsub($y);
+8#1e1000 - 1e10#$x=$cf->new('1e1000');$y=$cf->new('1e10');#$x->copy()#$x->copy->fsub($y);
+9#1e1000 - -1e10#$x=$cf->new('1e1000');$y=$cf->new('-1e10');#$x->copy()#$x->copy()->fsub($y);
+10#1e1000-1x10#$x=$cf->new('1e1000');$y=$cf->new('1'x10);#$x->copy()#$x->copy()->fsub($y);
+11#1e1000-1x100#$x=$cf->new('1e1000');$y=$cf->new('1'x100);#$x->copy()#$x->copy()->fsub($y);
+
+group=$x - $y#0#Big float sub
+1#1 - 1#$x=$cf->new(1);$y=$cf->new(1);##$x - $y;
+2#1e10 - 1#$x=$cf->new('1'.'0' x 10);$y=$cf->new(1);##$x - $y;
+3#1e100 - 1#$x=$cf->new('1'.'0' x 100);$y=$cf->new(1);##$x - $y;
+4#1e100 - 1e10#$x=$cf->new('1'.'0' x 100);$y=$cf->new('1'.'0' x 10);##$x - $y;
+5#1e1000 - 1e10#$x=$cf->new('1'.'0' x 1000);$y=$cf->new('1'.'0' x 10);##$x - $y;
+
+group=fmul#0#Big float mul
+0#1 * 1#$x=$cf->new('1');$y=$x->copy();#$x->copy()#$x->copy()->fmul($y);
+0#123 * 123#$x=$cf->new('123');$y=$x->copy();#$x->copy()#$x->copy()->fmul($y);
+0#1 * 123#$x=$cf->new('1');$y=$c->new(123);#$x->copy()#$x->copy()->fmul($y);
+0#123 * 1234#$x=$cf->new(123);$y=$c->new(1234);#$x->copy()#$x->copy()->fmul($y)
+0#1e10 * 1e10#$x=$cf->new('1'.'0' x 10);$y=$x->copy();#$x->copy()#$x->copy()->fmul($y);
+0#1e100 * 1e100#$x=$cf->new('1'.'0' x 100);$y=$x->copy();#$x->copy()#$x->copy()->fmul($y);
+0#1e1000 * 1e1000#$x=$cf->new('1'.'0' x 1000);$y=$x->copy();#$x->copy()#$x->copy()->fmul($y);
+0#1 * -1#$x=$cf->new('1');$y=$cf->new(-1);#$x->copy()#$x->copy()->fmul($y);
+0#1e1000 * 10#$x=$cf->new('1'.'0' x 1000);$y=$cf->new(10);#$x->copy()#$x->copy()->fmul($y);
+0#1e1000 * -10#$x=$cf->new('1'.'0' x 1000);$y=$cf->new(-10);#$x->copy()#$x->copy()->fmul($y);
+0#1x1000 * 123#$x=$cf->new('1'x1000);$y=$cf->new(123);#$x->copy()#$x->copy()->fmul($y);
+
+group=x * y#0#Big float mul
+1#1 * 1#$x=$cf->new('1');$y=$x->copy();##$x * $y;
+2#1e10 * 1e10#$x=$cf->new('1'.'0' x 10);$y=$x->copy();##$x * $y;
+3#1e100 * 1e100#$x=$cf->new('1'.'0' x 100);$y=$x->copy();##$x * $y;
+4#1e1000 * 1e1000#$x=$cf->new('1'.'0' x 1000);$y=$x->copy();##$x * $y;
+5#1 * -1#$x=$cf->new('1');$y=$cf->new(-1);##$x * $y;
+6#1e1000 * 10#$x=$cf->new('1'.'0' x 1000);$y=$cf->new(10);##$x * $y;
+7#1e1000 * -10#$x=$cf->new('1'.'0' x 1000);$y=$cf->new(-10);##$x * $y;
+8#1x1000 * 123#$x=$cf->new('1'x1000);$y=$cf->new(123);##$x * $y;
+
+group=fneg#0#Big float negation
+1#1#$x=$cf->new('1');##$x->fneg();
+2#1e10#$x=$cf->new('1'.'0' x 100);##$x->fneg();
+3#1e100#$x=$cf->new('1'.'0' x 100);##$x->fneg();
+4#1e1000#$x=$cf->new('1'.'0' x 1000);##$x->fneg();
+5#1e10000#$x=$cf->new('1'.'0' x 10000);##$x->fneg();
+6#1.'1'x10#$x=$cf->new('1'.'1' x 10);##$x->fneg();
+7#1.'1'x100#$x=$cf->new('1'.'1' x 100);##$x->fneg();
+8#1.'1'x1000#$x=$cf->new('1'.'1' x 1000);##$x->fneg();
+9#1.'1'x10000#$x=$cf->new('1'.'1' x 10000);##$x->fneg();
+
+group=fnot#0#Big float not
+1#1#$x=$cf->new('1');##$x->fnot();
+2#1e10#$x=$cf->new('1'.'0' x 10);#$x->copy()#$x->copy()->fnot();
+3#1e100#$x=$cf->new('1'.'0' x 100);#$x->copy()#$x->copy()->fnot();
+4#1e1000#$x=$cf->new('1'.'0' x 1000);#$x->copy()#$x->copy()->fnot();
+5#1e10000#$x=$cf->new('1'.'0' x 10000);#$x->copy()#$x->copy()->fnot();
+6#'1'x10#$x=$cf->new('1' x 10);#$x->copy()#$x->copy()->fnot();
+7#'1'x100#$x=$cf->new('1' x 100);#$x->copy()#$x->copy()->fnot();
+8#'1'x1000#$x=$cf->new('1' x 1000);#$x->copy()#$x->copy()->fnot();
+9#'1'x10000#$x=$cf->new('1' x 10000);#$x->copy()#$x->copy()->fnot();
+
+group=x = -x#0#Big float negation
+1#1#$x=$cf->new('1');##$x = -$x;
+2#1e10#$x=$cf->new('1'.'0' x 10);##$x = -$x;
+3#1e100#$x=$cf->new('1'.'0' x 100);##$x = -$x;
+4#1e1000#$x=$cf->new('1'.'0' x 1000);##$x = -$x;
+5#1e10000#$x=$cf->new('1'.'0' x 10000);##$x = -$x;
+6#1.'1'x10#$x=$cf->new('1'.'1' x 10);##$x = -$x;
+7#1.'1'x100#$x=$cf->new('1'.'1' x 100);##$x = -$x;
+8#1.'1'x1000#$x=$cf->new('1'.'1' x 1000);##$x = -$x;
+9#1.'1'x10000#$x=$cf->new('1'.'1' x 10000);##$x = -$x;
+
+group=fabs#0#Big float absolute value
+1#1#$x=$cf->new('1');##$x->fabs();
+2#1e10#$x=$cf->new('1'.'0' x 10);##$x->fabs();
+3#1e100#$x=$cf->new('1'.'0' x 100);##$x->fabs();
+4#1e1000#$x=$cf->new('1'.'0' x 1000);##$x->fabs();
+5#1e10000#$x=$cf->new('1'.'0' x 10000);##$x->fabs();
+
+group=x = abs(x)#0#Big integer absolute value
+1#-1#$x=$cf->new('1')#$x->copy()#$y = abs($x);
+2#-1e10#$x=$cf->new('1'.'0' x 10)#$x->copy()#$y = abs($x);
+3#-1e100#$x=$cf->new('1'.'0' x 100)#$x->copy()#$y = abs($x);
+4#-1e1000#$x=$cf->new('1'.'0' x 1000)#$x->copy()#$y = abs($x);
+5#-1e10000#$x=$cf->new('1'.'0' x 10000)#$x->copy()#$y = abs($x);
+ 
+group=x->fpow(y)#0#Big float power
+1#1 ** 1#$x=$cf->new(1);$y=$cf->new(100)#$x->copy()#$x->copy()->fpow($y)
+2#1 ** 100#$x=$cf->new(1);$y=$cf->new(100)#$x->copy()#$x->copy()->fpow($y)
+3#2 ** 15#$x=$cf->new(2);$y=$cf->new(15)#$x->copy()#$x->copy()->fpow($y)
+4#3 ** 15#$x=$cf->new(3);$y=$cf->new(15)#$x->copy()#$x->copy()->fpow($y)
+5#4 ** 15#$x=$cf->new(4);$y=$cf->new(15)#$x->copy()#$x->copy()->fpow($y)
+6#2 ** 150#$x=$cf->new(2);$y=$cf->new(150)#$x->copy()#$x->copy()->fpow($y)
+7#3 ** 150#$x=$cf->new(3);$y=$cf->new(150)#$x->copy()#$x->copy()->fpow($y)
+8#2 ** 255#$x=$cf->new(2);$y=$cf->new(255)#$x->copy()#$x->copy()->fpow($y)
+9#3 ** 255#$x=$cf->new(3);$y=$cf->new(255)#$x->copy()#$x->copy()->fpow($y)
+10#7 ** 777#$x=$cf->new(7);$y=$cf->new(777)#$x->copy()#$x->copy()->fpow($y)
+11#123456789**2#$x=$cf->new('123456789');$y=$cf->new(2)#$x->copy()#$x->copy()->fpow($y)
+12#123456.789**2#$x=$cf->new('123456.789');$y=$cf->new(2)#$x->copy()#$x->copy()->fpow($y)
+
+group=x ** y#0#Big float power
+1#1 ** 1#$x=$cf->new('1');$y=$cf->new('1')##$x ** $y
+2#1 ** 100#$x=$cf->new('1');$y=$cf->new('100')##$x ** $y
+3#2 ** 150#$x=$cf->new('2');$y=$cf->new('150')##$x ** $y
+4#3 ** 150#$x=$cf->new('3');$y=$cf->new('150')##$x ** $y
+5#7 ** 777#$x=$cf->new('7');$y=$cf->new('777')##$x ** $y
+6#123456789**2#$x=$cf->new('123456789');$y=$cf->new(2)##$x ** $y
+7#123456.789**2#$x=$cf->new('123456.789');$y=$cf->new(2)##$x ** $y
+8#1234.5678**12#$x=$cf->new('1234.5678');$y=$cf->new(12)##$x ** $y
+ 
+group=fdiv#0#Big float divide
+1#1 / 1#$x=$cf->new('1');$y=$x->copy();#$x->copy();#$x->copy()->fdiv($y);
+2#123 / 1#$x=$cf->new('123');$y=$cf->new(1);#$x->copy();#$x->copy()->fdiv($y);
+3#1e100 / 1#$x=$cf->new('1'.'0' x 100);$y=$cf->new(1);#$x->copy();#$x->copy()->fdiv($y);
+4#123456789 / 1#$x=$cf->new('123456789');$y=$x->copy();#$x->copy();#$x->copy()->fdiv($y);
+5#1e100 / 1e10#$x=$cf->new('1'.'0' x 100);$y=$cf->new('1'.'0' x 10);#$x->copy();#$x->copy()->fdiv($y);
+6#1e1000 / 1e10#$x=$cf->new('1'.'0' x 1000);$y=$cf->new('1'.'0' x 10);#$x->copy();#$x->copy()->fdiv($y);
+7#1e10000 / 1e10#$x=$cf->new('1'.'0' x 10000);$y=$cf->new('1'.'0' x 10);#$x->copy();#$x->copy()->fdiv($y);
+8#1e1000 / 1e100#$x=$cf->new('1'.'0' x 1000);$y=$cf->new('1'.'0' x 100);#$x->copy();#$x->copy()->fdiv($y);
+9#1e10000 / 1e100#$x=$cf->new('1'.'0' x 10000);$y=$cf->new('1'.'0' x 100);#$x->copy();#$x->copy()->fdiv($y);
+0#1e10000 / 1e1000#$x=$cf->new('1'.'0' x 10000);$y=$cf->new('1'.'0' x 1000);#$x->copy();#$x->copy()->fdiv($y);
+0#1e10000 / 123456#$x=$cf->new('1'.'0' x 10000);$y=$cf->new('123456');#$x->copy();#$x->copy()->fdiv($y);
+
+group=fmod#0#Big float remainder
+1#1 % 1#$x=$cf->new('1');$y = $cf->new(1);#$x->copy();#$x->copy()->fmod($y);
+2#1e10 % 2#$x=$cf->new('1'.'0'x10);$y=$cf->new(2);#$x->copy();#$x->copy()->fmod($y);
+3#1e100 % 2#$x=$cf->new('1'.'0'x10);$y = $cf->new(2);#$x->copy();#$x->copy()->fmod($y);
+4#1e1000 % 2#$x=$cf->new('1'.'0'x10);$y=$cf->new(2);#$x->copy();#$x->copy()->fmod($y);
+5#1e10000 % 2#$x=$cf->new('1'.'0'x10);$y=$cf->new(2);#$x->copy();#$x->copy()->fmod($y);
+0#1e10 % 3#$x=$cf->new('1'.'0'x10);$y=$cf->new(3);#$x->copy();#$x->copy()->fmod($y);
+0#1e100 % 3#$x=$cf->new('1'.'0'x10);$y=$cf->new(3);#$x->copy();#$x->copy()->fmod($y);
+0#1e1000 % 3#$x=$cf->new('1'.'0'x10);$y=$cf->new(3);#$x->copy();#$x->copy()->fmod($y);
+0#1e10000 % 3#$x=$cf->new('1'.'0'x10);$y=$cf->new(3);#$x->copy();#$x->copy()->fmod($y);
+0#1e10 % 7#$x=$cf->new('1'.'0'x10);$y=$cf->new(7);#$x->copy();#$x->copy()->fmod($y);
+0#1e100 % 7#$x=$cf->new('1'.'0'x10);$y=$cf->new(7);#$x->copy();#$x->copy()->fmod($y);
+0#1e1000 % 7#$x=$cf->new('1'.'0'x10);$y=$cf->new(7);#$x->copy();#$x->copy()->fmod($y);
+0#1e10000 % 7#$x=$cf->new('1'.'0'x10);$y=$cf->new(7);#$x->copy();#$x->copy()->fmod($y);
+0#1e10 % 1e9#$x=$cf->new('1'.'0'x10);$y=$cf->new('1'.'0'x9);#$x->copy();#$x->copy()->fmod($y);
+0#1e100 % 1e9#$x=$cf->new('1'.'0'x100);$y=$cf->new('1'.'0'x9);#$x->copy();#$x->copy()->fmod($y);
+0#1e1000 % 1e9#$x=$cf->new('1'.'0'x1000);$y=$cf->new('1'.'0'x9);#$x->copy();#$x->copy()->fmod($y);
+0#1e10000 % 1e9#$x=$cf->new('1'.'0'x10000);$y=$cf->new('1'.'0'x9);#$x->copy();#$x->copy()->fmod($y);
+
+group=copy#0#Big float copy/new from object
+1#copy(1)#$y=$cf->new(1);##$x=$y->copy()
+2#copy(1e10)#$y = $cf->new('1'.'0'x10);##$x = $y->copy()
+3#copy(1e100)#$y = $cf->new('1'.'0'x100);##$x = $y->copy()
+4#copy(1e1000)#$y = $cf->new('1'.'0'x1000);##$x = $y->copy()
+5#copy(1e10000)#$y = $cf->new('1'.'0'x10000);##$x = $y->copy()
+6#copy(1)#$y=$cf->new(1);##$x=$y->copy()
+7#copy(1.'1'x10)#$y = $cf->new('1'.'1'x10);##$x = $y->copy()
+8#copy(1.'1'x100)#$y = $cf->new('1'.'1'x100);##$x = $y->copy()
+9#copy(1.'1'x1000)#$y = $cf->new('1'.'1'x1000);##$x = $y->copy()
+10#copy(1.'1'x10000)#$y = $cf->new('1'.'1'x10000);##$x = $y->copy()
+
+group=copy via new#0#Big float copy/new from object
+1#new(1)#$y=$cf->new(1);##$x=$cf->new($y)
+2#new(1e10)#$y=$cf->new('1'.'0'x10);##$x=$cf->new($y)
+3#new(1e100)#$y=$cf->new('1'.'0'x100);##$x=$cf->new($y)
+4#new(1e1000)#$y=$cf->new('1'.'0'x1000);##$x=$cf->new($y)
+5#new(1e10000)#$y=$cf->new('1'.'0'x10000);##$x=$cf->new($y)
+6#new(1)#$y=$cf->new(1);##$x=$cf->new($y)
+7#new(1.'1'x10)#$y=$cf->new('1'.'1'x10);##$x=$cf->new($y)
+8#new(1.'1'x100)#$y=$cf->new('1'.'1'x100);##$x=$cf->new($y)
+9#new(1.'1'x1000)#$y=$cf->new('1'.'1'x1000);##$x=$cf->new($y)
+10#new(1.'1'x10000)#$y=$cf->new('1'.'1'x10000);##$x=$cf->new($y)
+ 
+group=frsft#0#Big float shift right
+1#1 >> 1#$x=$cf->new(1);$y=$cf->new(1);#$x->copy()#$x->copy()->frsft($y)
+2#1e10 >> 1#$x=$cf->new('1'.'0'x10);$y=$cf->new(1);#$x->copy()#$x->copy()->frsft($y)
+3#1e10 >> 8#$x=$cf->new('1'.'0'x10);$y=$cf->new(8);#$x->copy()#$x->copy()->frsft($y)
+4#1e100 >> 1#$x=$cf->new('1'.'0'x100);$y=$cf->new(1);#$x->copy()#$x->copy()->frsft($y)
+5#1e100 >> 8#$x=$cf->new('1'.'0'x100);$y=$cf->new(8);#$x->copy()#$x->copy()->frsft($y)
+6#1e100 >> 255#$x=$cf->new('1'.'0'x100);$y=$cf->new(255);#$x->copy()#$x->copy()->frsft($y)
+7#1e1000 >> 255#$x=$cf->new('1'.'0'x1000);$y=$cf->new(255);#$x->copy()#$x->copy()->frsft($y)
+ 
+group=flsft#0#Big float shift left
+1#1 << 1#$x=$cf->new(1);$y=$cf->new(1);#$x->copy()#$x->copy()->flsft($y)
+2#1e10 << 1#$x=$cf->new('1'.'0'x10);$y=$cf->new(1);#$x->copy()#$x->copy()->flsft($y)
+3#1e10 << 8#$x=$cf->new('1'.'0'x10);$y=$cf->new(8);#$x->copy()#$x->copy()->flsft($y)
+4#1e100 << 1#$x=$cf->new('1'.'0'x100);$y=$cf->new(1);#$x->copy()#$x->copy()->flsft($y)
+5#1e100 << 8#$x=$cf->new('1'.'0'x100);$y=$cf->new(8);#$x->copy()#$x->copy()->flsft($y)
+6#1e100 << 255#$x=$cf->new('1'.'0'x100);$y=$cf->new(255);#$x->copy()#$x->copy()->flsft($y)
+7#1e1000 << 255#$x=$cf->new('1'.'0'x1000);$y=$cf->new(255);#$x->copy()#$x->copy()->flsft($y)
+ 
+group=bcmp#0#Big float bcmp
+1#1 1#$x=$cf->new('1');$y=$x->copy();##$x->fcmp($y);
+2#1e10 1e10#$x=$cf->new('1e10');$y=$x->copy();##$x->fcmp($y);
+3#1e100 1e100#$x=$cf->new('1e100');$y=$x->copy();##$x->fcmp($y);
+4#1e1000 1e1000#$x=$cf->new('1e1000');$y=$x->copy();##$x->fcmp($y);
+5#1  -1#$x=$cf->new('1');$y=$cf->new(-1);##$x->fcmp($y);
+6#1e1000 1#$x=$cf->new('1e1000');$y=$cf->new(1);##$x->fcmp($y);
+7#1e1000 -1#$x=$cf->new('1e1000');$y=$cf->new(-1);##$x->fcmp($y);
+8#1e1000 1e10#$x=$cf->new('1e1000');$y=$cf->new('1e10');##$x->fcmp($y);
+9#1e1000 -1e10#$x=$cf->new('1e1000');$y=$cf->new('-1e10');##$x->fcmp($y);
+10#1e1000 1x10#$x=$cf->new('1e1000');$y=$cf->new('1'x10);##$x->fcmp($y);
+11#1e1000 1x100#$x=$cf->new('1e1000');$y=$cf->new('1'x100);##$x->fcmp($y);
+
